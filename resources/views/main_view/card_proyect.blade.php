@@ -1,3 +1,7 @@
+<head>
+    <script src="{{ asset('../resources/js/home.js') }}"></script>
+    <script>window.onload = getHomePageContent;</script>
+</head>
 <div class="card borderBlack">
     <div class="card-body borderBlack marginG TheStructure">
         <div class="imagePSN borderBlack "></div>
@@ -12,3 +16,7 @@
         </div>
     </div>
 </div>
+
+
+  
+
