@@ -1,5 +1,5 @@
 function getHomePageContent() {
-
+// CTDL
     const positionImage = "Imagen 1"; // Valor de parámetro de ejemplo
     const positionText = "Texto 1"; // Valor de parámetro de ejemplo
 

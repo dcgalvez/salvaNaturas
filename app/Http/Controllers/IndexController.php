@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\pais;
+use stdClass;
 
 class IndexController extends Controller
 {
@@ -11,7 +14,21 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return view('welcome');
+        $rutas = $this->getRoutes();
+        return view('welcome', compact('rutas'));
+    }
+
+    public function infoHome(Request $request) {
+       $query = DB::connection('mysql')->select('CALL consulta_contenido_home(NULL, NULL)');
+      // dd($query);
+         return $query;
+    }
+
+    public function getRoutes() {
+        $route = new stdClass();
+        $route->infoH = route('infoHome');
+
+        return $route;
     }
 
     /**
