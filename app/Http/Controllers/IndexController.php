@@ -14,8 +14,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        $rutas = $this->getRoutes();
-        return view('welcome', compact('rutas'));
+        return view('welcome');
     }
 
     public function infoHome(Request $request) {
