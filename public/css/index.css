@@ -15,9 +15,7 @@
     border-radius: 0.35em;
 }
 
-.marginG {
-    margin: 0.25em;
-}
+.marginG { margin: 0.25em; }
 
 .TheStructure {
     display: grid;
@@ -35,7 +33,6 @@
     opacity: 0.60;
 }
 .textoPSN {
-    box-sizing: border-box;
     grid-column:  5 / 11;
     grid-row: 1;
     height: 30em;
@@ -82,3 +79,7 @@ height: 70%;
 #lastText {
     color: #fff !important;
 }
+
+/* --------------| Preview Cards |------------------ */
+
+#PreC_card { padding: 1em;}
