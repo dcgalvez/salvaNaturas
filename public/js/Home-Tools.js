@@ -32,23 +32,21 @@ class ToolsHome {
 
             case "2":
                 let card = "";
+                let num = 1;
                 $("#PreC_MainCard").empty();
                     datos.forEach(info => {
-                        card = `<div class="card borderBlack" id="PreC_card">
-                        <div class="card-body borderBlack marginG TheStructure">
-                            <div class="imagePSN borderBlack "><img src="${info.imagen}" alt="Imagenes Home"></div>
-                            <div class="textoPSN borderBlack ">
-                                <div class="borderBlack uncuartos displayFlex" id="mainText">PROYECTO ${info.proyecto_nombre}</div>
-                                <div class="borderBlack trescuartos displayFlex" id="middleText">
-                                    <p>${info.texto}</p>
-                                </div>
-                                <div class="borderBlack uncuartos displayFlex_right" id="lastText">
-                                    <a href="" class="lastText">🔍 Continuar leyendo del proyecto</a>
-                                </div>
+                        console.log(info);
+                        card = `
+                        <div class="GBDisplayFlex PREC-CardPJ" >
+                          <div class="PRECCard GBborderWhite">
+                            <div class="GBborderWhite PRECView" id="PRECVIEW${num}"></div>
+                            <div class="PRECSteps">
+                                <div class="GBborderWhite PRECStepO GBTextCenter"><p>${info.proyecto_nombre}</p></div>
+                                <div class="GBborderWhite PRECStepT"><p>${info.texto}</p></div>
+                                <div class="GBborderWhite GBDisplayFlex PRECStepTh"><button type="button" class="btn btn-primary"> LOOK MORE OF... </button></div>
                             </div>
-                        </div>
-                    </div>`
-
+                          </div>
+                        </div>`
                     $("#PreC_MainCard").append(card);
                 })
                 break;
