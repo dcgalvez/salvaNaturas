@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\pais;
 use stdClass;
 
-class IndexController extends Controller
+class NoticiasController extends Controller
 {
     public function index()
     {

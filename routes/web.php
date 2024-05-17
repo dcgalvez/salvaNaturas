@@ -22,3 +22,4 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 
 Route::get('/info', [IndexController::class, 'infoHome'])->name('infoHome');
 Route::get('/rutas', [IndexController::class, 'getRoutes'])->name('getRoutes');
+Route::get('/noticias', [IndexController::class, 'NoticiasProcedure']);

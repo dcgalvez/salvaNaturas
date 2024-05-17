@@ -52,6 +52,9 @@ class ToolsHome {
                     $("#PreC_MainCard").append(card);
                 })
                 break;
+
+            case "3":
+                break;
         }
     }
 }
