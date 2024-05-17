@@ -1,0 +1,44 @@
+.MAS-Nav {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    letter-spacing: 0.6px;
+}
+
+  .MAS-Nav .MAS-Ul2 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    height: 1.5em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2 {
+    margin-left: 1.5em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2:first-child {
+    margin-left: 15em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2:last-child {
+    margin-right: 15em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2 .MAS-A2 {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2 .MAS-A2:hover {
+    color: #ffcc00;
+  }
+
+  #MAS-A2ICON img{
+    margin-top: -0.75em;
+    transform: scale(0.9);
+  }

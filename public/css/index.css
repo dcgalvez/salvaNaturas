@@ -1,7 +1,10 @@
+/* --------------| Begin Global Clases |--------------- */
+
 * {
     box-sizing: border-box;
     font-family: system-ui;
     font-weight: 500;
+    box-sizing: border-box;
 }
 
 .labelFont {
@@ -10,12 +13,135 @@
     font-size: 0.95em;
 }
 
-.borderBlack {
+.GBborderBlack {
     border: 1px solid #000;
     border-radius: 0.35em;
 }
 
-.marginG { margin: 0.25em; }
+.GBMargin { margin: 0.25em; }
+
+.GBDisplayFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GBTextCenter {
+    text-align: center;
+}
+
+/* --------------| End Global Clases |--------------- */
+
+/* -----------------------------| Begin Main Screen |------------------------------- */
+
+.MAS-BannerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 2.5em 0;
+    width: 100% !important;
+    height: 90vh !important;
+}
+
+.MAS-BannerImg {
+    width: 100%;
+    height: 90vh;
+    background-image: url('/assets/images/BannerTwo.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* border-radius: 0.75em; */
+}
+
+/* -----------------------------| End Main Screen |------------------------------- */
+
+
+/* -----------------------------| Begin Preview Cards |------------------------------- */
+:root {
+    --global-colorBack: #000;
+    --global-opacityBack: 0.50;
+    --global-textWhite: #fff;
+}
+
+.PREC-CardPJ { margin: 1.75em 0 1.75em 0; }
+
+.GBborderWhite {
+    border: 1px solid #fff;
+    border-radius: 0.35em;
+}
+
+.PRECCard {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-gap: 0.75em;
+    padding: 0.5em;
+    /* margin: 0.5em; */
+    width: 95%;
+    background-image: url('/assets/images/FondoSea.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.PRECView {
+    grid-column: 1 / 3;
+    grid-row: 1;
+    height: 25em;
+    color: var(--global-textWhite);
+    background-color: var(--global-colorBack);
+    opacity: var(--global-opacityBack);
+}
+
+.PRECSteps {
+    grid-column: 3 / 6;
+    grid-row: 1;
+    height: 25em;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    grid-gap: 0.15em;
+    color: var(--global-textWhite);
+    background-color: var(--global-colorBack);
+    opacity: var(--global-opacityBack);
+}
+
+.PRECStepO {
+    font-size: 2.5em;
+    grid-row: 1 / 3; 
+    grid-column: 1 / 4; 
+}
+
+.PRECStepT { grid-row: 3 / 11; grid-column: 1 / 4; }
+
+.PRECStepTh { grid-row: 10; grid-column: 3; }
+
+/* -----------------------------| End Preview Cards |-------------------------------- */
+
+
+/* --------------------------|Begin Noticias Carusel |------------------------------ */
+
+.NAENews {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-gap: 0.75em;
+    padding: 0.5em;
+    margin: 0.5em;
+}
+
+.NAENewsImg {
+    grid-column: 1 / 5;
+    grid-row: 1;
+    height: 25em;
+}
+
+.NAENewsPanel {
+    grid-column: 5;
+    grid-row: 1;
+    height: 25em;
+}
+/* -------------------------|End Noticias Carusel |------------------------------ */
 
 .TheStructure {
     display: grid;
@@ -79,7 +205,3 @@ height: 70%;
 #lastText {
     color: #fff !important;
 }
-
-/* --------------| Preview Cards |------------------ */
-
-#PreC_card { padding: 1em;}
