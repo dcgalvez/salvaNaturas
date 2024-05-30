@@ -1,5 +1,9 @@
 {{---------------|   Preview Cards, Standard: PREC-   |---------------}}
 
+<div class="col-12">
+  <p class="GBFontBebasN GBTextCenter" id="PREC-Title">PROYECTOS</p>
+</div>
+
 <div id="PreC_MainCard">
 </div>
 

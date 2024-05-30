@@ -31,6 +31,7 @@ class ToolsHome {
                 break;
 
             case "2":
+                console.log("Llego de donde deberia", datos)
                 let card = "";
                 let num = 1;
                 $("#PreC_MainCard").empty();
@@ -39,15 +40,18 @@ class ToolsHome {
                         card = `
                         <div class="GBDisplayFlex PREC-CardPJ" >
                           <div class="PRECCard GBborderWhite">
-                            <div class="GBborderWhite PRECView" id="PRECVIEW${num}"></div>
+                            <div class="GBborderWhite PRECView" id="PREC-View${num}"></div>
                             <div class="PRECSteps">
                                 <div class="GBborderWhite PRECStepO GBTextCenter"><p>${info.proyecto_nombre}</p></div>
                                 <div class="GBborderWhite PRECStepT"><p>${info.texto}</p></div>
-                                <div class="GBborderWhite GBDisplayFlex PRECStepTh"><button type="button" class="btn btn-primary"> LOOK MORE OF... </button></div>
+                                <div class="GBDisplayFlex PRECStepTh"><button type="button" class="btn btn-primary">CONOCE MAS</button></div>
                             </div>
                           </div>
-                        </div>`
+                        </div>`;
+                        document.querySelector(':root').style.setProperty('--global-projecto' + num, 'url(' + info.imagen + ')')
+                    // $('html').css("--card-projecto1", "/assets/images/tortuga.jpg");
                     $("#PreC_MainCard").append(card);
+                    num++;
                 })
                 break;
 
