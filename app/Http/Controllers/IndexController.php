@@ -32,4 +32,9 @@ class IndexController extends Controller
 
         return $route;
     }
+
+    public function tooCordillera() {
+        // dd('En tiempo real');
+        return view('secciones.cordilleras-cuencas');
+    }
 }

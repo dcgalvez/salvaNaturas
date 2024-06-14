@@ -12,6 +12,7 @@
 <body>
     @include('main_view.navbar')
 
+    <h1>Cordilleras y Cuencas</h1>
     
 
 
