@@ -1,0 +1,65 @@
+/* -------------------------| Pagina de Inicio |------------------------------- */
+
+:root {
+    --pi-colorLetra: #000;
+}
+
+.PI-BorderB {
+    border: 1px solid #000;
+}
+
+.PI-Title {
+    font-size: 4em;
+    color: var(--pi-colorLetra);
+}
+
+.PI-Flex-Wrap {
+    width: 97%;
+    flex-wrap: wrap;
+    gap: 1.25em;
+}
+
+/* Card Boceto */
+.PI-Card {
+    display: grid;
+    grid-auto-columns: minmax(15em, 15em);
+    grid-auto-rows: minmax(5em, auto);
+    grid-gap: 0.25em;
+    padding: 0.25em;
+    border-radius: 1.15em;
+    /* Propiedades imagen */
+    background-image: url('/assets/images/Cordilleras.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.PI-Card-Head {
+    grid-column: 1;
+    grid-row: 1 / 4;
+    /* ------- Estilos ------ */
+    border-radius: 0.5em;
+    font-size: 1.5em;
+    text-align: center;
+    transition: all 0.5s ease-out;
+    /*  */
+}
+
+.PI-Card-Head:hover {
+    background-color: #000;
+    opacity: 0.50;
+    color: #fff;
+    transform: scale(1.025);
+    font-size: 1.75em;
+}
+
+/* ---------------------------------------------------------------------------- */
+
+/* POTENCIAL TIPO DE LETRA */
+
+.source-code-font {
+    font-family: "Source Code Pro", monospace;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+  }

@@ -26,15 +26,31 @@ class IndexController extends Controller
           return $query;
      }
 
-    public function getRoutes() {
+    public function getRoutes() 
+    {
         $route = new stdClass();
         $route->infoH = route('infoHome');
 
         return $route;
     }
 
+    public function tooServicios() {
+        // dd('En tiempo real');
+        return view('secciones.servicios');
+    }
+
     public function tooCordillera() {
         // dd('En tiempo real');
         return view('secciones.cordilleras-cuencas');
+    }
+
+    public function tooProductos() {
+        // dd('En tiempo real');
+        return view('secciones.productos');
+    }
+
+    public function tooRegenera() {
+        // dd('En tiempo real');
+        return view('secciones.regenera');
     }
 }
