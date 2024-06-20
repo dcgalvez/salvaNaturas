@@ -23,14 +23,39 @@
 
 .PI-FD {
     display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: minmax(10em, auto);
+    gap: 1.5em;
+    margin: 8em;
+}
+
+.PI-FD-Logo {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+
+    /* Imagen Bacground*/
+    background-image: url('/assets/images/SalvaNatura Logo.jpg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 1.15em;
+}
+
+.PI-FD-Cita { 
+    grid-column: 2 / 4;
+    grid-row: 1 / 3;
+    padding: 1.25em;
+    font-size: 1.6em;
+    font-style: italic;
+    border-radius: 1.15em;
 }
 
 /* -------------------------------- CARD BOCETO INICIAL -------------------------------- */
 
 .PI-Card {
     display: grid;
-    grid-auto-columns: minmax(15em, 15em);
-    grid-auto-rows: minmax(5em, auto);
+    grid-auto-columns: minmax(22em, 22em);
+    grid-auto-rows: minmax(7em, auto);
     grid-gap: 0.25em;
     padding: 0.25em;
     border-radius: 1.15em;

@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" href="css/p-inicio.css">
     <style> @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); </style>
-    {{-- <style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap'); </style> --}}
+    <style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap'); </style>
 </head>
 <body>
     @include('main_view.navbar')
@@ -32,15 +32,15 @@
 
     <div class="PI-FD">
         <div class="PI-FD-Logo"></div>
-        <div class="PI-FD-Cita">
-            <p></p>
+        <div class="PI-FD-Cita PI-BorderB GBDisplayFlex">
+            <p class="">SalvaNATURA es colaboración de equipos intergeneracionales multidiciplinarios conocedores de ecosistemas acuáticos y terrestres que regeneramos cuencas hidrográficas desde las cordilleras hasta los océanos y en estas, sus bienes culturales, económicos, naturales, políticos no partidarios y sociales... </p>
         </div>
     </div>
 
     {{-- CARDS CORDILLERAS --}}
 
     <div class="col-12 mt-5 mb-5">
-        <h1 class="GBFontBebasN GBTextCenter">CORDILLERAS</h1>
+        <h1 class="GBFontBebasN GBTextCenter" style="font-size: 4em;">CORDILLERAS</h1>
     </div>      
     
     <div class="GBDisplayFlex PI-Flex-Wrap mb-5">
