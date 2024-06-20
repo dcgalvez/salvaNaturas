@@ -11,6 +11,8 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap');
     </style>
+    <link rel="stylesheet" href="css/p-inicio.css">
+    <style> @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); </style>
 </head>
 
 <body>
@@ -18,10 +20,10 @@
 
     {{-- Mapa del pais con sus cordilleras --}}
     <div>
-        <div class="col-12">
+        <div class="col-12 mt-5">
             <p class="GBFontBebasN GBTextCenter" id="PREC-Title">Mapa de El Salvador con Cordilleras y Cuencas</p>
         </div>
-        <div class="MAS-BannerDiv mt-4">
+        <div class="MAS-BannerDiv mt-2">
             <div class="MAS-MapCordilleraImg GBborderWhite"></div>
         </div>
         <div class="col-12">
@@ -98,12 +100,61 @@
             </div>
             <!-- <button id="moveLeft">Move Left</button>
             <button id="moveRight">Move Right</button> -->
+        </div>
 
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="" crossorigin="anonymous"></script>
-            <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-            <script src="{{ asset('js/Home-Index.js') }}"></script>
-            <script src="{{ asset('js/Home-Tools.js') }}"></script>
-            <script src="{{ asset('js/Slides-Cordilleras.js') }}"></script>
+        <div class="col-12 mt-5 mb-5">
+            <h1 class="GBFontBebasN GBTextCenter">CORDILLERAS</h1>
+        </div>      
+        
+        <div class="GBDisplayFlex PI-Flex-Wrap mb-5">
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">CADENA INTERIOR</p>  
+                </div>
+                {{-- <div class="PI-Card-Body PI-BorderB"></div> --}}
+            </div>
+    
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">APANECA ILAMATEPEQ</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">ALOTEPEQUE METAPAN</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">BALSAMO QUESALTEPEQUE</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">SIERRA TECAPA CHINAMECA</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">CACAHUATIQUE COROBAN</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">NAHUATERIQUE</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">CACAHUATIQUE COROBAN</p></div>
+            </div>
+            <div class="PI-Card ">
+                <div class="PI-Card-Head  GBDisplayFlex">
+                    <p class="source-code-font PI-Card-Head-P">JUCUARAN INTIPUCA</p></div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ asset('js/Home-Index.js') }}"></script>
+    <script src="{{ asset('js/Home-Tools.js') }}"></script>
+    <script src="{{ asset('js/Slides-Cordilleras.js') }}"></script>
 </body>
 
 </html>

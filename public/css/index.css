@@ -185,7 +185,7 @@
     --global-projecto3: url("");
 }
 #PREC-Title {
-    font-size: 4em; color: white;
+    font-size: 4em; color: #000;
 }
 
 .PREC-CardPJ { margin: 1.75em 0 1.75em 0; }

@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" href="css/p-inicio.css">
-    {{-- <style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap'); </style> --}}
     <style> @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); </style>
+    {{-- <style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap'); </style> --}}
 </head>
 <body>
     @include('main_view.navbar')
@@ -30,7 +30,7 @@
 
     {{-- Cards Cordilleras --}}
 
-    <div class="col-12">
+    <div class="col-12 mt-5 mb-5">
         <h1 class="GBFontBebasN GBTextCenter">CORDILLERAS</h1>
     </div>      
     
