@@ -28,7 +28,16 @@
         <p class="GBFontBebasN GBTextCenter PI-Title">CORDILLERAS</p>
     </div> --}}
 
-    {{-- Cards Cordilleras --}}
+    {{-- LOGO E CITA DE INICIO --}}
+
+    <div class="PI-FD">
+        <div class="PI-FD-Logo"></div>
+        <div class="PI-FD-Cita">
+            <p></p>
+        </div>
+    </div>
+
+    {{-- CARDS CORDILLERAS --}}
 
     <div class="col-12 mt-5 mb-5">
         <h1 class="GBFontBebasN GBTextCenter">CORDILLERAS</h1>

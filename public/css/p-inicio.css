@@ -19,7 +19,14 @@
     gap: 1.25em;
 }
 
-/* Card Boceto */
+/* ---------------------------------- FIRST CONTAINER ---------------------------------- */
+
+.PI-FD {
+    display: grid;
+}
+
+/* -------------------------------- CARD BOCETO INICIAL -------------------------------- */
+
 .PI-Card {
     display: grid;
     grid-auto-columns: minmax(15em, 15em);
@@ -45,7 +52,7 @@
     /*  */
 }
 
-.PI-Card-Head:hover {
+.PI-Card:hover .PI-Card-Head {
     background-color: #000;
     opacity: 0.50;
     color: #fff;
