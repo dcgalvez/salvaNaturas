@@ -102,8 +102,8 @@
 /* Carrosel */
 
 .carousel-container {
-    width: 600px;
-    height: 400px;
+    width: 900px;
+    height: 700px;
     margin: 0 auto; /* Centra horizontalmente */
     display: flex;
     justify-content: center;
