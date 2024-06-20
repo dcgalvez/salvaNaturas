@@ -64,13 +64,13 @@
                     </div>
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="/assets/images/HistoriasExito.jpeg" class="d-block w-100" alt="Historia de exito 1">
+                            <img src="/assets/images/exito1.png" class="d-block w-100" alt="Historia de exito 1">
                         </div>
                         <div class="carousel-item">
-                            <img src="/assets/images/HistoriasExito.jpeg" class="d-block w-100" alt="Historia de exito 2">
+                            <img src="/assets/images/exito2.png" class="d-block w-100" alt="Historia de exito 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="/assets/images/HistoriasExito.jpeg" class="d-block w-100" alt="Historia de exito 3">
+                            <img src="/assets/images/exito3.png" class="d-block w-100" alt="Historia de exito 3">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
