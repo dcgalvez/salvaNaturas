@@ -4,15 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio</title>
+    <title>Cordilleras y Cuencas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/index.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('css/navbar.css') }}">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap');
     </style>
+    <link rel="stylesheet" href="css/p-cordillera.css">
     <link rel="stylesheet" href="css/p-inicio.css">
-    <style> @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+    </style>
 </head>
 
 <body>
@@ -52,99 +55,87 @@
             <div class="col-12">
                 <p class="GBFontBebasN GBTextCenter" id="PREC-Title">Historias de exito</p>
             </div>
-            <div class="container">
-                
-                <div class="cards">
-                    <div class="card" draggable="true">
-                        <div class="card-title">Card 1</div>
-                        <div class="card-content">
-                            This is the content of card 1.
+            <div class="carousel-container">
+                <div id="carouselExampleIndicators" class="carousel slide">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/assets/images/HistoriasExito.jpeg" class="d-block w-100" alt="Historia de exito 1">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/assets/images/HistoriasExito.jpeg" class="d-block w-100" alt="Historia de exito 2">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="/assets/images/HistoriasExito.jpeg" class="d-block w-100" alt="Historia de exito 3">
                         </div>
                     </div>
-
-                    <div class="card" draggable="true">
-                        <div class="card-title">Card 2</div>
-                        <div class="card-content">
-                            This is the content of card 2.
-                        </div>
-                    </div>
-
-                    <div class="card" draggable="true">
-                        <div class="card-title">Card 3</div>
-                        <div class="card-content">
-                            This is the content of card 3.
-                        </div>
-                    </div>
-
-                    <div class="card" draggable="true">
-                        <div class="card-title">Card 4</div>
-                        <div class="card-content">
-                            This is the content of card 4.
-                        </div>
-                    </div>
-
-                    <div class="card" draggable="true">
-                        <div class="card-title">Card 5</div>
-                        <div class="card-content">
-                            This is the content of card 5.
-                        </div>
-                    </div>
-
-                    <div class="card" draggable="true">
-                        <div class="card-title">Card 6</div>
-                        <div class="card-content">
-                            This is the content of card 6.
-                        </div>
-                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
                 </div>
             </div>
-            <!-- <button id="moveLeft">Move Left</button>
-            <button id="moveRight">Move Right</button> -->
         </div>
 
-        <div class="col-12 mt-5 mb-5">
-            <h1 class="GBFontBebasN GBTextCenter">CORDILLERAS</h1>
-        </div>      
-        
+        <div class="col-12 mt-5">
+            <p class="GBFontBebasN GBTextCenter" id="PREC-Title">CORDILLERAS</p>
+        </div>
+
         <div class="GBDisplayFlex PI-Flex-Wrap mb-5">
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">CADENA INTERIOR</p>  
+                    <p class="source-code-font PI-Card-Head-P">CADENA INTERIOR</p>
                 </div>
                 {{-- <div class="PI-Card-Body PI-BorderB"></div> --}}
             </div>
-    
+
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">APANECA ILAMATEPEQ</p></div>
+                    <p class="source-code-font PI-Card-Head-P">APANECA ILAMATEPEQ</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">ALOTEPEQUE METAPAN</p></div>
+                    <p class="source-code-font PI-Card-Head-P">ALOTEPEQUE METAPAN</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">BALSAMO QUESALTEPEQUE</p></div>
+                    <p class="source-code-font PI-Card-Head-P">BALSAMO QUESALTEPEQUE</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">SIERRA TECAPA CHINAMECA</p></div>
+                    <p class="source-code-font PI-Card-Head-P">SIERRA TECAPA CHINAMECA</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">CACAHUATIQUE COROBAN</p></div>
+                    <p class="source-code-font PI-Card-Head-P">CACAHUATIQUE COROBAN</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">NAHUATERIQUE</p></div>
+                    <p class="source-code-font PI-Card-Head-P">NAHUATERIQUE</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">CACAHUATIQUE COROBAN</p></div>
+                    <p class="source-code-font PI-Card-Head-P">CACAHUATIQUE COROBAN</p>
+                </div>
             </div>
             <div class="PI-Card ">
                 <div class="PI-Card-Head  GBDisplayFlex">
-                    <p class="source-code-font PI-Card-Head-P">JUCUARAN INTIPUCA</p></div>
+                    <p class="source-code-font PI-Card-Head-P">JUCUARAN INTIPUCA</p>
+                </div>
             </div>
         </div>
 
