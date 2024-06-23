@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\LoginCotroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\IndexController;
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
 
+
 Route::get('/info', [IndexController::class, 'infoHome'])->name('infoHome');
 Route::get('/rutas', [IndexController::class, 'getRoutes'])->name('getRoutes');
 Route::get('/noticias', [IndexController::class, 'NoticiasProcedure']);
@@ -27,3 +29,7 @@ Route::get('/cordilleras-cuencas', [IndexController::class, 'tooCordillera'])->n
 Route::get('/servicios', [IndexController::class, 'tooServicios'])->name('seccion.servicios');
 Route::get('/productos', [IndexController::class, 'tooProductos'])->name('seccion.productos');
 Route::get('/regenera', [IndexController::class, 'tooRegenera'])->name('seccion.regenera');
+Route::get('/login', [IndexController::class, 'tooLogin'])->name('seccion.login');
+Route::post('/login', [IndexController::class, 'processLogin'])->name('login');
+//ADMISTRADOR DE CONTENIDOS
+//Route::get('/login', [LoginCotroller::class, 'login'])->name('administrador.login');

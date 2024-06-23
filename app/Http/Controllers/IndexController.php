@@ -53,4 +53,10 @@ class IndexController extends Controller
         // dd('En tiempo real');
         return view('secciones.regenera');
     }
+
+    public function tooLogin() {
+        // dd('En tiempo real');
+        return view('secciones.Login');
+    }
+
 }

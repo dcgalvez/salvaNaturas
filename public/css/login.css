@@ -1,0 +1,82 @@
+body {
+    font-family: 'ARIAL', serif; /* Fuente New Times Roman */
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.card {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.card-header {
+    border-bottom: 1px solid #e3e3e3;
+    padding: 1rem 2rem; /* Ajuste del padding */
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.form-label {
+    font-weight: bold;
+    font-size: 1.2rem; /* Tamaño de fuente para label */
+}
+
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+.input-group {
+    display: flex;
+}
+
+.input-group .form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.input-group .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+    padding: 10px 20px; /* Ajuste del padding horizontal */
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+}
+
+.btn-outline-secondary {
+    border-color: #ced4da;
+}
+
+.forgot-password {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+h3 {
+    font-family: 'New Times Roman', serif; /* Fuente New Times Roman */
+    font-size: 2.5rem; /* Tamaño de fuente para h3 */
+    margin-bottom: 1.5rem; /* Espaciado inferior */
+}
