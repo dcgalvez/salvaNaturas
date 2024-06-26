@@ -8,14 +8,14 @@
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <link rel="stylesheet" type="text/css" href="css/navbar.css">
     <link rel="stylesheet" href="css/p-inicio.css">
-    {{-- <style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap'); </style> --}}
+    <style> @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Monoton&family=Oregano:ital@0;1&display=swap'); </style>
     <style> @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); </style>
 </head>
 <body>
     @include('main_view.navbar')
 
     <div class="col-12">
-        <h1 class="GBFontBebasN GBTextCenter">REGENERA</h1>
+        <h1 class="GBFontBebasN GBTextCenter mt-5" style="font-size: 4em;">REGENERA</h1>
     </div>      
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="" crossorigin="anonymous"></script>
