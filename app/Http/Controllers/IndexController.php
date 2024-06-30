@@ -39,18 +39,13 @@ class IndexController extends Controller
         return view('secciones.servicios');
     }
 
-    public function tooCordillera() {
+    public function tooProgramas() {
         // dd('En tiempo real');
-        return view('secciones.cordilleras-cuencas');
+        return view('secciones.programas');
     }
 
-    public function tooProductos() {
+    public function tooContactanos() {
         // dd('En tiempo real');
-        return view('secciones.productos');
-    }
-
-    public function tooRegenera() {
-        // dd('En tiempo real');
-        return view('secciones.regenera');
+        return view('secciones.contactanos');
     }
 }

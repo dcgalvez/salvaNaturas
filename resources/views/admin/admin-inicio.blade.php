@@ -1,12 +1,10 @@
-@extends('Standard-Admin')
-@section('top')
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" href="css/p-inicio.css">
-@endsection
-
+@extends('main_view\Standard-Admin')
+@php $version = 'v.1'; @endphp
+    
 @section('content')
+
+<link rel="stylesheet" href="{{ mix('compilacion/seccion-administrador.css') }}">
+
 {{--------------| Administrador Inicio: AI  --}}
 <main class="AI-Container">
     <div class="AI-Barra AI-Flex">
@@ -35,7 +33,9 @@
     </div>
 
     <div class="AI-Contenido AI-BorderDos">
-        {{-- @include('home-prueba') --}}
+        @include('secciones.inicio-vista')
     </div>
 </main>
+
+<script src="{{ mix('compilacion/seccion-administrador.js') }}"></script>
 @endsection

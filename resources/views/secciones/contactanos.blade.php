@@ -7,6 +7,6 @@
 @endsection
 @section('content')
     @include('main_view.navbar')
-    <h1>SERVICIOS</h1>
+    <h1>CONTACTANOS</h1>
 
 @endsection

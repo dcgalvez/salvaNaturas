@@ -22,10 +22,9 @@ Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/info', [IndexController::class, 'infoHome'])->name('infoHome');
 Route::get('/rutas', [IndexController::class, 'getRoutes'])->name('getRoutes');
 Route::get('/noticias', [IndexController::class, 'NoticiasProcedure']);
-Route::get('/cordilleras-cuencas', [IndexController::class, 'tooCordillera'])->name('seccion.cordilleras-cuencas');
 Route::get('/servicios', [IndexController::class, 'tooServicios'])->name('seccion.servicios');
-Route::get('/productos', [IndexController::class, 'tooProductos'])->name('seccion.productos');
-Route::get('/regenera', [IndexController::class, 'tooRegenera'])->name('seccion.regenera');
+Route::get('/programas', [IndexController::class, 'tooProgramas'])->name('seccion.programas');
+Route::get('/contactanos', [IndexController::class, 'tooContactanos'])->name('seccion.contactanos');
 
 // RUTAS LOGIN (Necesarias para logearse)
 Route::view('/login', "admin.admin-login")->name('login');

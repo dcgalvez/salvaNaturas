@@ -1,4 +1,4 @@
-@extends('Standard')
+@extends('main_view\Standard-Admin')
 @section('content')
 <main class="container align-center p-5">
     <form method="POST" action="{{ route('admin.login') }}">
