@@ -1,12 +1,7 @@
 @extends('main_view/Standard')
-@section('top')
-    <link rel="stylesheet" type="text/css" href="css/admin.css">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link rel="stylesheet" type="text/css" href="css/navbar.css">
-    <link rel="stylesheet" href="css/p-inicio.css">
-@endsection
 @section('content')
+<link rel="stylesheet" href="{{ mix('compilacion/usuario.css') }}">
     @include('main_view.navbar')
-    <h1>PROGRAMAS</h1>
-
+    <h1>Programas</h1>
+<script src="{{ mix('compilacion/usuario.js') }}"></script>
 @endsection

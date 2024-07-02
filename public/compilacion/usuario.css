@@ -53,6 +53,7 @@
 
 :root {
     --global--imagenInicio:  url('/assets/images/BannerTwo.png');
+    --global--verdeClaro: #6dd93b46; 
     --global--verde: #6DD93B;
     --global--verdeContraste: #4F9000;
     --global--otroVerde: #1F8C3A;
@@ -61,7 +62,7 @@
 }
 
 body {
-    background-color: var(--global--verdeContraste);
+    background-color: var(--global--verdeClaro);
 }
 
 .MAS-BannerDiv {
@@ -84,21 +85,35 @@ body {
     border: 0.10em solid var(--global--otroVerde);
 }
 
+/* ---------------| MISION Y VISION |------------- */
+
+.PI-Div-FormatoInfo {
+    padding: 7em;
+}
 
 .PI-FormatoInfo {
     display: grid;
     grid-auto-columns: minmax(2em, auto);
     grid-auto-rows: minmax(2em, auto);
     gap: 0.75em;
+    border: 1px solid black;
+    margin: 0.5em 0 0.5em 0;
 }
 
 .PI-FormatoInfo-Title {
-
+    grid-column: 1;
+    grid-row: 1;
+    border: 1px solid black;
 }
 
 .PI-FormatoInfo-Text {
+    grid-column: 1;
+    grid-row: 2;
+    border: 1px solid black;
 
 }
+
+
 
 /* -----------------------------| End Main Screen |------------------------------- */
 .MAS-Nav {

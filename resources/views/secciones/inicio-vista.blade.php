@@ -3,10 +3,23 @@
     <div class="MAS-BannerImg GBborderWhite"></div>
 </div>
 
-<div class="">
+<div class="GBTextCenter PI-Div-FormatoInfo">
     <div class="PI-FormatoInfo">
-        <div class=""></div>
-        <div class=""></div>
+        <div class="PI-FormatoInfo-Title">
+            <h3>MISION</h3>
+        </div>
+        <div class="PI-FormatoInfo-Text">
+            <p>Todo esto es la mision y la vision</p>
+        </div>
+    </div>
+
+    <div class="PI-FormatoInfo">
+        <div class="PI-FormatoInfo-Title">
+            <h3>VISION</h3>
+        </div>
+        <div class="PI-FormatoInfo-Text">
+            <p>Todo esto es la vision y la vision</p>
+        </div>
     </div>
 </div>
 
