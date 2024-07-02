@@ -18,5 +18,6 @@ mix.scripts([
 ], 'public/compilacion/usuario.js')
 .styles([
     'public/css/p-inicio.css',
-    'public/css/navbar.css'
+    'public/css/navbar.css',
+    'public/css/p-contactanos.css'
 ], 'public/compilacion/usuario.css')

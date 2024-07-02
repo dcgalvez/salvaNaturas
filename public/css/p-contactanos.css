@@ -1,12 +1,9 @@
 
-        body {
-            font-family: Arial, sans-serif;
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: #f4f4f9;
-            margin: 0;
         }
 
         .card {
@@ -24,12 +21,12 @@
 
         .form-group {
             margin-bottom: 15px;
+            text-align: left;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            text-align: left;
         }
 
         .form-group input {
@@ -50,6 +47,7 @@
             border: none;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            border-radius: 20px;
         }
 
         .form-group input[type="submit"]:hover {
