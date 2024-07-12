@@ -1,82 +1,80 @@
-body {
-    font-family: 'ARIAL', serif; /* Fuente New Times Roman */
-    background-color: #f8f9fa;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    background-image: url('/assets/images/login.jpg'); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
 }
 
-.card {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-.card-header {
-    border-bottom: 1px solid #e3e3e3;
-    padding: 1rem 2rem; /* Ajuste del padding */
-}
-
-.card-body {
-    padding: 2rem;
-}
-
-.form-label {
-    font-weight: bold;
-    font-size: 1.2rem; /* Tamaño de fuente para label */
-}
-
-.form-control {
+.btn {
+    background-color: #4CAF50; /* Green */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
     border-radius: 5px;
-    padding: 10px;
-    font-size: 1rem;
+    cursor: pointer;
 }
 
-.input-group {
+.btn:hover {
+    background-color: #3e8e41;
+}
+
+.btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.container-form {
+    width: 90%;
+    height: 90vh;
     display: flex;
+    justify-content: space-around;
+    transition: all 0.5s ease-out;
 }
 
-.input-group .form-control {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
+.formulario {
+    width: 400px;
+    padding: 1rem;
+    margin: 2rem;
+    background-color: rgba(51, 51, 51, 0.6); /* Fondo translúcido */
+    text-align: center;
+    box-shadow: none; /* Eliminamos cualquier sombra */
+    border: none; /* Aseguramos que no haya borde */
+    border-radius: 15px; /* Redondeamos las esquinas */
 }
 
-.input-group .btn {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
+.create-account {
+    padding: 2.7rem 0;
+    font-size: 1.7rem;
 }
 
-.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    padding: 10px 20px; /* Ajuste del padding horizontal */
-    font-size: 1rem;
-    border-radius: 5px;
+.cuenta-gratis {
+    padding: 2rem 0;
 }
 
-.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-}
-
-.btn-outline-secondary {
-    border-color: #ced4da;
-}
-
-.forgot-password {
-    color: #007bff;
-    text-decoration: none;
-}
-
-.forgot-password:hover {
-    text-decoration: underline;
-}
-
-h3 {
-    font-family: 'New Times Roman', serif; /* Fuente New Times Roman */
-    font-size: 2.5rem; /* Tamaño de fuente para h3 */
-    margin-bottom: 1.5rem; /* Espaciado inferior */
+.formulario input {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: white thin solid;
+    text-align: center;
+    outline: none;
+    padding: 0.2rem 0;
+    font-size: 0.9rem;
+    color: white;
 }

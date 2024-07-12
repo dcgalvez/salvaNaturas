@@ -15,8 +15,9 @@ class IndexController extends Controller
     }
 
     public function infoHome(Request $request) {
-       $query = DB::connection('mysql')->select('CALL consulta_contenido_home');
-      // dd($query);
+        $query = DB::connection('mysql')->select('CALL consulta_contenido_home');
+       dd($query);
+      // return "Dago";
         return $query;
     }
 
