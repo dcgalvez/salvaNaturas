@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginControlle;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
@@ -36,3 +37,9 @@ Route::get('/logout-validar',[LoginController::class, 'Admin_LogOut'])->name('ad
 
 // RUTAS ADMIN (Si existe session)
 Route::view('/admin-inicio', 'admin.admin-inicio')->middleware('auth')->name('admin.inicio'); 
+Route::get('/admin-programas', [AdminController::class, 'getInfoProgramas'])->middleware('auth')->name('admin.Programas');
+Route::post('/adminAddProgramas', [AdminController::class, 'saveProgramas'])->middleware('auth')->name('admin.addProgramas');
+Route::post('/adminEditProgramas', [AdminController::class, 'editProgramas'])->middleware('auth')->name('admin.editProgramas');
+Route::post('/adminDeleteProgramas', [AdminController::class, 'deleteProgramas'])->middleware('auth')->name('admin.deleteProgramas');
+Route::post('/guardarInformacion', [AdminController::class, 'saveNuevoContenido'])->middleware('auth')->name('admin.guardarInformacion');
+Route::get('/getProgramas_Activos', [AdminController::class, 'SER_getProgramasActivos'])->middleware('auth')->name('admin.programasActivos');

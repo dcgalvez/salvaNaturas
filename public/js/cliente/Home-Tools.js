@@ -38,13 +38,13 @@ class ToolsHome {
                     datos.forEach(info => {
                         console.log(info);
                         card = `
-                        <div class="GBDisplayFlex PREC-CardPJ" >
+                        <div class="GB-Flex PREC-CardPJ" >
                           <div class="PRECCard GBborderWhite">
                             <div class="GBborderWhite PRECView" id="PREC-View${num}"></div>
                             <div class="PRECSteps">
                                 <div class="GBborderWhite PRECStepO GBTextCenter"><p>${info.proyecto_nombre}</p></div>
                                 <div class="GBborderWhite PRECStepT"><p>${info.texto}</p></div>
-                                <div class="GBDisplayFlex PRECStepTh"><button type="button" class="btn btn-primary">CONOCE MAS</button></div>
+                                <div class="GB-Flex PRECStepTh"><button type="button" class="btn btn-primary">CONOCE MAS</button></div>
                             </div>
                           </div>
                         </div>`;

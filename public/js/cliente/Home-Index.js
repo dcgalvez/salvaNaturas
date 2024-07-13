@@ -3,8 +3,8 @@ const root_theme = document.querySelector(':root');
 
 $(() => {    
     console.log('Probando');
-    toolsHome.peticionAjax('get', '/rutas', {}, "1");
-    toolsHome.peticionAjax('get', '/info', {}, "2");
+    // toolsHome.peticionAjax('get', '/rutas', {}, "1");
+    // toolsHome.peticionAjax('get', '/info', {}, "2");
     // toolsHome.peticionAjax('get', '/noticias', {}, "3"); 
 });
 

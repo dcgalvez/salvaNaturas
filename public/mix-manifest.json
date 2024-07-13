@@ -2,5 +2,9 @@
     "/compilacion/seccion-administrador.js": "/compilacion/seccion-administrador.js",
     "/compilacion/seccion-administrador.css": "/compilacion/seccion-administrador.css",
     "/compilacion/usuario.js": "/compilacion/usuario.js",
-    "/compilacion/usuario.css": "/compilacion/usuario.css"
+    "/compilacion/usuario.css": "/compilacion/usuario.css",
+    "/compilacion/usuario-programas.js": "/compilacion/usuario-programas.js",
+    "/compilacion/usuario-programas.css": "/compilacion/usuario-programas.css",
+    "/compilacion/usuario-contactanos.js": "/compilacion/usuario-contactanos.js",
+    "/compilacion/usuario-contactanos.css": "/compilacion/usuario-contactanos.css"
 }
