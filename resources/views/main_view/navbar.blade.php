@@ -9,4 +9,5 @@
         {{-- <li class="MAS-LI2"><a href="{{ route('seccion.regenera') }}" class="MAS-A2">REGENERA</a></li> --}}
     </ul>
   </nav>
+  <hr>
 </div>

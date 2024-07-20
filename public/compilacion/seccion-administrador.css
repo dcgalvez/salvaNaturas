@@ -31,53 +31,14 @@
   align-items: center;
 }
 
+.GB-SpaceOther {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .GBTextCenter {
     text-align: center;
-}
-
-.GBFontMonoton {
-    font-family: "Monoton", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.GBFontOregano {
-    font-family: "Oregano", cursive;
-    font-weight: 400;
-}
-
-.GBFontBebasN {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-
-.outfit-font {
-  font-family: "Outfit", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-.londrina-solid-thin {
-  font-family: "Londrina Solid", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.londrina-solid-regular {
-  font-family: "Londrina Solid", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-
-.rock-salt-regular {
-  font-family: "Rock Salt", cursive;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .GBL-Titulo4 {
@@ -87,6 +48,13 @@
 
 .GBL-Radius {
   border-radius: 0.60em;
+}
+
+.montserrat-new-font {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 /* --------------| End Global Clases |--------------- */
 
@@ -181,6 +149,154 @@
     border-radius: 0.60em;
 }
 
+
+
+
+/* ---------------| SERVICIOS |--------------- */
+.ADS {
+    display: grid;
+    grid-template-columns: 2fr 8fr;
+    /* grid-template-rows: 35em 57em; */
+    grid-auto-rows: minmax(35em, 57em);
+    gap: 0.75em;
+}
+
+.ADS-Menu {
+    grid-column: 1;
+    border-radius: 0.60em;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: 2em;
+    height: 30em;
+}
+
+.ADS-Contenido {
+    grid-column: 2;
+    border-radius: 0.60em;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    overflow-y: auto;
+    padding: 2em;
+}
+
+.ADS-Contenido-Fondo {
+    height: 100%;
+    background-image: url('/assets/images/Opciones.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* .................................. INICIO DEL MENU ................................. */
+
+.ADS-CintaOpciones { margin: 2em 0; }
+
+.ADS-Opciones {
+    width: 100%;
+    height: 4em;
+    border: 1px solid #194c19;
+    border-radius: 0.60em;
+    margin: 1.5em 0;
+    transition: all 0.7s;
+}
+
+.ADS-Opciones:hover {
+    cursor: pointer;
+    background-color: var(--global--verdeClaro);
+    transform: scale(1.04);
+}
+
+.ADS-Opcionesafter {
+    background-color: var(--global--verdeClaro);
+    transform: scale(1.02);
+}
+
+.ADS-Op-Texto { font-size: 1.0em; color: #194c19;   letter-spacing: 0.05em;}
+
+/* ...................................... FIN DEL MENU .................................. */
+
+/* .................................. INICIO DEL CONTENIDO ............................... */
+
+.ADS-Contenido-Agregar {
+    /* border: 1px solid #194c19; */    
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 2em;
+}
+
+.ADS-Contenido-Agregar-1 {
+    grid-column: 1 / 4;
+    /* border: 1px solid #194c19; */
+    height: 10em;
+    /* transition: all 3s ease; */
+}
+
+.ADS-Contenido-Agregar-2 {
+    grid-column: 4;
+    padding: 2em;
+    box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
+    border-radius: 0.60em;
+    /* height: 10em; */
+    /* border: 1px solid #194c19; */
+}
+
+.ADS-Contenido-Agregar-3 {
+    grid-column: 4;
+    padding: 2em;
+    box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
+    border-radius: 0.60em;
+    /* height: 10em; */
+    /* border: 1px solid #194c19; */
+}
+
+.ADS-Contenido-NuevoContenido {
+    display: grid;
+    grid-template-columns: 70% 30%;
+    /* grid-auto-rows: minmax(3em, 53em); */
+    grid-template-rows: 3em, 50em;
+    gap: 0.75em; 
+}
+
+ADS-Contenido-NC-0 {
+    grid-column: 100%;
+    grid-row: 1;
+    height: 3em !important;
+    border: 1px solid #194c19;
+}
+
+.ADS-Contenido-NC-1 {
+    grid-column: 1;
+    grid-row: 2;
+    box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
+    padding: 5em;
+    border-radius: 0.60em;
+
+    background-image: url('/assets/images/ImagenGuia.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.ADS-Contenido-NC-2 {
+    grid-column: 2;
+    grid-row: 2;
+    border: 1px solid #194c19;
+    padding: 1em;
+    border-radius: 0.60em;
+    box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ---------------| PROGRAMAS |--------------- */
 .ADP {
     display: grid;
@@ -195,7 +311,7 @@
     border-radius: 0.60em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     padding: 2em;
-    height: 20em;
+    height: 30em;
 }
 
 .ADP-Menu-NewHeight {
@@ -318,8 +434,73 @@ ADP-Contenido-NC-0 {
     padding: 1em;
     border-radius: 0.60em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
+}
 
+/* CONTENIDO LISTA */
 
+.ADPDC-Main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 5em 58em auto;
+    gap: 0.5em;
+    padding: 2em 7.5em 7.5em 7.5em;
+    /* margin: 1.5em 3em; */
+}
+.ADPDC-Title { grid-row: 1; }
+
+.ADPDC-Text {
+    grid-row: 3;
+    border-radius: 0.75em;
+}
+
+.ADPDC-Img {
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: repeat(1, 1fr);
+    gap: 0.5em;
+}
+
+.ADPDC-I-1 {
+    grid-column: 1;
+    border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+
+.ADPDC-I-2 {
+    grid-column: 2;
+    /* padding: 0.25em; */
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.25em;
+}
+
+.ADPDC-I-I-1 { 
+    grid-row: 1; border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+.ADPDC-I-I-2 { 
+    grid-row: 2; border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+.ADPDC-I-I-3 { 
+    grid-row: 3; border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
 }
 
 /* ........................... FIN DEL CONTENIDO ......................... */

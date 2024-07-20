@@ -36,7 +36,10 @@
     {{-- Opciones de Contenidos | Contenido --}}
     <div class="AI-Contenido">
         <div class="AI-CC d-none" id="AI-CC-Inicio"><h1>CAMBIO DE EL INICIO</h1></div>
-        <div class="AI-CC d-none" id="AI-CC-Servicios"><h1>CAMBIO DE EL SERVICIO</h1></div>
+        <div class="AI-CC d-none" id="AI-CC-Servicios">
+            <h1>CAMBIO DE EL SERVICIO</h1>
+            @include('admin.contenidos.admin-Servicios')
+        </div>
         <div class="AI-CC d-none" id="AI-CC-Programas">
             @include('admin.contenidos.admin-Programas')
         </div>
@@ -52,5 +55,6 @@
     const rutaPrograma_Eliminar = '{{ route('admin.deleteProgramas') }}';
     const rutaPrograma_Guardar = '{{ route('admin.guardarInformacion') }}';
     const rutaPrograma_Activo = '{{ route('admin.programasActivos') }}';
+    const rutaGet_Contenido = '{{ route('admin.programasContenido') }}';
 </script>
 @endsection

@@ -59,6 +59,14 @@ return [
         'SalvaNaturaFTP2' => [
             'driver' => 'sftp',
             'host' => 'us-east-1.sftpcloud.io',
+            'username' => 'dc78c2cc82a24c6da640619051f187d0',
+            'password' => 'TFxR3BVSXXkIV23EIlWl4tjajQtfGgEN',
+            'port' => 22
+        ],
+
+        'SalvaNaturaFTP_Final' => [
+            'driver' => 'sftp',
+            'host' => 'us-east-1.sftpcloud.io',
             'username' => 'd4d6ad8831744bbe887649b2338e4b8e',
             'password' => 'cUVKq5TMESExDQbUqFURTuaQUxi15vbk',
             'port' => 22

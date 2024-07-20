@@ -22,6 +22,7 @@ class Programas extends Model
     protected $fillable = [
         'programa',
         'Servicios',
-        'activc'
+        'activc',
+        'contenido'
     ];
 }

@@ -8,12 +8,14 @@
     --global--otroVerde: #1F8C3A;
     --global--azul: #023E73;
     --global--azulCl: #033E8C;
+
+    --global--verdeInventado: #21a342;
 }
 
 body {
     /* PRIMERA OPCION UN POCO MAS OSCURA */
-    /* background: rgb(0,36,1); */
-    /* background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 90%, rgba(105,191,44,1) 100%); */
+    /* background: rgb(0,36,1);
+    background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 90%, rgba(105,191,44,1) 100%); */
 
     /* SEGUNDA OPCION  */
     /* background: rgb(0,84,2); */
@@ -24,8 +26,11 @@ body {
     /* background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 72%, rgba(105,191,44,1) 100%); */
 
     /* CUARTA OPCION */
-    background: rgb(105,191,44);
-background: radial-gradient(circle, rgba(105,191,44,1) 0%, rgba(0,36,1,1) 94%);
+    /* background: rgb(105,191,44); */
+    /* background: radial-gradient(circle, rgba(105,191,44,1) 0%, rgba(0,36,1,1) 94%); */
+
+    /* NUEVO COLOR */
+    background: #fff;
 }
 
 .MAS-BannerDiv {

@@ -31,53 +31,14 @@
   align-items: center;
 }
 
+.GB-SpaceOther {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .GBTextCenter {
     text-align: center;
-}
-
-.GBFontMonoton {
-    font-family: "Monoton", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-
-.GBFontOregano {
-    font-family: "Oregano", cursive;
-    font-weight: 400;
-}
-
-.GBFontBebasN {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-
-.outfit-font {
-  font-family: "Outfit", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-}
-
-
-.londrina-solid-thin {
-  font-family: "Londrina Solid", sans-serif;
-  font-weight: 100;
-  font-style: normal;
-}
-
-.londrina-solid-regular {
-  font-family: "Londrina Solid", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-
-.rock-salt-regular {
-  font-family: "Rock Salt", cursive;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .GBL-Titulo4 {
@@ -87,6 +48,13 @@
 
 .GBL-Radius {
   border-radius: 0.60em;
+}
+
+.montserrat-new-font {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 /* --------------| End Global Clases |--------------- */
 
@@ -116,12 +84,14 @@
     --global--otroVerde: #1F8C3A;
     --global--azul: #023E73;
     --global--azulCl: #033E8C;
+
+    --global--verdeInventado: #21a342;
 }
 
 body {
     /* PRIMERA OPCION UN POCO MAS OSCURA */
-    /* background: rgb(0,36,1); */
-    /* background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 90%, rgba(105,191,44,1) 100%); */
+    /* background: rgb(0,36,1);
+    background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 90%, rgba(105,191,44,1) 100%); */
 
     /* SEGUNDA OPCION  */
     /* background: rgb(0,84,2); */
@@ -132,8 +102,11 @@ body {
     /* background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 72%, rgba(105,191,44,1) 100%); */
 
     /* CUARTA OPCION */
-    background: rgb(105,191,44);
-background: radial-gradient(circle, rgba(105,191,44,1) 0%, rgba(0,36,1,1) 94%);
+    /* background: rgb(105,191,44); */
+    /* background: radial-gradient(circle, rgba(105,191,44,1) 0%, rgba(0,36,1,1) 94%); */
+
+    /* NUEVO COLOR */
+    background: #fff;
 }
 
 .MAS-BannerDiv {
@@ -250,7 +223,7 @@ background: radial-gradient(circle, rgba(105,191,44,1) 0%, rgba(0,36,1,1) 94%);
 .MAS-A2 {
   /* padding-top: 0.5em; */
   text-decoration: none;
-  color: #fff;
+  color: #4F9000;
   font-size: 16px;
 }
 

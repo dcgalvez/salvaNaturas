@@ -10738,6 +10738,34 @@ $(document).on('click', '#AM-Seccion-Contactos', function() {
     toolsAdmin.cambioVistasAdmin("cambioRegenera");
 })
 
+
+
+
+// -------------------- SECCION DE SERVICIOS ----------------------- //
+
+// OPCIONES DE MENU LATERAL - SERVICIOS
+
+$(document).on('click', '.ADP-Opciones', function() {
+    $('.ADP-Opciones').removeClass('ADP-Opcionesafter');
+    $(this).addClass('ADP-Opcionesafter');
+});
+
+$(document).on('click', '.ADP-Opciones1', async function(e) {
+    let peticion = await peticionesAdmin.myOwnPeticion(rutaPrograma, 'GET', {probando: 'probando'}, 1);
+});
+
+$(document).on('click', '.ADP-Opciones2', async function(e) {
+    peticionesAdmin.msgCarga('Cargando...');
+    let peticion = await peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 4);
+    toolsAdmin.cambioVistasAdmin_Programas('showContenido');
+});
+
+
+
+
+
+
+
 // -------------------- SECCION DE PROGRAMAS ----------------------- //
 
 // OPCIONES DE MENU LATERAL
@@ -10755,7 +10783,8 @@ $(document).on('click', '#ADP-AddPrograma', function() {
 });
 
 $(document).on('click', '.ADP-Opciones2', async function(e) {
-    // let peticion = await peticionesAdmin.myOwnPeticion(rutaPrograma, 'GET', {probando: 'probando'}, 1);
+    peticionesAdmin.msgCarga('Cargando...');
+    let peticion = await peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 4);
     toolsAdmin.cambioVistasAdmin_Programas('showContenido');
 });
 // .........................................................
@@ -10792,6 +10821,8 @@ $(document).on('click', '#ADP-AddProgramaEdit-Peticion', function() {
         nombrePrograma: $('#ADP-nombreProgramaEdit').val(),
         estadoPrograma: $('#ADP-estadoProgramaEdit').val(),
     }
+
+    console.log(mainData);
     peticionesAdmin.myOwnPeticion(rutaprograma_Editar, 'POST', mainData, 1);
 });
 
@@ -10832,30 +10863,7 @@ $("#nuevoDocumentoForm").submit(function (e) {
 
     peticionesAdmin.msgCarga('Cargando...');
 
-    peticionesAdmin.myOwnPeticion(rutaPrograma_Guardar, 'POST', formData, 2);
-    // $.ajaxSetup({
-    //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') }
-    // });
-    // $.ajax({
-    //     type: "POST",
-    //     url: rutaPrograma_Guardar,
-    //     data: formData,
-    //     processData: false,
-    //     contentType: false, 
-    //     success: function (response) {
-    //         Swal.fire({
-    //             type: 'success',
-    //             title: 'Exito!',
-    //             html: 'Nuevo documento almacenado correctamente',
-    //         })
-    //         $("#nuevoDocumentoForm")[0].reset();
-    //         // console.log(response);
-    //     },
-    //     error: function (error) {
-    //         console.log(error);
-    //     },
-    // });
-    // peticionesAdmin.myOwnPeticion(rutaPrograma_Guardar, 'POST', formData, 100);
+    peticionesAdmin.myOwnPeticionDataFTP(rutaPrograma_Guardar, 'POST', formData, 2);
 });
 // ..............................................................
 let xhrPeticion = "";
@@ -10874,6 +10882,9 @@ class adminTools {
             case "cambioServicios":
                 $(".AI-CC").addClass("d-none");
                 $("#AI-CC-Servicios").removeClass("d-none")
+                $('.ADS-Opciones').removeClass('ADS-Opcionesafter');
+                $('.ADS-ManageContenidos').addClass('d-none');
+                $('.ADS-Contenido-Fondo').removeClass('d-none');
                 break;
             
             case "cambioProgramas":
@@ -11002,6 +11013,53 @@ class adminPeticiones {
             type: metodo,
             data: data,
             headers: headers,
+            success: function(response) {
+                // console.log(response);
+                // return response;
+                respuestasAdmin.RedirectRespuestas(redirect, response);
+
+                // Manejar la respuesta exitosa aquí
+            },
+            error: function(xhr, status, error) {
+                console.error(xhr.responseText);
+                // Manejar errores aquí
+            }
+        }
+
+        xhrPeticion = $.ajax(ajaxSettings);
+        return xhrPeticion;
+        // $.ajax({
+        //     url: ruta,
+        //     type: metodo,
+        //     data: data,
+        //     headers: headers,
+        //     success: function(response) {
+        //         // console.log(response);
+        //         // return response;
+        //         respuestasAdmin.RedirectRespuestas(redirect, response);
+
+        //         // Manejar la respuesta exitosa aquí
+        //     },
+        //     error: function(xhr, status, error) {
+        //         console.error(xhr.responseText);
+        //         // Manejar errores aquí
+        //     }
+        // });
+    }
+
+    async myOwnPeticionDataFTP(ruta, metodo, data, redirect) {
+        let csrfToken = $('meta[name="csrf-token"]').attr('content');
+        // Configurar las cabeceras de la solicitud AJAX
+        let headers = {
+            'X-CSRF-TOKEN': csrfToken
+        };
+        // Realizar la solicitud AJAX con jQuery
+
+        let ajaxSettings = {
+            url: ruta,
+            type: metodo,
+            data: data,
+            headers: headers,
             processData: false,
             contentType: false, 
             success: function(response) {
@@ -11056,7 +11114,7 @@ class adminPeticiones {
     }
     
     msgClose() {
-        $.unblockUI();
+        // $.unblockUI();
         Swal.close();
     }
 
@@ -11078,9 +11136,14 @@ class adminRespuestas {
                 this.RespuestaTwo(data);
                 break;
 
+            case 4:
+                this.RespuestaFour(data);
+                break;
+
             case 100:
                 this.RespuestaCien(data)
                 break;
+
         }
     }
 
@@ -11109,8 +11172,65 @@ class adminRespuestas {
     }
 
     RespuestaTwo(datos) {
-        // peticionesAdmin.msgClose();
+        peticionesAdmin.msgClose();
         $("#nuevoDocumentoForm")[0].reset();
+    }
+
+    RespuestaFour(datos) {
+
+        // console.log(datos);
+        // console.log(datos.data);
+        $('#ADP-Contenidos-ContMain').empty();
+        $.each(datos.data, function(key, value) {
+            console.log(key);
+            console.log(value);
+
+            let imagenUno = value.Con_ID_Imagen[0];
+            // console.log(imagenUno[0]);
+
+            let div = `
+                <div class="ADPDC-Main">
+                    <div class="ADPDC-Title GBTextCenter">
+                    <h1 style="color:#ffcc00;">${value.programa}</h1>
+                    </div>
+                    <div class="ADPDC-Img ">
+                        <div class="ADPDC-I-1 ADPDC-BB">
+                            <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
+                        </div>
+                        <div class="ADPDC-I-2 ">
+                            <div class="ADPDC-I-I-1 ADPDC-BB">
+                                <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+                            </div>
+                            <div class="ADPDC-I-I-2 ADPDC-BB">
+                                <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+                            </div>
+                            <div class="ADPDC-I-I-3 ADPDC-BB">
+                            <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+                                                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ADPDC-Text ADPDC-BB p-3 GBborderBlack">
+                        <p style="">${value.Con_Texto}</p>
+                    </div>
+                </div>
+            `;
+            $('#ADP-Contenidos-ContMain').append(div);
+        });
+
+        peticionesAdmin.msgClose();
+
+        // if (datos.code === 200) {
+        //     $('#ADP-Contenidos-ContMain').empty();
+        //     datos.data.forEach(info => {
+        //         console.log(info);
+        //         let contain = `<div>
+        //             <img src="" alt="">
+        //         </div>`;
+        //         $('#ADP-Contenidos-ContMain').empty();
+                
+        //     });
+        // }
     }
 
     RespuestaCien(datos) {

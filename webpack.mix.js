@@ -25,10 +25,9 @@ mix.scripts([
 ], 'public/compilacion/usuario.css')
 
 // COMPILACION PROGRAMAS
-
 mix.scripts([
     'public/js/jquery/jquery-3.7.1.js',
-    'public/js/cliente/Home-Index.js',
+    'public/js/cliente/Secciones/Programas-Index.js',
     'public/js/cliente/Home-Tools.js'
 ], 'public/compilacion/usuario-programas.js')
 .styles([
@@ -37,6 +36,19 @@ mix.scripts([
     'public/css/navbar.css',
     'public/css/p-programas.css'
 ], 'public/compilacion/usuario-programas.css')
+
+// COMPILACION SERVICIOS
+mix.scripts([
+    'public/js/jquery/jquery-3.7.1.js',
+    'public/js/cliente/Secciones/Servicios-Index.js',
+    'public/js/cliente/Home-Tools.js'
+], 'public/compilacion/usuario-servicios.js')
+.styles([
+    'public/css/global.css',
+    'public/css/p-inicio.css',
+    'public/css/navbar.css',
+    'public/css/p-servicios.css'
+], 'public/compilacion/usuario-servicios.css')
 
 
 mix.scripts([

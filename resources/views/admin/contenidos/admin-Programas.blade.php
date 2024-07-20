@@ -1,5 +1,7 @@
 {{-- | administrador Programas: ADP- | --}}
 <div class="ADP">
+
+    {{--------------------------|  Menu de Opciones |-------------------------}}
     <div class="ADP-Menu GBTextCenter">
         <p class="GBL-Titulo4">MENU</p><hr>
         <div class="ADP-CintaOpciones">
@@ -9,7 +11,7 @@
             <div class="ADP-Opciones ADP-Opciones2 GB-Flex">
                 <div class="ADP-Op-Texto">ADMINISTRAR CONTENIDO</div>                
             </div>
-            <div class="ADP-Extras d-none">
+            <div class="ADP-Extras">
                 <p class="GBL-Titulo4 mt-5">EXTRAS</p><hr>
                 <div class="ADP-Opciones ADP-Opciones3 GB-Flex">
                     <div class="ADP-Op-Texto">NUEVO CONTENIDO</div>                
@@ -17,11 +19,18 @@
             </div>
         </div>
     </div>
+
+    {{------------------| Contenedor Principal | -------------------}}
     <div class="ADP-Contenido">
+
+        {{-------------------- | Imagen inicial Fondo| ---------------------}}
         <div class="ADP-Contenido-Fondo d-none ADP-ManageContenidos">
-            {{-- <img src="/assets/images/Opciones.png" alt=""> --}}
         </div>
+
+        {{---------------------| Contenedor Mantenimiento Programas |---------------------}}
         <div class="ADP-Contenido-Agregar d-none ADP-ManageContenidos">
+
+            {{----------------------| Tabla de Programas | ----------------------}}
             <div class="ADP-Contenido-Agregar-1 ">
                 <div class="GBL-Titulo4"> PROGRAMAS</div><hr>
                 <div>
@@ -44,6 +53,7 @@
                 </div>
             </div>
 
+            {{---------------------| Agregar programa nuevo | ---------------------}}
             <div class="ADP-Contenido-Agregar-2 d-none ADP-ManageContenidos">
                 <div class="GB-SpaceB">
                     <div class="GBL-Titulo4"> NUEVO PROGRAMA</div>
@@ -64,6 +74,7 @@
                 </div>
             </div>
 
+            {{-------------------------| Editar Programa | ----------------------}}
             <div class="ADP-Contenido-Agregar-3 d-none ADP-ManageContenidos">
                 <div class="GB-SpaceB">
                     <div class="GBL-Titulo4"> EDITAR PROGRAMA</div>
@@ -91,16 +102,58 @@
 
         </div>
 
+        {{---------------------| Lista de Contenidos de Programas | ----------------------}}
         <div class="ADP-Contenido-Programas d-none ADP-ManageContenidos">
-            <button type="button" class="btn btn-outline-primary ADP-AddNewPrograma"><i class="bi bi-folder-plus"></i> Nuevo Contenido</button>
+
+            {{--------------| Menu Opciones |-------------}}
+            <div class="GB-SpaceOther">
+                <button type="button" class="btn btn-outline-success ADP-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-check-lg"></i> Activos</button>
+                <button type="button" class="btn btn-outline-warning ADP-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-slash-circle"></i> Inactivos</button>
+                <button type="button" class="btn btn-outline-primary ADP-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-folder-plus"></i> Nuevo Contenido</button>
+            </div>
+
+            {{-----------------------| Contenidos Container | --------------------}}
+            <div class="ADP-Contenidos-ContMain" id="ADP-Contenidos-ContMain">
+                {{-- <div class="ADPDC-Main GBborderBlack">
+                    <div class="ADPDC-Title GBTextCenter">
+                    <h1 style="color:#ffcc00;">NOMBRE DEL PROGRAMA</h1>
+                    </div>
+                    <div class="ADPDC-Img ">
+                        <div class="ADPDC-I-1 ADPDC-BB">
+                            <img src="/assets/images/AdminWallpaper2.png" style="width: 100%; height: 100%; " alt="">
+                        </div>
+                        <div class="ADPDC-I-2 ">
+                            <div class="ADPDC-I-I-1 ADPDC-BB">
+                                <img src="/assets/images/AdminWallpaper2.png" style="width: 100%; height: 100%; " alt="">
+                            </div>
+                            <div class="ADPDC-I-I-2 ADPDC-BB">
+                                <img src="/assets/images/AdminWallpaper2.png" style="width: 100%; height: 100%; " alt="">
+                            </div>
+                            <div class="ADPDC-I-I-3 ADPDC-BB">
+                            <img src="/assets/images/AdminWallpaper2.png" style="width: 100%; height: 100%; " alt="">
+                                                        
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ADPDC-Text ADPDC-BB p-3">
+                        <p style="">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                    </div>
+                </div> --}}
+            </div>
+
         </div>
 
+        {{----------------------| Agregar nuevos contenidos |--------------------------}}
         <div class="ADP-Contenido-NuevoContenido d-none ADP-ManageContenidos">
             <div class="ADP-Contenido-NC-0">
                 <h1 class="GBL-Titulo4">ESTRUCTURA DE CONTENIDO <hr></h1>
             </div>
+
+            {{-------------------------| Imagen Estructura |------------------------}}
             <div class="ADP-Contenido-NC-1">
             </div>
+
+            {{-------------------------| Formulario Contenidos |-------------------------}}
             <div class="ADP-Contenido-NC-2">
                 <div class="GBL-Titulo4"> NUEVO PROGRAMA</div><hr>
 
@@ -114,16 +167,12 @@
                         </div>
                         <div class="col-12 mt-3">
                             <textarea class="form-control ADP-Validate-Data" name="ADP_TUP_texto1" id="ADP_TUP_texto1" cols="30" rows="7" placeholder="Ingrese: Texto 1" data-nombrev="Texto 1"></textarea>
-                            {{-- <input type="text" class="form-control" placeholder="Texto 1"> --}}
                         </div>
                         
                         <div class="col-12 mt-3"><input type="file" class="form-control-file ADP-Validate-Data" id="archivoDocumento" name="archivo1" data-nombrev="Imagen 1"></div>
                         <div class="col-12 mt-3"><input type="file" class="form-control-file ADP-Validate-Data" id="archivoDocumento" name="archivo2" data-nombrev="Imagen 2"></div>
                         <div class="col-12 mt-3"><input type="file" class="form-control-file ADP-Validate-Data" id="archivoDocumento" name="archivo3" data-nombrev="Imagen 3"></div>
-                        <div class="col-12 mt-3"><input type="file" class="form-control-file ADP-Validate-Data" id="archivoDocumento" name="archivo4" data-nombrev="Imagen 4"></div>
-                        {{-- <div class="col-12 mt-3"><input type="file" name="imagen2" id="ADP_TUP_imagen2"></div>
-                        <div class="col-12 mt-3"><input type="file" name="imagen3" id="ADP_TUP_imagen3"></div>
-                        <div class="col-12 mt-3"><input type="file" name="imagen4" id="ADP_TUP_imagen4"></div> --}}                       
+                        <div class="col-12 mt-3"><input type="file" class="form-control-file ADP-Validate-Data" id="archivoDocumento" name="archivo4" data-nombrev="Imagen 4"></div>                     
                     </div>
                 </form>
                 <div class="mt-5 GB-Flex">

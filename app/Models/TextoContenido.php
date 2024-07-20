@@ -6,24 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class ImagenesContenido extends Model
+class TextoContenido extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+    // use SoftDeletes;
 
     protected $connection = 'mysql';
-    protected $primaryKey = 'id_imagen_contenido';
-    protected $table = 'imagenes_contenido';
+    protected $primaryKey = 'id_texto_contenido';
+    protected $table = 'textos_contenido';
     protected $dateFormat = 'Y-m-d H:i:s';
     const CREATED_AT = 'fecha_creacion';
     const UPDATED_AT = 'fecha_actualizacion';
-    const DELETED_AT = "trash";
+    // const DELETED_AT = "trash";
 
     protected $fillable = [
-        'id_tipo_imagen',
-        'nombre_original',
-        'nombre_modificado',
-        'url_imagen',
+        'id_tipo_texto',
+        'texto',
         'activo'
     ];
 }

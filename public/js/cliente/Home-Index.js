@@ -5,7 +5,8 @@ $(() => {
     console.log('Probando');
     // toolsHome.peticionAjax('get', '/rutas', {}, "1");
     // toolsHome.peticionAjax('get', '/info', {}, "2");
-    // toolsHome.peticionAjax('get', '/noticias', {}, "3"); 
+    // toolsHome.peticionAjax('get', '/noticias', {}, "3");
+    // peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 40); 
 });
 
 $(document).on('click', '#Redirect_Cordillera', function(e) {

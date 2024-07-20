@@ -10716,15 +10716,15 @@ return jQuery;
 } );
 
 $(() => {    
-    console.log('Index de Programas', URL_GetContenidoProgramas);
-    toolsHome.myOwnPeticion(URL_GetContenidoProgramasAll,'GET',{},'Programas-2');
+    console.log('Index de Servicios', URL_GetContenidoServicios);
+    toolsHome.myOwnPeticion(URL_GetContenidoServiciosAll,'GET',{},'Servicios-1');
     // peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 40);
 });
 
-$(document).on('click', '.TESTSN-CardsPro', function() {
-    let data = $(this).data('idprograma');
+$(document).on('click', '.TESTSN-Cards', function() {
+    let data = $(this).data('idservicio');
     console.log(data)
-    toolsHome.myOwnPeticion(URL_GetContenidoProgramas,'GET',{id: data},'Programas-1');
+    toolsHome.myOwnPeticion(URL_GetContenidoServicios,'GET',{id: data},'Servicios-2');
 })
 let xhrPeticion = "";
 
