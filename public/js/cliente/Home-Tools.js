@@ -48,6 +48,34 @@ class ToolsHome {
         return xhrPeticion;
     }
 
+    msgCarga(mensaje, btnTexto = 'Cancelar', btnClass='') {
+        Swal.fire({
+            title: mensaje,
+            allowEscapeKey: false,
+            allowOutsideClick: false,
+            showConfirmButton: true,
+            confirmButtonColor: '#6D8395',
+            confirmButtonText: btnTexto,
+            html: `<div class="spinner-border" role="status">
+                    <span class="sr-only"></span></div>`
+        }).then((result) => {
+            if (result.value) {
+                this.cancelPeticionAjax();
+            }
+        });
+    }
+    
+    msgClose() {
+        // $.unblockUI();
+        Swal.close();
+    }
+
+    cancelPeticionAjax() {
+        if (xhrPeticion) {
+            xhrPeticion.abort();
+        }
+    }
+
     async redirectPeticion(redirect, datos) {
         switch (redirect) {
             case "1":
@@ -116,6 +144,8 @@ class RespuestasPeticiones {
     }
 
     RespuestaCuarenta(datos) {
+        toolsHome.msgClose();
+
         $('#PP-Main').empty();
         $.each(datos.data, function(key, value) {
             console.log(key);
@@ -169,6 +199,8 @@ class RespuestasPeticiones {
     }
 
     RespuestaServiciosTwo(datos) {
+        toolsHome.msgClose();
+
         $('#PSER-Main').empty();
         $.each(datos.data, function(key, value) {
             console.log(key);

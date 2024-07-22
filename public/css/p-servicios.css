@@ -78,8 +78,8 @@
 .PSER-TextSeccion {
     /* font-family: fantasy; */
     letter-spacing: 1.5px;
-    font-size: 4em;  
-    font-weight: 600;
+    font-size: 3em;  
+    font-weight: 400;
     color: #4F9000;
 }
 
@@ -155,7 +155,7 @@
 
     /* SCROLL DE SERVICIOS */
 
-    .TESTSN-CardsMain::-webkit-scrollbar { width: 2px; height: 3px;}
+    .TESTSN-CardsMain::-webkit-scrollbar { width: 2px; height: 5px;}
     
     .TESTSN-CardsMain::-webkit-scrollbar-track { background: transparent; }
     

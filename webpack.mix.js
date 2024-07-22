@@ -59,5 +59,6 @@ mix.scripts([
 .styles([
     'public/css/global.css',
     'public/css/navbar.css',
+    'public/css/p-inicio.css',
     'public/css/p-contactanos.css'
 ], 'public/compilacion/usuario-contactanos.css')

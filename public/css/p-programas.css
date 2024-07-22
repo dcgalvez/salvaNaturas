@@ -218,8 +218,8 @@
 .PSER-TextSeccion {
     /* font-family: fantasy; */
     letter-spacing: 1.5px;
-    font-size: 4em;  
-    font-weight: 600;
+    font-size: 3em;  
+    font-weight: 400;
     color: #4F9000;
 }
 
@@ -271,7 +271,7 @@
         /* height: 25em;
         width: 20em;
         border-radius: 0.75em; */
-        background-image: url('/assets/images/World.png');
+        background-image: url('/assets/images/Ciudad.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;   

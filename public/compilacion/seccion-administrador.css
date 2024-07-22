@@ -37,6 +37,12 @@
   align-items: center;
 }
 
+.GB-FlexStart {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .GBTextCenter {
     text-align: center;
 }

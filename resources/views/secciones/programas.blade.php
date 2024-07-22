@@ -78,6 +78,9 @@
             </div>
         </div> --}}
     </main>
+
+    @include('main_view.endCard')
+
 <script src="{{ mix('compilacion/usuario-programas.js') }}"></script>
 <script>
     const URL_GetContenidoProgramasAll = '{{ route('programas.getContenidosAll') }}';

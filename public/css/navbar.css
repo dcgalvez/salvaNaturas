@@ -38,7 +38,7 @@
   /* background: rgb(0,36,1);
   background: linear-gradient(90deg, rgba(0,36,1,1) 0%, rgba(79,144,0,1) 90%, rgba(105,191,44,1) 100%); */
   color: #ffcc00;
-  background: #002401;
+  /* background: #002401; */
 }
 
 .MAS-LI2:hover .MAS-A2 {
@@ -94,3 +94,47 @@
     transform: scale(0.9);
   } */
 
+
+  /*----------------------------| END CARD |------------------------- */
+
+.GBL-EC {
+  box-sizing: content-box;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto;
+  
+  margin: 5em 0 0 0;
+  padding: 2.5em 0;
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 0.25em;
+
+}
+
+.GBL-EC-1-Img {
+  width: 85%;
+}
+
+.GBL-EC-2-Titulos {
+  color: #69bf2c;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+}
+
+.GBL-EC-2-Texto {
+  font-size: 1.1em;
+  color: #6DD93B;
+}
+.GBL-EC-2-Texto:hover {
+  color: #ffcc00;
+}
+
+.GBL-EC-2-Links { 
+  margin: 0.25em 0.5em;
+  font-size: 3.5em;
+  color: #6DD93B;
+}
+
+.GBL-EC-2-Links:hover {
+  color: #ffcc00;
+}

@@ -7,5 +7,6 @@ $(() => {
 $(document).on('click', '.TESTSN-CardsPro', function() {
     let data = $(this).data('idprograma');
     console.log(data)
+    toolsHome.msgCarga('Cargando...');
     toolsHome.myOwnPeticion(URL_GetContenidoProgramas,'GET',{id: data},'Programas-1');
 })

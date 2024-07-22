@@ -80,7 +80,11 @@ body {
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-template-rows: 4em auto;
-    gap: 0.25em;    
+    gap: 0.25em;   
+    box-shadow: rgb(109, 217, 59, 0.05) 0px 6px 24px 0px, rgb(79, 144, 0, 0.08) 0px 0px 0px 1px;
+    padding: 3em;
+    border-radius: 0.75em;
+    background-color: #4f900002;
 }
 
 .PI-FormatoInfo-Title {
@@ -103,14 +107,17 @@ body {
 }
 
 .PI-FormatoInfo-Text {
-    color: #fff;
+    /* color: #fff; */
     font-size: 1.2em;
     font-family: system-ui;
-    letter-spacing: 0.95px;
+    /* letter-spacing: 0.95px; */
     line-height: 2em;
-    border: 0.2em solid #002401;
+    /* border: 0.2em solid #002401; */
     border-radius: 1em;
     padding: 1.25em;
+    margin-top: 2em;
+    color: #396601;
+
 }
 
 

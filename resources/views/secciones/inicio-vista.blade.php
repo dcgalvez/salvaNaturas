@@ -9,7 +9,7 @@
             <h3 class="GBFontBebasN">MISION</h3>
         </div>
         <div class="PI-FormatoInfo-Text GB-Flex">
-            <p>Misión: Guiar hacia un mañana sostenible y próspero, comprometidos con la defensa y restauración de la ecología global. Innovamos constantemente para desarrollar soluciones efectivas que no solo combatan el cambio climático, sino que también preserven la biodiversidad y promuevan prácticas empresariales éticas en todos los aspectos de nuestras operaciones. Inspiramos y educamos a comunidades globales sobre la importancia crucial de la sostenibilidad ambiental, colaborando activamente con socios y comunidades para construir un mundo donde todas las formas de vida puedan prosperar en armonía con la naturaleza.</p>
+            <p>Guiar hacia un mañana sostenible y próspero, comprometidos con la defensa y restauración de la ecología global. Innovamos constantemente para desarrollar soluciones efectivas que no solo combatan el cambio climático, sino que también preserven la biodiversidad y promuevan prácticas empresariales éticas en todos los aspectos de nuestras operaciones. Inspiramos y educamos a comunidades globales sobre la importancia crucial de la sostenibilidad ambiental, colaborando activamente con socios y comunidades para construir un mundo donde todas las formas de vida puedan prosperar en armonía con la naturaleza.</p>
         </div>
     </div>
 
@@ -18,7 +18,7 @@
             <h3 class="GBFontBebasN">VISION</h3>
         </div>
         <div class="PI-FormatoInfo-Text GB-Flex">
-            <p>Visión: Nos visualizamos como líderes globales en la preservación ambiental y la sostenibilidad, siendo reconocidos por nuestro impacto positivo y transformador en la salud del planeta. Nos comprometemos a alcanzar un futuro donde cada acción contribuya a la regeneración de los ecosistemas, asegurando un mundo habitable para las generaciones presentes y futuras. A través de la innovación continua y la colaboración estratégica, aspiramos a inspirar a otras empresas, gobiernos y ciudadanos a adoptar prácticas responsables y a construir una comunidad global comprometida con la protección de nuestro hogar común.</p>
+            <p>Nos visualizamos como líderes globales en la preservación ambiental y la sostenibilidad, siendo reconocidos por nuestro impacto positivo y transformador en la salud del planeta. Nos comprometemos a alcanzar un futuro donde cada acción contribuya a la regeneración de los ecosistemas, asegurando un mundo habitable para las generaciones presentes y futuras. A través de la innovación continua y la colaboración estratégica, aspiramos a inspirar a otras empresas, gobiernos y ciudadanos a adoptar prácticas responsables y a construir una comunidad global comprometida con la protección de nuestro hogar común.</p>
         </div>
     </div>
 </div>
