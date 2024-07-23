@@ -77,7 +77,7 @@
 
 
 /* ---------------| SERVICIOS |--------------- */
-.ADS {
+.ADSER {
     display: grid;
     grid-template-columns: 2fr 8fr;
     /* grid-template-rows: 35em 57em; */
@@ -85,7 +85,7 @@
     gap: 0.75em;
 }
 
-.ADS-Menu {
+.ADSER-Menu {
     grid-column: 1;
     border-radius: 0.60em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -93,7 +93,7 @@
     height: 30em;
 }
 
-.ADS-Contenido {
+.ADSER-Contenido {
     grid-column: 2;
     border-radius: 0.60em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
@@ -101,7 +101,7 @@
     padding: 2em;
 }
 
-.ADS-Contenido-Fondo {
+.ADSER  -Contenido-Fondo {
     height: 100%;
     background-image: url('/assets/images/Opciones.png');
     background-size: contain;
@@ -111,9 +111,9 @@
 
 /* .................................. INICIO DEL MENU ................................. */
 
-.ADS-CintaOpciones { margin: 2em 0; }
+.ADSER-CintaOpciones { margin: 2em 0; }
 
-.ADS-Opciones {
+.ADSER-Opciones {
     width: 100%;
     height: 4em;
     border: 1px solid #194c19;
@@ -122,39 +122,39 @@
     transition: all 0.7s;
 }
 
-.ADS-Opciones:hover {
+.ADSER-Opciones:hover {
     cursor: pointer;
     background-color: var(--global--verdeClaro);
     transform: scale(1.04);
 }
 
-.ADS-Opcionesafter {
+.ADSER-Opcionesafter {
     background-color: var(--global--verdeClaro);
     transform: scale(1.02);
 }
 
-.ADS-Op-Texto { font-size: 1.0em; color: #194c19;   letter-spacing: 0.05em;}
+.ADSER-Op-Texto { font-size: 1.0em; color: #194c19;   letter-spacing: 0.05em;}
 
 /* ...................................... FIN DEL MENU .................................. */
 
-/* .................................. INICIO DEL CONTENIDO ............................... */
+/* ........................... INICIO DEL CONTENIDO ......................... */
 
-.ADS-Contenido-Agregar {
-    /* border: 1px solid #194c19; */    
+.ADP-Contenido-Agregar {
+    /* border: 1px solid #194c19; */
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat();
     grid-template-rows: 1fr;
     gap: 2em;
 }
 
-.ADS-Contenido-Agregar-1 {
+.ADP-Contenido-Agregar-1 {
     grid-column: 1 / 4;
     /* border: 1px solid #194c19; */
     height: 10em;
     /* transition: all 3s ease; */
 }
 
-.ADS-Contenido-Agregar-2 {
+.ADP-Contenido-Agregar-2 {
     grid-column: 4;
     padding: 2em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -163,7 +163,7 @@
     /* border: 1px solid #194c19; */
 }
 
-.ADS-Contenido-Agregar-3 {
+.ADP-Contenido-Agregar-3 {
     grid-column: 4;
     padding: 2em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -172,7 +172,7 @@
     /* border: 1px solid #194c19; */
 }
 
-.ADS-Contenido-NuevoContenido {
+.ADP-Contenido-NuevoContenido {
     display: grid;
     grid-template-columns: 70% 30%;
     /* grid-auto-rows: minmax(3em, 53em); */
@@ -180,19 +180,20 @@
     gap: 0.75em; 
 }
 
-ADS-Contenido-NC-0 {
+.ADP-Contenido-NC-0 {
     grid-column: 100%;
     grid-row: 1;
     height: 3em !important;
-    border: 1px solid #194c19;
+    /* border: 1px solid #194c19; */
 }
 
-.ADS-Contenido-NC-1 {
+.ADP-Contenido-NC-1 {
     grid-column: 1;
     grid-row: 2;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
     padding: 5em;
     border-radius: 0.60em;
+
 
     background-image: url('/assets/images/ImagenGuia.png');
     background-size: contain;
@@ -200,7 +201,7 @@ ADS-Contenido-NC-0 {
     background-repeat: no-repeat;
 }
 
-.ADS-Contenido-NC-2 {
+.ADP-Contenido-NC-2 {
     grid-column: 2;
     grid-row: 2;
     border: 1px solid #194c19;
@@ -209,7 +210,72 @@ ADS-Contenido-NC-0 {
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
 }
 
+/* CONTENIDO LISTA */
 
+.ADPDC-Main {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: 5em 58em auto;
+    gap: 0.5em;
+    padding: 2em 7.5em 7.5em 7.5em;
+    /* margin: 1.5em 3em; */
+}
+.ADPDC-Title { grid-row: 1; }
+
+.ADPDC-Text {
+    grid-row: 3;
+    border-radius: 0.75em;
+}
+
+.ADPDC-Img {
+    grid-row: 2;
+
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: repeat(1, 1fr);
+    gap: 0.5em;
+}
+
+.ADPDC-I-1 {
+    grid-column: 1;
+    border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+
+.ADPDC-I-2 {
+    grid-column: 2;
+    /* padding: 0.25em; */
+
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 0.25em;
+}
+
+.ADPDC-I-I-1 { 
+    grid-row: 1; border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+.ADPDC-I-I-2 { 
+    grid-row: 2; border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
+.ADPDC-I-I-3 { 
+    grid-row: 3; border-radius: 0.75em;
+    /* background-image:url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+}
 
 
 
@@ -289,7 +355,7 @@ ADS-Contenido-NC-0 {
 
 /* ........................... INICIO DEL CONTENIDO ......................... */
 
-.ADP-Contenido-Agregar {
+.ADSER-Contenido-Agregar {
     /* border: 1px solid #194c19; */
     display: grid;
     grid-template-columns: repeat();
@@ -297,14 +363,14 @@ ADS-Contenido-NC-0 {
     gap: 2em;
 }
 
-.ADP-Contenido-Agregar-1 {
+.ADSER-Contenido-Agregar-1 {
     grid-column: 1 / 4;
     /* border: 1px solid #194c19; */
     height: 10em;
     /* transition: all 3s ease; */
 }
 
-.ADP-Contenido-Agregar-2 {
+.ADSER-Contenido-Agregar-2 {
     grid-column: 4;
     padding: 2em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -313,7 +379,7 @@ ADS-Contenido-NC-0 {
     /* border: 1px solid #194c19; */
 }
 
-.ADP-Contenido-Agregar-3 {
+.ADSER-Contenido-Agregar-3 {
     grid-column: 4;
     padding: 2em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -330,11 +396,11 @@ ADS-Contenido-NC-0 {
     gap: 0.75em; 
 }
 
-ADP-Contenido-NC-0 {
+.ADP-Contenido-NC-0 {
     grid-column: 100%;
     grid-row: 1;
     height: 3em !important;
-    border: 1px solid #194c19;
+    /* border: 1px solid #194c19; */
 }
 
 .ADP-Contenido-NC-1 {

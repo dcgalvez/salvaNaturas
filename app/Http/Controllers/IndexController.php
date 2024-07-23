@@ -12,7 +12,7 @@ use Throwable;
 
 use App\Http\Repositories\ClienteRepository;
 use App\Http\Services\ClienteServices;
-
+use App\Models\ImagenesContenido;
 
 class IndexController extends Controller
 {
@@ -185,6 +185,7 @@ class IndexController extends Controller
                     $consulta->Con_Imagen_Nombre = $queryExtra->nombre_original;
                     $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
                     $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
+
     
                     if (Storage::disk('SalvaNaturaFTP2')->exists($queryExtra->url_imagen)) {
                         $contents = Storage::disk('SalvaNaturaFTP2')->get($queryExtra->url_imagen);
@@ -196,6 +197,8 @@ class IndexController extends Controller
                         $imagen = 'data:' . $mimeType . ';base64,' . $file;
                         $consulta->Con_ImagenServer = $imagen;
                     }
+                    
+                        // $consulta->Con_ImagenServer = $this->getImagePortada($queryExtra->url_imagen);
                 } else if ($consulta->id_texto_contenido) {
                     $queryExtra = $this->clienteServices->SER_getContenidosText($consulta->id_texto_contenido); 
                     // dd($queryExtra);
@@ -216,6 +219,44 @@ class IndexController extends Controller
         }
     
     }
+
+    // public function getImagePortada($id)
+    // {
+    //     // dd($id);
+    //     $query = ImagenesContenido::where('id_imagen_contenido', $id)->first();
+    //     // dd($query);
+    //     if (Storage::disk('SalvaNaturaFTP2')->exists($query->url_imagen)) {
+    //         $contents = Storage::disk('SalvaNaturaFTP2')->get($query->url_imagen);
+    //         $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($query->url_imagen);
+    //         // $file = base64_encode($contents);
+    //         // $imagen = 'data:' . $mimeType . ';base64,' . $file;
+    //         return response($contents)->header('Content-Type', $mimeType);
+    //     }
+    //     // dd($imagen);
+    //     // return $imagen;
+    // }   
+
+    // public function getImagePortada(int $id)
+    // {
+    //     // Retrieve the image record by id
+    //     $query = ImagenesContenido::find($id);
+
+    //     if (!$query) {
+    //         return response()->json(['error' => 'Image not found'], 404);
+    //     }
+
+    //     $imagePath = $query->url_imagen;
+
+    //     // Check if the image exists in the storage
+    //     if (Storage::disk('SalvaNaturaFTP2')->exists($imagePath)) {
+    //         $contents = Storage::disk('SalvaNaturaFTP2')->get($imagePath);
+    //         $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($imagePath);
+
+    //         return response($contents)->header('Content-Type', $mimeType);
+    //     } else {
+    //         return response()->json(['error' => 'Image file not found in storage'], 404);
+    //     }
+    // }
 
 
     public function obtenerContenidos_Servicios(Request $request) {

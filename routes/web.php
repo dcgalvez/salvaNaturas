@@ -34,6 +34,8 @@ Route::get('/servicios-getContenidos', [IndexController::class, 'obtenerContenid
 
 Route::get('/programas-allContenidosProgramas', [IndexController::class, 'obtenerContenidos_ProgramasEspecificos'])->name('programas.getContenidosAll');
 Route::get('/programas-getContenidos', [IndexController::class, 'obtenerContenidos_ProgramasEspe'])->name('programas.getContenidos');
+
+Route::get('/programas/getImagenes/{id}', [IndexController::class, 'getImagePortada'])->name('programas.getImagenes');
 // Route::get('/programas-getContenidos', [IndexController::class, 'obtenerContenidos_Programas'])->name('programas.getContenidos');
 
 

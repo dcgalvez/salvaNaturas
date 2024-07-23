@@ -10885,33 +10885,33 @@ class RespuestasPeticiones {
 
             let imagenUno = value.Con_ID_Imagen[0];
 
-            let div = `
-                <div class="PSSN-Main ">
-                    <div class="PSSN-Title GBTextCenter">
-                    <h1 style="color:#ffcc00;">${value.programa}</h1>
-                    </div>
-                    <div class="PSSN-Img ">
-                        <div class="PSSN-I-1 PSSN-BB">
-                            <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
-                        </div>
-                        <div class="PSSN-I-2 ">
-                            <div class="PSSN-I-I-1 PSSN-BB">
-                                <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                            </div>
-                            <div class="PSSN-I-I-2 PSSN-BB">
-                                <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                            </div>
-                            <div class="PSSN-I-I-3 PSSN-BB">
-                            <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+            // let div = `
+            //     <div class="PSSN-Main ">
+            //         <div class="PSSN-Title GBTextCenter">
+            //         <h1 style="color:#ffcc00;">${value.programa}</h1>
+            //         </div>
+            //         <div class="PSSN-Img ">
+            //             <div class="PSSN-I-1 PSSN-BB">
+            //                 <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
+            //             </div>
+            //             <div class="PSSN-I-2 ">
+            //                 <div class="PSSN-I-I-1 PSSN-BB">
+            //                     <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+            //                 </div>
+            //                 <div class="PSSN-I-I-2 PSSN-BB">
+            //                     <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+            //                 </div>
+            //                 <div class="PSSN-I-I-3 PSSN-BB">
+            //                 <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
                                                         
-                            </div>
-                        </div>
-                    </div>
-                    <div class="PSSN-Text PSSN-BB p-3 GBborderBlack">
-                        <p style="">${value.Con_Texto}</p>
-                    </div>
-                </div>
-            `;
+            //                 </div>
+            //             </div>
+            //         </div>
+            //         <div class="PSSN-Text PSSN-BB p-3 GBborderBlack">
+            //             <p style="">${value.Con_Texto}</p>
+            //         </div>
+            //     </div>
+            // `;
 
             let div2 = `
             <div class="mt-5 mb-5 TheSadows">
@@ -10985,33 +10985,33 @@ class RespuestasPeticiones {
 
             let imagenUno = value.Con_ID_Imagen[0];
 
-            let div = `
-                <div class="PSER-Main">
-                    <div class="PSER-Title GBTextCenter">
-                    <h1 style="color:#ffcc00;">${value.Servicios}</h1>
-                    </div>
-                    <div class="PSER-Img ">
-                        <div class="PSER-I-1 PSER-BB">
-                            <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
-                        </div>
-                        <div class="PSER-I-2 ">
-                            <div class="PSER-I-I-1 PSER-BB">
-                                <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                            </div>
-                            <div class="PSER-I-I-2 PSER-BB">
-                                <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                            </div>
-                            <div class="PSER-I-I-3 PSER-BB">
-                            <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+            // let div = `
+            //     <div class="PSER-Main">
+            //         <div class="PSER-Title GBTextCenter">
+            //         <h1 style="color:#ffcc00;">${value.Servicios}</h1>
+            //         </div>
+            //         <div class="PSER-Img ">
+            //             <div class="PSER-I-1 PSER-BB">
+            //                 <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
+            //             </div>
+            //             <div class="PSER-I-2 ">
+            //                 <div class="PSER-I-I-1 PSER-BB">
+            //                     <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+            //                 </div>
+            //                 <div class="PSER-I-I-2 PSER-BB">
+            //                     <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+            //                 </div>
+            //                 <div class="PSER-I-I-3 PSER-BB">
+            //                 <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
                                                         
-                            </div>
-                        </div>
-                    </div>
-                    <div class="PSER-Text PSER-BB p-3 GBborderBlack">
-                        <p style="">${value.Con_Texto}</p>
-                    </div>
-                </div>
-            `;
+            //                 </div>
+            //             </div>
+            //         </div>
+            //         <div class="PSER-Text PSER-BB p-3 GBborderBlack">
+            //             <p style="">${value.Con_Texto}</p>
+            //         </div>
+            //     </div>
+            // `;
 
             let div2 = `
             <div class="mt-5 mb-5 TheSadows">
@@ -11031,19 +11031,21 @@ class RespuestasPeticiones {
                             <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
                         </div>
                             <div class="carousel-inner">
-                              <div class="carousel-item active">
-                                <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                              </div>
-                              <div class="carousel-item">
-                                <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                              </div>
+                                <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                </div>
                             </div>
+
                             <button class="carousel-control-prev" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="prev">
                               <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                               <span class="visually-hidden">Previous</span>
@@ -11058,9 +11060,51 @@ class RespuestasPeticiones {
             </div>
             `;
             $('#PSER-Main').append(div2);
+
+            // $('.YSBDT-ImgSize').each(async function(index) {
+            //     let datosU = $(this).data("id");
+            //     let url = '/programas/getImagenes/' + datosU;
+
+            //     $(this).prop("src", "");
+            //     $(this).prop("src", url);  
+
+            //     console.log(datosU);                                                                                                                                        
+            // });
+
+              
+              // Call the async function to initiate image fetching
+            //   respuestasPeticiones.fetchImageUrls();
         });
         // peticionesAdmin.msgClose();
     }
+
+    async fetchImageUrls() {
+            $('.YSBDT-ImgSize').each(async function(index) {
+                let datosU = $(this).data("id");
+                let url = '/programas/getImagenes/' + datosU;
+
+                $(this).prop("src", "");
+                $(this).prop("src", url);  
+
+                console.log(datosU);                                                                                                                                         
+            });
+        // $('.YSBDT-ImgSize').each(async function(index) {
+        //   let datosU = $(this).data("id");
+        //   let url = '/programas/getImagenes/' + datosU;
+      
+        //   // Fetch the image URL asynchronously
+        //   const response = await fetch(url);
+        //   console.log(response);
+        //   // Check for successful response
+        //   if (response.ok) {
+        //     const imageUrl = await response.text(); // Assuming the endpoint returns a text response with the URL
+        //     $(this).prop("src", imageUrl); // Set the image source after successful fetch
+        //   } else {
+        //     console.error("Error fetching image URL:", response.statusText);
+        //     // Handle error (e.g., display a placeholder image)
+        //   }
+        // });
+      }
 }
 
 const toolsHome = new ToolsHome();
