@@ -10878,7 +10878,7 @@ class RespuestasPeticiones {
     RespuestaCuarenta(datos) {
         toolsHome.msgClose();
 
-        $('#PP-Main').empty();
+        $('#PPRO-Main').empty();
         $.each(datos.data, function(key, value) {
             console.log(key);
             console.log(value);
@@ -10912,7 +10912,52 @@ class RespuestasPeticiones {
                     </div>
                 </div>
             `;
-            $('#PP-Main').append(div);
+
+            let div2 = `
+            <div class="mt-5 mb-5 TheSadows">
+                <div class="AHIPMD"> 
+                    <div class="TheSadows2 AHIPMD1-1 GB-Flex">
+                        <div class="AHIPMD-Titulo">${value.programa}</div>
+                    </div>
+                    <div class="TheSadows2 AHIPMD1-2">
+                        <div class="AHIPMD-Texto2">${value.Con_Texto}</div>
+                    </div>
+                    <div class="TheSadows AHIPMD2">
+                        <div id="AHIPMD2-CarruselID" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 AHIPMD-ImgSize" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 AHIPMD-ImgSize" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 AHIPMD-ImgSize" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 AHIPMD-ImgSize" alt="...">
+                              </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#AHIPMD2-CarruselID" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#AHIPMD2-CarruselID" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div> 
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#PPRO-Main').append(div2);
         });
         // peticionesAdmin.msgClose();
     }
@@ -10967,7 +11012,52 @@ class RespuestasPeticiones {
                     </div>
                 </div>
             `;
-            $('#PSER-Main').append(div);
+
+            let div2 = `
+            <div class="mt-5 mb-5 TheSadows">
+                <div class="YSBDT"> 
+                    <div class="TheSadows2 YSBDT1-1 GB-Flex">
+                        <div class="YSBDT-Titulo">${value.Servicios}</div>
+                    </div>
+                    <div class="TheSadows2 YSBDT1-2">
+                        <div class="YSBDT-Texto2">${value.Con_Texto}</div>
+                    </div>
+                    <div class="TheSadows YSBDT2">
+                        <div id="YSBDT2-CarruselID" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-indicators">
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        </div>
+                            <div class="carousel-inner">
+                              <div class="carousel-item active">
+                                <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                              </div>
+                              <div class="carousel-item">
+                                <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                              </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="prev">
+                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="next">
+                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                              <span class="visually-hidden">Next</span>
+                            </button>
+                          </div> 
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#PSER-Main').append(div2);
         });
         // peticionesAdmin.msgClose();
     }
