@@ -10724,6 +10724,7 @@ $(() => {
 
 $(document).on('click', '#AM-Seccion-Inicio', function() {
     toolsAdmin.cambioVistasAdmin("cambioInicio");
+    peticionesAdmin.myOwnPeticion(rutaInicio, 'GET', {}, 'I-1');
 })
 
 $(document).on('click', '#AM-Seccion-Servicios', function() {
@@ -10738,6 +10739,8 @@ $(document).on('click', '#AM-Seccion-Contactos', function() {
     toolsAdmin.cambioVistasAdmin("cambioRegenera");
 })
 
+// -------------------- SECCION DE INICIO ----------------------- //
+
 
 
 
@@ -10745,24 +10748,131 @@ $(document).on('click', '#AM-Seccion-Contactos', function() {
 
 // OPCIONES DE MENU LATERAL - SERVICIOS
 
-$(document).on('click', '.ADP-Opciones', function() {
-    $('.ADP-Opciones').removeClass('ADP-Opcionesafter');
-    $(this).addClass('ADP-Opcionesafter');
+$(document).on('click', '.ADSER-Opciones', function() {
+    $('.ADSER-Opciones').removeClass('ADSER-Opcionesafter');
+    $(this).addClass('ADSER-Opcionesafter');
 });
 
-$(document).on('click', '.ADP-Opciones1', async function(e) {
-    let peticion = await peticionesAdmin.myOwnPeticion(rutaPrograma, 'GET', {probando: 'probando'}, 1);
+$(document).on('click', '.ADSER-Opciones1', async function(e) {
+    let peticion = await peticionesAdmin.myOwnPeticion(rutaServicios, 'GET', {probando: 'probando'}, 'S-1');
 });
 
-$(document).on('click', '.ADP-Opciones2', async function(e) {
+$(document).on('click', '.ADSER-Opciones2', async function(e) {
+    // peticionesAdmin.msgCarga('Cargando...');
+    // let peticion = await peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 4);
+    toolsAdmin.cambioVistasAdmin_Servicios('showContenido');
+});
+
+$(document).on('click', '#ADSER-AddPrograma', function() {
+    toolsAdmin.cambioVistasAdmin_Servicios('showAddPrograma');
+});
+// .........................................................
+
+// MANTENIMIENTO DE SERVICIOS ..............................
+
+$(document).on('click', '#ADSER-AddPrograma-Peticion', async function() {
+    let programa = $('#ADSER-nombrePrograma').val();
+    if(programa) {
+        console.log('#', programa);
+        console.log(rutaPrograma_Add);
+        let peticion = await peticionesAdmin.myOwnPeticion(rutaServicios_Add, 'POST', {programa: programa}, 'S-1');
+
+        Swal.fire({
+            title: "Editado Correctamente!",
+            // text: "El programa a sido editado.",
+            icon: "success"
+          });
+    } else {
+        alert('Agregue el nombre del Programa');
+    }
+})
+
+$(document).on('click', '.ADSER-Editar-Programas', function() {
+    let programaID = $(this).data("id");
+    let nombreID = $(this).data("nombre");
+    let estadoID = $(this).data("estado");
+
+    console.log(programaID, nombreID, estadoID)
+    $('#ADSER-idProgramaEdit').val(programaID).trigger('change');
+    $('#ADSER-nombreProgramaEdit').val(nombreID).trigger('change');
+    $('#ADSER-estadoProgramaEdit').val(estadoID).trigger('change');
+
+    toolsAdmin.cambioVistasAdmin_Servicios('showEditPrograma');
+});
+
+$(document).on('click', '#ADSER-AddProgramaEdit-Peticion', function() {
+    let mainData = {
+        idPrograma: $('#ADSER-idProgramaEdit').val(),
+        nombrePrograma: $('#ADSER-nombreProgramaEdit').val(),
+        estadoPrograma: $('#ADSER-estadoProgramaEdit').val(),
+    }
+
+    console.log(mainData);
+    peticionesAdmin.myOwnPeticion(rutaServicios_Editar, 'POST', mainData, 'S-1');
+
+    Swal.fire({
+        title: "Editado Correctamente!",
+        // text: "El programa a sido editado.",
+        icon: "success"
+      });
+});
+
+$(document).on('click', '.ADSER-Delete-Programas', function() {
+    Swal.fire({
+        title: "Estas Seguro de Eliminarlo?",
+        text: "Una vez realizado no se podra revertir!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Confirmar!"
+      }).then((result) => {
+        if (result.isConfirmed) {
+            let programaID = $(this).data("id");
+            peticionesAdmin.myOwnPeticion(rutaServicios_Eliminar, 'POST', {programas: programaID}, 'S-1');
+            Swal.fire({
+                title: "Eliminado!",
+                text: "El programa a sido eliminado.",
+                icon: "success"
+              });
+        }
+      });
+})
+// ...........................................................
+
+// SECCION PARA NUEVO CONTENIDO (SERVICIOS) ...................
+$(document).on('click', '.ADSER-AddNewPrograma', function() {
+    toolsAdmin.cambioVistasAdmin_Servicios('showNuevoContenido');
+    peticionesAdmin.myOwnPeticion(rutaServicios_Activo, 'GET', {}, 'S-2');
+})
+
+$(document).on('click', '.ADSER-Opciones3', function() {
+    toolsAdmin.cambioVistasAdmin_Servicios('showNuevoContenido');
+    peticionesAdmin.myOwnPeticion(rutaServicios_Activo, 'GET', {}, 'S-2');
+})
+
+$("#nuevoDocumentoForm_Servicios").submit(function (e) {
+    console.log('Hizo el submit');
+    e.preventDefault();
+
+    const validarCampos = toolsAdmin.validarInputs("ADSER-Validate-Data");
+
+    if (validarCampos.validatorFails) {
+        Swal.fire({
+        title: 'NECESITA VALIDAR LOS SIGUIENTES CAMPOS.',
+        type: 'warning',
+        html: `<ul>${validarCampos.msg}</ul>`,
+        });
+        return false;
+    }
+    
+    var formData = new FormData(this);
+
     peticionesAdmin.msgCarga('Cargando...');
-    let peticion = await peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 4);
-    toolsAdmin.cambioVistasAdmin_Programas('showContenido');
+
+    peticionesAdmin.myOwnPeticionDataFTP(rutaServicios_Guardar, 'POST', formData, 'S-3');
 });
-
-
-
-
+// ..............................................................
 
 
 
@@ -10882,9 +10992,9 @@ class adminTools {
             case "cambioServicios":
                 $(".AI-CC").addClass("d-none");
                 $("#AI-CC-Servicios").removeClass("d-none")
-                $('.ADS-Opciones').removeClass('ADS-Opcionesafter');
-                $('.ADS-ManageContenidos').addClass('d-none');
-                $('.ADS-Contenido-Fondo').removeClass('d-none');
+                $('.ADSER-Opciones').removeClass('ADSER-Opcionesafter');
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Fondo').removeClass('d-none');
                 break;
             
             case "cambioProgramas":
@@ -10935,8 +11045,45 @@ class adminTools {
                 $('.ADP-Menu').addClass('ADP-Menu-NewHeight');
                 $('.ADP-Extras').removeClass('d-none');
                 break;
+
+            // CASOS SERVICIOS
+            case "showServicios":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Agregar').removeClass('d-none')
+                break;
         }
     }
+
+    cambioVistasAdmin_Servicios(signal) {
+        switch(signal) {
+            case "showServicios":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Agregar').removeClass('d-none');
+                console.log('No funciona')
+                break;
+            
+            case "showAddPrograma":
+                $(".ADSER-Contenido-Agregar-2").removeClass("d-none");
+                break;
+
+            case "showEditPrograma":
+                $('.ADSER-Contenido-Agregar-3').removeClass('d-none')
+                break;
+
+            case "showNuevoContenido":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-NuevoContenido').removeClass('d-none')
+                $('.ADSER-Menu').addClass('ADP-Menu-NewHeight');
+                $('.ADSER-Extras').removeClass('d-none');
+                break;
+
+            case "showContenido":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Programas').removeClass('d-none')
+                break;
+        }
+    }
+
 
     validarInputs(className) {
         const requiredElement = $(`.${className}`).length;
@@ -11128,6 +11275,11 @@ class adminPeticiones {
 class adminRespuestas {
     RedirectRespuestas(redirect, data) {
         switch(redirect) {
+            // INICIO
+
+            case 'I-1':
+                this.RespuestaOne_Inicio(data);
+                break;
             case 1:
                 this.RespuestaOne(data);
                 break;
@@ -11144,7 +11296,45 @@ class adminRespuestas {
                 this.RespuestaCien(data)
                 break;
 
+            // Servicios
+            case 'S-1':
+                this.RespuestaOne_Servicios(data);
+                break;
+
+            case 'S-2':
+                this.RespuestaDos_Servicios(data)
+                break;
+            
+            case 'S-3':
+                this.RespuestaTres_Servicios(data);
+                break;
+
         }
+    }
+
+    RespuestaOne_Inicio(datos) {
+        $('#ADBE-Col-1').empty();
+        console.log('Inicio', datos)
+        $.each(datos.data, function(key, info) {
+            let bloque = `
+                   <div class="m-3 GBAI-Shadow" style="border-radius: 0.75em;">
+                <div class="row w-100 m-2">
+            <div class="GB-Flex mt-3"><img src="${info.Con_ImagenServer}" class="" style="width: 85%; height: auto; border-radius: 0.75em;" alt=""></div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6 p-3">
+                <h3 class="GBTextCenter">MISION</h1>
+                <p class='p-2'>${info.Con_Texto[0]}</p>
+            </div>            
+            <div class="col-6 p-3">
+                <h3 class="GBTextCenter">VISION</h1>
+                <p class='p-2'>${info.Con_Texto[1]}</p>
+            </div>
+        </div>
+                </div>`;
+        
+        $('#ADBE-Col-1').append(bloque);
+    });
     }
 
     RespuestaOne(datos) {
@@ -11237,6 +11427,44 @@ class adminRespuestas {
         console.log('Respuesta Cien', datos)
         toolsAdmin.loadIntoSelect('ADP_Programa-Change', datos);
     }
+
+    RespuestaOne_Servicios(datos) {
+        console.log(datos);
+        console.log(datos.data);
+        $('#ADSER-tablaPrograma-Body').empty();
+        datos.data.forEach(data => {
+            let badge = '<span class="badge text-bg-warning">Inactivo</span>';
+            if(data.Ser_Estado == 1) {
+                badge = '<span class="badge text-bg-primary">Activo</span>';
+            }
+            let row = `<tr>     
+                            <td>${data.Ser_Programa}</td>
+                            <td>${badge}</td>
+                            <td class="">
+            <button type="button" class="btn btn-outline-secondary ADSER-Editar-Programas" data-id="${data.Ser_ID}" 
+            data-nombre="${data.Ser_Programa}" data-estado="${data.Ser_Estado}"> Editar</button>
+            <button type="button" class="btn btn-outline-danger ADSER-Delete-Programas" data-id="${data.Ser_ID}"> Eliminar</button>
+            </td>
+            </tr>`;
+
+            console.log(row);
+            
+            $('#ADSER-tablaPrograma-Body').append(row);
+        })
+        toolsAdmin.cambioVistasAdmin_Servicios("showServicios")
+    }
+
+    RespuestaDos_Servicios(datos) {
+        console.log(datos);
+        console.log('RespuestaDos_Servicios', datos)
+        toolsAdmin.loadIntoSelect('ADSER_Programa-Change', datos);
+    }
+
+    RespuestaTres_Servicios(datos) {
+        peticionesAdmin.msgClose();
+        $("#nuevoDocumentoForm_Servicios")[0].reset();
+    }
+
 }
 
 const toolsAdmin = new adminTools();

@@ -154,18 +154,18 @@
 
             {{-------------------------| Formulario Contenidos |-------------------------}}
             <div class="ADSER-Contenido-NC-2">
-                <div class="GBL-Titulo4"> NUEVO PROGRAMA</div><hr>
+                <div class="GBL-Titulo4"> NUEVO CONTENIDO</div><hr>
 
-                <form id="nuevoDocumentoForm" action="{{ route('admin.guardarInformacion') }}" method="POST" enctype="multipart/form-data">
+                <form id="nuevoDocumentoForm_Servicios" action="{{ route('admin.guardarInformacion') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-12 mt-3">
-                            <select class="form-control ADSER-Validate-Data" name="ADP_Programa" id="ADP_Programa-Change" data-nombrev="Programa">
+                            <select class="form-control ADSER-Validate-Data" name="ADSER_Programa" id="ADSER_Programa-Change" data-nombrev="Programa">
                                 <option value="">Seleccione un Programa</option>
                             </select>
                         </div>
                         <div class="col-12 mt-3">
-                            <textarea class="form-control ADSER-Validate-Data" name="ADP_TUP_texto1" id="ADP_TUP_texto1" cols="30" rows="7" placeholder="Ingrese: Texto 1" data-nombrev="Texto 1"></textarea>
+                            <textarea class="form-control ADSER-Validate-Data" name="ADSER_TUP_texto1" id="ADSER_TUP_texto1" cols="30" rows="7" placeholder="Ingrese: Texto 1" data-nombrev="Texto 1"></textarea>
                         </div>
                         
                         <div class="col-12 mt-3"><input type="file" class="form-control-file ADSER-Validate-Data" id="archivoDocumento" name="archivo1" data-nombrev="Imagen 1"></div>
@@ -175,7 +175,7 @@
                     </div>
                 </form>
                 <div class="mt-5 GB-Flex">
-                    <button type="submit" class="btn btn-outline-dark" form="nuevoDocumentoForm"><i class="bi bi-check2"></i> Agregar Contenido</button>
+                    <button type="submit" class="btn btn-outline-dark" form="nuevoDocumentoForm_Servicios"><i class="bi bi-check2"></i> Agregar Contenido</button>
                 </div>
                 
             </div>

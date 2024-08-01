@@ -83,7 +83,7 @@
 /* -----------------------------| Begin Main Screen |------------------------------- */
 
 :root {
-    --global--imagenInicio:  url('/assets/images/BannerTwo.png');
+    --global--imagenInicio:  url('/assets/images/Principal Banner.jpeg');
     --global--verdeClaro: #6dd93b46; 
     --global--verde: #6DD93B;
     --global--verdeContraste: #4F9000;
@@ -121,12 +121,12 @@ body {
     align-items: center;
     margin: 0 0 2.5em 0;
     width: 100% !important;
-    height: 90vh !important;
+    height: 85vh !important;
 }
 
 .MAS-BannerImg {
-    width: 97%;
-    height: 90vh;
+    width: 92%;
+    height: 85vh;
     background-image: var(--global--imagenInicio);
     background-size: cover;
     background-position: center;
@@ -573,7 +573,7 @@ body {
         letter-spacing: 0.5px;
     }
 
-    .YSBDT1-2::-webkit-scrollbar { width: 5px; height: 5px;}
+    .YSBDT1-2::-webkit-scrollbar {width: 5px; height: 5px;}
     
     .YSBDT1-2::-webkit-scrollbar-track { background: transparent; }
     

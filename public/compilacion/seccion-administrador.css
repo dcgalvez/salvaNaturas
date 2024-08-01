@@ -109,7 +109,33 @@
     color: white;
 }
 
+
 /* ----------| TITULO Y SECCIONES |--------- */
+.AI-GB-T {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    padding: 1.25em;
+    border-radius: 0.75em;
+    margin-bottom: 0.9em;
+}
+
+.AI-GB-TITULO {
+    letter-spacing: 1.5px;
+    font-size: 2.5em;  
+    font-weight: 400;
+    color: #4F9000;
+}
+
+#ADBE-Col-2-Imagen {
+    height: 70em !important;
+    background-image: url('/assets/images/InicioEleccion.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.GBAI-Shadow {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
 
 .AI-GS {
     margin: 1em 0;
@@ -183,7 +209,7 @@
     padding: 2em;
 }
 
-.ADSER  -Contenido-Fondo {
+.ADSER-Contenido-Fondo {
     height: 100%;
     background-image: url('/assets/images/Opciones.png');
     background-size: contain;
@@ -221,7 +247,7 @@
 
 /* ........................... INICIO DEL CONTENIDO ......................... */
 
-.ADP-Contenido-Agregar {
+.ADSER-Contenido-Agregar {
     /* border: 1px solid #194c19; */
     display: grid;
     grid-template-columns: repeat();
@@ -229,14 +255,14 @@
     gap: 2em;
 }
 
-.ADP-Contenido-Agregar-1 {
+.ADSER-Contenido-Agregar-1 {
     grid-column: 1 / 4;
     /* border: 1px solid #194c19; */
     height: 10em;
     /* transition: all 3s ease; */
 }
 
-.ADP-Contenido-Agregar-2 {
+.ADSER-Contenido-Agregar-2 {
     grid-column: 4;
     padding: 2em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -245,7 +271,7 @@
     /* border: 1px solid #194c19; */
 }
 
-.ADP-Contenido-Agregar-3 {
+.ADSER-Contenido-Agregar-3 {
     grid-column: 4;
     padding: 2em;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -254,7 +280,7 @@
     /* border: 1px solid #194c19; */
 }
 
-.ADP-Contenido-NuevoContenido {
+.ADSER-Contenido-NuevoContenido {
     display: grid;
     grid-template-columns: 70% 30%;
     /* grid-auto-rows: minmax(3em, 53em); */
@@ -262,14 +288,14 @@
     gap: 0.75em; 
 }
 
-.ADP-Contenido-NC-0 {
+.ADSER-Contenido-NC-0 {
     grid-column: 100%;
     grid-row: 1;
     height: 3em !important;
     /* border: 1px solid #194c19; */
 }
 
-.ADP-Contenido-NC-1 {
+.ADSER-Contenido-NC-1 {
     grid-column: 1;
     grid-row: 2;
     box-shadow: rgba(0, 83, 3, 0.05) 0px 0px 0px 1px;
@@ -283,7 +309,7 @@
     background-repeat: no-repeat;
 }
 
-.ADP-Contenido-NC-2 {
+.ADSER-Contenido-NC-2 {
     grid-column: 2;
     grid-row: 2;
     border: 1px solid #194c19;

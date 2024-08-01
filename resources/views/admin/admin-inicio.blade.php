@@ -35,20 +35,37 @@
 
     {{-- Opciones de Contenidos | Contenido --}}
     <div class="AI-Contenido">
-        <div class="AI-CC d-none" id="AI-CC-Inicio"><h1>CAMBIO DE EL INICIO</h1></div>
+        <div class="AI-CC d-none" id="AI-CC-Inicio">
+            <div class="AI-GB-T GB-Flex">
+                <h1 class="AI-GB-TITULO">ADMINISTRADOR INICIO</h1>
+            </div>
+            @include('admin.contenidos.admin-Inicio')
+        </div>
         <div class="AI-CC d-none" id="AI-CC-Servicios">
-            <h1>CAMBIO DE EL SERVICIO</h1>
+            <div class="AI-GB-T GB-Flex">
+                <h1 class="AI-GB-TITULO">ADMINISTRADOR SERVICIOS</h1>
+            </div>
             @include('admin.contenidos.admin-Servicios')
         </div>
         <div class="AI-CC d-none" id="AI-CC-Programas">
+            <div class="AI-GB-T GB-Flex">
+                <h1 class="AI-GB-TITULO">ADMINISTRADOR PROGRAMAS</h1>
+            </div>
             @include('admin.contenidos.admin-Programas')
         </div>
-        <div class="AI-CC d-none" id="AI-CC-Contactos"><h1>CAMBIO DE EL CONTACTOS</h1></div>
+        <div class="AI-CC d-none" id="AI-CC-Contactos">
+            <div class="AI-GB-T GB-Flex">
+                <h1 class="AI-GB-TITULO">ADMINISTRADOR DE CONTACTOS</h1>
+            </div>
+            @include('admin.contenidos.admin-contactanos')
+        </div>
     </div>
 </main>
 
 <script src="{{ mix('compilacion/seccion-administrador.js') }}"></script>
 <script>
+    const rutaInicio = '{{ route('admin.Inicio') }}';
+
     const rutaPrograma = '{{ route('admin.Programas') }}';
     const rutaPrograma_Add = '{{ route('admin.addProgramas') }}';
     const rutaprograma_Editar = '{{ route('admin.editProgramas') }}';
@@ -56,5 +73,16 @@
     const rutaPrograma_Guardar = '{{ route('admin.guardarInformacion') }}';
     const rutaPrograma_Activo = '{{ route('admin.programasActivos') }}';
     const rutaGet_Contenido = '{{ route('admin.programasContenido') }}';
+    
+    const rutaServicios = '{{ route('admin.Servicios') }}';
+    const rutaServicios_Add = '{{ route('admin.addServicios') }}';
+    const rutaServicios_Editar = '{{ route('admin.editServicio') }}';
+    const rutaServicios_Eliminar = '{{ route('admin.deleteServicio') }}';
+    const rutaServicios_Activo = '{{ route('admin.ServicioActivos') }}';
+    const rutaServicios_Guardar = '{{ route('admin.guardarInfoServicios') }}';
+
+
+
+
 </script>
 @endsection

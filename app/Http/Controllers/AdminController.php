@@ -12,13 +12,66 @@ use Illuminate\Support\Facades\Storage;
 use stdClass;
 
 use App\Models\Programas;
-use Illuminate\Support\Collection;
+use Illuminate\Support\Collection;  
 use Laravel\Prompts\Progress;
 use PHPUnit\TestRunner\TestResult\Collector;
 use Throwable;
 
+use App\Http\Services\AdminServices;
+use App\Http\Repositories\AdminRepository;
+use AWS\CRT\HTTP\Request as HTTPRequest;
+
 class AdminController extends Controller
 {
+    protected $adminServices;
+    protected $adminRepository;
+
+    public function __construct(
+        AdminServices $adminServices,
+        AdminRepository $adminRepository) {
+        $this->adminServices = $adminServices;
+        $this->adminRepository = $adminRepository;
+    }
+
+    // PARA INICIO
+    public function getInfoInicio() {
+        try {
+            $recopilacion = [];
+            // $query = $this->SER_getContenidos();
+            $query = $this->adminServices->getInfoInicio();
+            foreach ($query as $consulta) {
+                if ($consulta->id_imagen_contenido) {
+                    $queryExtra = $this->SER_getContenidosImg($consulta->id_imagen_contenido);
+                    $consulta->Con_TipoContenido = 'IMAGEN';
+                    $consulta->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
+                    $consulta->Con_Imagen_Nombre = $queryExtra->nombre_original;
+                    $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
+                    $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
+
+                    if (Storage::disk('SalvaNaturaFTP2')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('SalvaNaturaFTP2')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($queryExtra->url_imagen);
+                        $file = base64_encode($contents);
+                        $imagen = 'data:' . $mimeType . ';base64,' . $file;
+                        $consulta->Con_ImagenServer = $imagen;
+                    }
+                } else if ($consulta->id_texto_contenido) {
+                    $queryExtra = $this->SER_getContenidosText($consulta->id_texto_contenido); 
+                    $consulta->Con_TipoContenido = 'TEXTO';
+                    $consulta->Con_ID_Texto = $queryExtra->id_texto_contenido;
+                    $consulta->Con_Texto = $queryExtra->texto;
+                }
+                $recopilacion[] = $consulta;
+            } 
+            $recopilacion = $this->formatporID($recopilacion);
+            return $this->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->responseError($e . "Error en la consulta", 404); 
+        }
+
+    }
+
+    // PARA PROGRAMAS
     public function getInfoProgramas() {
         $query = $this->SER_getProgramas();
         $query = $this->formatProgramas($query);
@@ -26,6 +79,15 @@ class AdminController extends Controller
 
     }
 
+    // PARA SERVICIOS
+    public function getInfoServicios() {
+        $query = $this->adminServices->getServicios();
+        $query = $this->adminRepository->formatServicios($query);
+        return $this->responseSuccess($query, "", 200);
+
+    }
+
+    // PARA PROGRAMAS
     public function saveProgramas(Request $request) {
         $query_savePrograma = $this->SER_nuevoPrograma($request->programa);
         if($query_savePrograma) {
@@ -35,6 +97,17 @@ class AdminController extends Controller
         }
     }
 
+    // PARA SERVICIOS
+    public function saveServicios(Request $request) {
+        $query = $this->adminServices->nuevoServicio($request->programa);
+        if($query) {
+            return $this->getInfoServicios();
+        } else {
+            return $this->responseError("", 404);
+        }
+    }
+
+    // PARA PROGRAMAS
     public function editProgramas(Request $request) {
         // dd($request->all());
         $query_savePrograma = $this->SER_editPrograma($request->all());
@@ -45,6 +118,18 @@ class AdminController extends Controller
         }
     }
 
+    // PARA SERVICIOS
+    public function editServicios(Request $request) {
+        // dd($request->all());
+        $query_savePrograma = $this->adminServices->editPrograma_Servicios($request->all());
+        if($query_savePrograma) {
+            return $this->getInfoServicios();
+        } else {
+            return $this->responseError("", 404);
+        }
+    }
+
+    // PARA PROGRAMAS
     public function deleteProgramas(Request $request) {
         // dd($request->all());
         $query_deletePrograma = $this->SER_deletePrograma($request->all());
@@ -54,15 +139,26 @@ class AdminController extends Controller
             return $this->responseError("",404);
         }
     }
+    // PARA SERVICIOS
+    public function deleteSevicio(Request $request) {
+        // dd($request->all());
+        $query_deletePrograma = $this->adminServices->deleteServicios($request->all());
+        if($query_deletePrograma){
+            return $this->getInfoServicios();
+        } else {
+            return $this->responseError("",404);
+        }
+    }
 
+    // PARA PROGRAMAS
     public function saveNuevoContenido(Request $request) {
         // dd('Si LLego, Si funciona al Contenido', $request->all(),$request->hasFile('imagen1'));
         try {
             DB::connection("mysql")->beginTransaction();
 
-            $queryTexto = $this->SER_Contenido_AgregarTexto(["texto" => $request->input('ADP_TUP_texto1')]);
+            $queryTexto = $this->adminServices->Contenidos_AgregarTexto(["texto" => $request->input('ADP_TUP_texto1')]);
             if($queryTexto) {
-                $queryContenido = $this->SER_ContenidoGeneral(["seccion" => 3,
+                $queryContenido = $this->adminServices->ContenidoGeneral(["seccion" => 3,
                                                                 "programas" => $request->input('ADP_Programa'),
                                                                 "imagen" => "",
                                                                 "texto" => $queryTexto->id_texto_contenido,
@@ -81,12 +177,12 @@ class AdminController extends Controller
                     $url = "Programas/{$pdfFilename}"; 
                     $guardarArchivo = Storage::disk('SalvaNaturaFTP2')->put($url, file_get_contents($pdfFile));
                     if ($guardarArchivo) {
-                        $queryImagen = $this->SER_Contenido_AgregarImagen(["id_tipo_imagen" => $i,
+                        $queryImagen = $this->adminServices->Contenido_AgregarImagen(["id_tipo_imagen" => $i,
                                                                         "nombreO" => $pdfOriginalName,
                                                                         "nombreM" => $pdfFilename,
                                                                         "url" => $url]);
                         if ($queryImagen) {
-                            $queryContenido = $this->SER_ContenidoGeneral(["seccion" => 3,
+                            $queryContenido = $this->adminServices->ContenidoGeneral(["seccion" => 3,
                                                                               "programas" => $request->input('ADP_Programa'),
                                                                               "imagen" => $queryImagen->id_imagen_contenido,
                                                                               "texto" => "",
@@ -96,7 +192,61 @@ class AdminController extends Controller
                 }
             }
 
-            $queryActualizarPrograma = $this->SER_ActualizarProgramas($request->input('ADP_Programa'));
+            $queryActualizarPrograma = $this->adminServices->ActualizarProgramas($request->input('ADP_Programa'));
+            
+            DB::connection("mysql")->commit(); 
+            return $this->responseSuccess([], "Contenido Agregado con exito", 200);    
+        } catch(Throwable $e) {
+            DB::connection("mysql")->rollBack();
+            return $this->responseError("Error en la subida",404);
+        }
+
+
+        // dd('Si LLego, Si funciona', $request->all());
+    }
+
+    // PARA SERVICIOS
+    public function saveNuevoContenido_Servicios(Request $request) {
+        try {
+            DB::connection("mysql")->beginTransaction();
+
+            $queryTexto = $this->adminServices->Contenidos_AgregarTexto(["texto" => $request->input('ADSER_TUP_texto1')]);
+            if($queryTexto) {
+                $queryContenido = $this->adminServices->ContenidoGeneral(["seccion" => 2,
+                                                                "programas" => $request->input('ADSER_Programa'),
+                                                                "imagen" => "",
+                                                                "texto" => $queryTexto->id_texto_contenido,
+                                                            ]);
+            }
+
+            $tiempo_actual = microtime(true);
+            $hora_exacta = date("Y-m-d H:i:s.", $tiempo_actual) . substr((string)$tiempo_actual, 11, 3);
+
+            for ($i = 1; $i < 5; $i++) {
+                // echo "El valor de i es: " . $i . "<br>";
+                if ($request->hasFile('archivo'.$i)) {
+                    $pdfFile = $request->file('archivo'.$i);
+                    $pdfOriginalName = $pdfFile->getClientOriginalName();
+                    $pdfFilename = $hora_exacta . ' - ' . $pdfOriginalName;
+                    $url = "Programas/{$pdfFilename}"; 
+                    $guardarArchivo = Storage::disk('SalvaNaturaFTP2')->put($url, file_get_contents($pdfFile));
+                    if ($guardarArchivo) {
+                        $queryImagen = $this->adminServices->Contenido_AgregarImagen(["id_tipo_imagen" => $i,
+                                                                        "nombreO" => $pdfOriginalName,
+                                                                        "nombreM" => $pdfFilename,
+                                                                        "url" => $url]);
+                        if ($queryImagen) {
+                            $queryContenido = $this->adminServices->ContenidoGeneral(["seccion" => 3,
+                                                                              "programas" => $request->input('ADSER_Programa'),
+                                                                              "imagen" => $queryImagen->id_imagen_contenido,
+                                                                              "texto" => "",
+                                                                            ]);
+                        }
+                    }
+                }
+            }
+
+            $queryActualizarPrograma = $this->adminServices->ActualizarProgramas($request->input('ADSER_Programa'));
             
             DB::connection("mysql")->commit(); 
             return $this->responseSuccess([], "Contenido Agregado con exito", 200);    
@@ -180,8 +330,15 @@ class AdminController extends Controller
     }
 
 
+    // PARA SERVICIOS
+    public function getServiciosActivos(Request $request) {
+        $query = $this->adminServices->getServiciosActivos();
+        return $query;
+    }
+
 
     // PASAR A UN SERVICES
+
 
     public function SER_getProgramasActivos() {
         $query = Programas::select('id_programas AS codID', 'programa AS valPRO')
@@ -202,6 +359,7 @@ class AdminController extends Controller
             "programa" => $programa,
             "Servicios" => null,
             "activc" => 1,
+            'contenido' => 0
             // 'fecha_creacion' => date('d-m-Y H:i:s'),
             // 'fecha_actualizacion' => date('d-m-Y H:i:s'),
         ];
@@ -281,7 +439,7 @@ class AdminController extends Controller
         // app\Models\ImagenesContenido.php
     }
 
-        public function SER_Contenido_AgregarTexto($datos) {
+    public function SER_Contenido_AgregarTexto($datos) {
         $fillData = [
             'id_tipo_texto' => 1,
             'texto' => $datos['texto'],

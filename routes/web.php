@@ -49,6 +49,12 @@ Route::get('/logout-validar',[LoginController::class, 'Admin_LogOut'])->name('ad
 
 // RUTAS ADMIN (Si existe session)
 Route::view('/admin-inicio', 'admin.admin-inicio')->middleware('auth')->name('admin.inicio'); 
+
+// INICIO
+Route::get('/admin/Inicio', [AdminController::class, 'getInfoInicio'])->middleware('auth')->name('admin.Inicio');
+
+
+// PROGRAMAS
 Route::get('/admin-programas', [AdminController::class, 'getInfoProgramas'])->middleware('auth')->name('admin.Programas');
 Route::post('/adminAddProgramas', [AdminController::class, 'saveProgramas'])->middleware('auth')->name('admin.addProgramas');
 Route::post('/adminEditProgramas', [AdminController::class, 'editProgramas'])->middleware('auth')->name('admin.editProgramas');
@@ -56,5 +62,16 @@ Route::post('/adminDeleteProgramas', [AdminController::class, 'deleteProgramas']
 Route::post('/guardarInformacion', [AdminController::class, 'saveNuevoContenido'])->middleware('auth')->name('admin.guardarInformacion');
 Route::get('/getProgramas_Activos', [AdminController::class, 'SER_getProgramasActivos'])->middleware('auth')->name('admin.programasActivos');
 Route::get('/getContenidos', [AdminController::class, 'obtenerContenidos_Programas'])->middleware('auth')->name('admin.programasContenido');
+
+// PARA SERVICIOS
+Route::get('/admin-servicios', [AdminController::class, 'getInfoServicios'])->middleware('auth')->name('admin.Servicios');
+Route::post('/admin/agregarServicio', [AdminController::class, 'saveServicios'])->middleware('auth')->name('admin.addServicios');
+Route::post('/admin/EditServicio', [AdminController::class, 'editServicios'])->middleware('auth')->name('admin.editServicio');
+Route::post('/admin/DeleteServicio', [AdminController::class, 'deleteSevicio'])->middleware('auth')->name('admin.deleteServicio');
+Route::get('/get/Servicio_Activos', [AdminController::class, 'getServiciosActivos'])->middleware('auth')->name('admin.ServicioActivos');
+Route::post('/admin/guardarInfoServicios', [AdminController::class, 'saveNuevoContenido_Servicios'])->middleware('auth')->name('admin.guardarInfoServicios');
+
+
+
 
 Route::get('/getImagenesS/{url}', [AdminController::class, 'getImagenesServer'])->middleware('auth')->name('admin.imagenesVisual');

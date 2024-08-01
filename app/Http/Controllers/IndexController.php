@@ -88,9 +88,9 @@ class IndexController extends Controller
                     $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
                     $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
     
-                    if (Storage::disk('SalvaNaturaFTP2')->exists($queryExtra->url_imagen)) {
-                        $contents = Storage::disk('SalvaNaturaFTP2')->get($queryExtra->url_imagen);
-                        $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($queryExtra->url_imagen);
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
                         // return response($contents)->header('Content-Type', $mimeType);
                         // $consulta->Con_ImagenServer = base64_encode($contents);
     
@@ -175,7 +175,8 @@ class IndexController extends Controller
         try {
             // dd($request->id);
             $recopilacion = [];
-            $query = $this->clienteServices->SER_getContenidos_ServiciosEspecificos($request->id);
+            $query = $this->clienteServices->SER_getContenidos_ServiciosEspecificos(intval($request->id));
+            // dd($query);
             foreach ($query as $consulta) {
                 if ($consulta->id_imagen_contenido) {
                     $queryExtra = $this->clienteServices->SER_getContenidosImg($consulta->id_imagen_contenido);
@@ -187,9 +188,9 @@ class IndexController extends Controller
                     $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
 
     
-                    if (Storage::disk('SalvaNaturaFTP2')->exists($queryExtra->url_imagen)) {
-                        $contents = Storage::disk('SalvaNaturaFTP2')->get($queryExtra->url_imagen);
-                        $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($queryExtra->url_imagen);
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
                         // return response($contents)->header('Content-Type', $mimeType);
                         // $consulta->Con_ImagenServer = base64_encode($contents);
     

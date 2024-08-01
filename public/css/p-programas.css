@@ -364,7 +364,7 @@
         letter-spacing: 0.5px;
     }
 
-    .AHIPMD1-2::-webkit-scrollbar { width: 5px; height: 5px;}
+    .AHIPMD1-2::-webkit-scrollbar { width: 8px; height: 8px;}
     
     .AHIPMD1-2::-webkit-scrollbar-track { background: transparent; }
     

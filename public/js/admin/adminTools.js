@@ -14,9 +14,9 @@ class adminTools {
             case "cambioServicios":
                 $(".AI-CC").addClass("d-none");
                 $("#AI-CC-Servicios").removeClass("d-none")
-                $('.ADS-Opciones').removeClass('ADS-Opcionesafter');
-                $('.ADS-ManageContenidos').addClass('d-none');
-                $('.ADS-Contenido-Fondo').removeClass('d-none');
+                $('.ADSER-Opciones').removeClass('ADSER-Opcionesafter');
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Fondo').removeClass('d-none');
                 break;
             
             case "cambioProgramas":
@@ -67,8 +67,45 @@ class adminTools {
                 $('.ADP-Menu').addClass('ADP-Menu-NewHeight');
                 $('.ADP-Extras').removeClass('d-none');
                 break;
+
+            // CASOS SERVICIOS
+            case "showServicios":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Agregar').removeClass('d-none')
+                break;
         }
     }
+
+    cambioVistasAdmin_Servicios(signal) {
+        switch(signal) {
+            case "showServicios":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Agregar').removeClass('d-none');
+                console.log('No funciona')
+                break;
+            
+            case "showAddPrograma":
+                $(".ADSER-Contenido-Agregar-2").removeClass("d-none");
+                break;
+
+            case "showEditPrograma":
+                $('.ADSER-Contenido-Agregar-3').removeClass('d-none')
+                break;
+
+            case "showNuevoContenido":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-NuevoContenido').removeClass('d-none')
+                $('.ADSER-Menu').addClass('ADP-Menu-NewHeight');
+                $('.ADSER-Extras').removeClass('d-none');
+                break;
+
+            case "showContenido":
+                $('.ADSER-ManageContenidos').addClass('d-none');
+                $('.ADSER-Contenido-Programas').removeClass('d-none')
+                break;
+        }
+    }
+
 
     validarInputs(className) {
         const requiredElement = $(`.${className}`).length;
@@ -260,6 +297,11 @@ class adminPeticiones {
 class adminRespuestas {
     RedirectRespuestas(redirect, data) {
         switch(redirect) {
+            // INICIO
+
+            case 'I-1':
+                this.RespuestaOne_Inicio(data);
+                break;
             case 1:
                 this.RespuestaOne(data);
                 break;
@@ -276,7 +318,45 @@ class adminRespuestas {
                 this.RespuestaCien(data)
                 break;
 
+            // Servicios
+            case 'S-1':
+                this.RespuestaOne_Servicios(data);
+                break;
+
+            case 'S-2':
+                this.RespuestaDos_Servicios(data)
+                break;
+            
+            case 'S-3':
+                this.RespuestaTres_Servicios(data);
+                break;
+
         }
+    }
+
+    RespuestaOne_Inicio(datos) {
+        $('#ADBE-Col-1').empty();
+        console.log('Inicio', datos)
+        $.each(datos.data, function(key, info) {
+            let bloque = `
+                   <div class="m-3 GBAI-Shadow" style="border-radius: 0.75em;">
+                <div class="row w-100 m-2">
+            <div class="GB-Flex mt-3"><img src="${info.Con_ImagenServer}" class="" style="width: 85%; height: auto; border-radius: 0.75em;" alt=""></div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-6 p-3">
+                <h3 class="GBTextCenter">MISION</h1>
+                <p class='p-2'>${info.Con_Texto[0]}</p>
+            </div>            
+            <div class="col-6 p-3">
+                <h3 class="GBTextCenter">VISION</h1>
+                <p class='p-2'>${info.Con_Texto[1]}</p>
+            </div>
+        </div>
+                </div>`;
+        
+        $('#ADBE-Col-1').append(bloque);
+    });
     }
 
     RespuestaOne(datos) {
@@ -369,6 +449,44 @@ class adminRespuestas {
         console.log('Respuesta Cien', datos)
         toolsAdmin.loadIntoSelect('ADP_Programa-Change', datos);
     }
+
+    RespuestaOne_Servicios(datos) {
+        console.log(datos);
+        console.log(datos.data);
+        $('#ADSER-tablaPrograma-Body').empty();
+        datos.data.forEach(data => {
+            let badge = '<span class="badge text-bg-warning">Inactivo</span>';
+            if(data.Ser_Estado == 1) {
+                badge = '<span class="badge text-bg-primary">Activo</span>';
+            }
+            let row = `<tr>     
+                            <td>${data.Ser_Programa}</td>
+                            <td>${badge}</td>
+                            <td class="">
+            <button type="button" class="btn btn-outline-secondary ADSER-Editar-Programas" data-id="${data.Ser_ID}" 
+            data-nombre="${data.Ser_Programa}" data-estado="${data.Ser_Estado}"> Editar</button>
+            <button type="button" class="btn btn-outline-danger ADSER-Delete-Programas" data-id="${data.Ser_ID}"> Eliminar</button>
+            </td>
+            </tr>`;
+
+            console.log(row);
+            
+            $('#ADSER-tablaPrograma-Body').append(row);
+        })
+        toolsAdmin.cambioVistasAdmin_Servicios("showServicios")
+    }
+
+    RespuestaDos_Servicios(datos) {
+        console.log(datos);
+        console.log('RespuestaDos_Servicios', datos)
+        toolsAdmin.loadIntoSelect('ADSER_Programa-Change', datos);
+    }
+
+    RespuestaTres_Servicios(datos) {
+        peticionesAdmin.msgClose();
+        $("#nuevoDocumentoForm_Servicios")[0].reset();
+    }
+
 }
 
 const toolsAdmin = new adminTools();
