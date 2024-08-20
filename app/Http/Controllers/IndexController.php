@@ -65,6 +65,19 @@ class IndexController extends Controller
         return view('secciones.contactanos');
     }
 
+    public function contactanosSave(Request $request) {
+        // dd('Si llego', $request->all());
+        try {
+            $query = $this->clienteServices->guardarContactanos($request->all());
+            if ($query) {
+                return $this->clienteRepository->responseSuccess([], "Contacto con exito", 200);    
+            }
+        } catch (Throwable $e) {
+            return $this->clienteRepository->responseError($e . "Error en la consulta", 404); 
+        }
+        // dd("Exacto", $query);
+    }
+
     public function obtenerContenidos_ProgramasEspecificos(Request $request) {
         $query = $this->clienteServices->getAllContenidos_Programas();
         $query = $this->clienteRepository->formatAllProgramas($query);

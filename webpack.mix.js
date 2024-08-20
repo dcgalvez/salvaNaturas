@@ -6,7 +6,8 @@ let administradorVersion = 'v.1';
 mix.scripts([
     'public/js/jquery/jquery-3.7.1.js',
     'public/js/admin/adminMain.js',
-    'public/js/admin/adminTools.js'
+    'public/js/admin/adminTools.js',
+    'public/js/admin/adminPeticionesRespuestas.js'
 ], 'public/compilacion/seccion-administrador.js')
 .styles([
     'public/css/global.css',

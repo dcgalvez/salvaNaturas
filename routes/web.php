@@ -38,6 +38,8 @@ Route::get('/programas-getContenidos', [IndexController::class, 'obtenerContenid
 Route::get('/programas/getImagenes/{id}', [IndexController::class, 'getImagePortada'])->name('programas.getImagenes');
 // Route::get('/programas-getContenidos', [IndexController::class, 'obtenerContenidos_Programas'])->name('programas.getContenidos');
 
+Route::post('/contactanos/envio', [IndexController::class, 'contactanosSave'])->name('contactanos.enviar');
+
 
 // RUTAS LOGIN (Necesarias para logearse)
 Route::view('/login', "admin.admin-login")->name('login');
@@ -61,7 +63,11 @@ Route::post('/adminEditProgramas', [AdminController::class, 'editProgramas'])->m
 Route::post('/adminDeleteProgramas', [AdminController::class, 'deleteProgramas'])->middleware('auth')->name('admin.deleteProgramas');
 Route::post('/guardarInformacion', [AdminController::class, 'saveNuevoContenido'])->middleware('auth')->name('admin.guardarInformacion');
 Route::get('/getProgramas_Activos', [AdminController::class, 'SER_getProgramasActivos'])->middleware('auth')->name('admin.programasActivos');
-Route::get('/getContenidos', [AdminController::class, 'obtenerContenidos_Programas'])->middleware('auth')->name('admin.programasContenido');
+Route::get('/admin/getContenidos-Programas', [AdminController::class, 'obtenerContenidos_Programas'])->middleware('auth')->name('admin.programasContenido');
+Route::get('/admin/programas/getContenidos', [AdminController::class, 'vistaPreviaProgramas'])->name('admin.Programas.getContenidos');
+Route::get('/admin/programas/modImagenes', [AdminController::class, 'modificarImagenes_Programas'])->name('admin.programas.modImagen');
+Route::get('/admin/progrmas/modTextp', [AdminController::class, 'modificarTexto_Programas'])->name('admin.programas.modTexto');
+Route::post('/admin/programas/updateTexto', [AdminController::class, 'peticion_modificarTextoProgramas'])->name('admin.programas.updTexto');
 
 // PARA SERVICIOS
 Route::get('/admin-servicios', [AdminController::class, 'getInfoServicios'])->middleware('auth')->name('admin.Servicios');
@@ -70,8 +76,14 @@ Route::post('/admin/EditServicio', [AdminController::class, 'editServicios'])->m
 Route::post('/admin/DeleteServicio', [AdminController::class, 'deleteSevicio'])->middleware('auth')->name('admin.deleteServicio');
 Route::get('/get/Servicio_Activos', [AdminController::class, 'getServiciosActivos'])->middleware('auth')->name('admin.ServicioActivos');
 Route::post('/admin/guardarInfoServicios', [AdminController::class, 'saveNuevoContenido_Servicios'])->middleware('auth')->name('admin.guardarInfoServicios');
+Route::get('/admin/getContenidos-Servicios', [AdminController::class, 'obtenerContenidos_Servicios'])->middleware('auth')->name('admin.serviciosContenido');
+Route::get('/admin/servicios-getContenidos', [AdminController::class, 'vistaPreviaServicios'])->name('admin.getContenidos');
+Route::get('/admin/servicios/modImagenes', [AdminController::class, 'modificarImagenes_Servicios'])->name('admin.servicios.modImagen');
+Route::post('/admin/Servicios/updateImagenes', [AdminController::class, 'Peticion_modificarImagenes_Servicios'])->name('admin.servicios.updImagen');
+Route::get('/admin/Servicios/modTextp', [AdminController::class, 'modificarTexto_Servicios'])->name('admin.servicios.modTexto');
+Route::post('/admin/Servicios/updateTexto', [AdminController::class, 'peticion_modificarTextoServicios'])->name('admin.servicios.updTexto');
 
-
-
+// PARA CONTACTANOS
+Route::get('/admin/contactanos', [AdminController::class, 'seccionContactanos'])->name('admin.Contactos');
 
 Route::get('/getImagenesS/{url}', [AdminController::class, 'getImagenesServer'])->middleware('auth')->name('admin.imagenesVisual');

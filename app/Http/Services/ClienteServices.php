@@ -6,6 +6,7 @@ use App\Models\Contenido;
 use App\Models\ImagenesContenido;
 use App\Models\Programas;
 use App\Models\TextoContenido;
+use App\Models\Contactanos;
 use Illuminate\Support\Facades\DB;
 
 class ClienteServices
@@ -118,4 +119,22 @@ class ClienteServices
         ->get();
         return $query;
     }
+
+    public function guardarContactanos(array $datos) {
+        $fillData = [
+            'nombres' => $datos['nombre'],
+            'apellidos' => $datos['apellido'],
+            'telefono' => $datos['telefono'],
+            'mail' => $datos['email'],
+            'mensaje' => $datos['mensaje'],
+            'check' => 0
+        ];
+        
+        $model = new Contactanos();
+        $model->fill($fillData);
+        $model->save();
+
+        return $model;
+    }
+
 }

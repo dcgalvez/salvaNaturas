@@ -10777,6 +10777,31 @@ class ToolsHome {
         return xhrPeticion;
     }
 
+    async peticionAjaxDos(method, route, data) {
+        try {
+            $.ajaxSetup({
+                headers: {
+                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+             });
+    
+             $.ajax({
+                type:method,
+                url: route,
+                data: data,
+                success: function(data) {
+                    return data;
+                },
+                error: function (msg) {
+                   console.log(msg);
+                   var errors = msg.responseJSON;
+                }
+             });
+        } catch(e) {
+            console.log(e);
+        }
+    }
+
     msgCarga(mensaje, btnTexto = 'Cancelar', btnClass='') {
         Swal.fire({
             title: mensaje,
@@ -10854,8 +10879,37 @@ class ToolsHome {
             case "Servicios-2":
                 respuestasPeticiones.RespuestaServiciosTwo(datos)
                 break;
+
+            case "Contactanos":
+                console.log("Sii LLego")
+                Swal.fire({
+                    title: "Mensaje Enviado",
+                    text: "Su mensaje ha sido enviado exitosamente",
+                    icon: "success",
+                    timer: 2500,
+                    showConfirmButton: true,
+                  });
+                break;
         }
     }
+
+    takeValue_Middle(className) {
+        let infoBack = {};
+        $('.' + className).each(function() {
+            let name = this.name;
+            let value = this.value;
+            if (value) {
+                infoBack[name] = value;
+            }
+        });
+        return infoBack;
+    }
+
+    setValue_Start(className) {
+        $('.' + className).each(function() {
+            $(this).val('').trigger('change');
+        });
+}
 }
 
 class RespuestasPeticiones {
@@ -11021,37 +11075,31 @@ class RespuestasPeticiones {
                     </div>
                     <div class="TheSadows YSBDT2">
                         <div id="YSBDT2-CarruselID" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-                        </div>
-                            <div class="carousel-inner">
-                                <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
-                                </div>
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
                             </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-inner">`;
+            value.Con_ImagenServer.forEach(info => {
+                div2 += `<div class="carousel-item active">
+                                            <img src="${info}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>`
+            });                                        
+            div2 += `</div>
+                                </div>
 
-                            <button class="carousel-control-prev" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="prev">
-                              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="next">
-                              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                              <span class="visually-hidden">Next</span>
-                            </button>
-                          </div> 
+                                <button class="carousel-control-prev" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                                </button>
+                        </div> 
                     </div>
                 </div>
             </div>

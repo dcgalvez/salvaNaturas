@@ -10718,13 +10718,25 @@ return jQuery;
 let helper_catalogos = '';
 
 $(() => {
-    toolsAdmin.cambioVistasAdmin("cambioTodos");
+    // toolsAdmin.cambioVistasAdmin("cambioTodos");
+    toolsAdmin.cambioVistasAdmin("cambioGeneral");
+
     // peticionesAdmin.myOwnPeticion(rutaPrograma, 'GET', {}, 100); 
 });
 
-$(document).on('click', '#AM-Seccion-Inicio', function() {
+$(document).on('click', '#AM-Seccion-General', async function() {
+
+    toolsAdmin.cambioVistasAdmin("cambioGeneral");
+})
+
+$(document).on('click', '#AM-Seccion-Inicio', async function() {
+    peticionesAdmin.msgCarga('Cargando...');
+    let response = await peticionesAdmin.myOwnPeticion(rutaInicio, 'GET', {}, 'I-1');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaOne_Inicio(response);
+        peticionesAdmin.msgClose();
+    }
     toolsAdmin.cambioVistasAdmin("cambioInicio");
-    peticionesAdmin.myOwnPeticion(rutaInicio, 'GET', {}, 'I-1');
 })
 
 $(document).on('click', '#AM-Seccion-Servicios', function() {
@@ -10735,7 +10747,13 @@ $(document).on('click', '#AM-Seccion-Programas',async function() {
     toolsAdmin.cambioVistasAdmin("cambioProgramas");
 })
 
-$(document).on('click', '#AM-Seccion-Contactos', function() {
+$(document).on('click', '#AM-Seccion-Contactos', async function() {
+    peticionesAdmin.msgCarga('Cargando...');
+    let response = await peticionesAdmin.myOwnPeticion(rutaContactos_Info, 'GET', {}, '');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaOne_Contactanos(response);
+        peticionesAdmin.msgClose();
+    }
     toolsAdmin.cambioVistasAdmin("cambioRegenera");
 })
 
@@ -10744,9 +10762,9 @@ $(document).on('click', '#AM-Seccion-Contactos', function() {
 
 
 
-// -------------------- SECCION DE SERVICIOS ----------------------- //
+// -------------------- SECCION DE SERVICIOS 💡 ----------------------- //
 
-// OPCIONES DE MENU LATERAL - SERVICIOS
+// OPCIONES DE MENU LATERAL - SERVICIOS💡 
 
 $(document).on('click', '.ADSER-Opciones', function() {
     $('.ADSER-Opciones').removeClass('ADSER-Opcionesafter');
@@ -10754,12 +10772,18 @@ $(document).on('click', '.ADSER-Opciones', function() {
 });
 
 $(document).on('click', '.ADSER-Opciones1', async function(e) {
-    let peticion = await peticionesAdmin.myOwnPeticion(rutaServicios, 'GET', {probando: 'probando'}, 'S-1');
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios, 'GET', {probando: 'probando'}, 'S-1');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaOne_Servicios(response);
+    }
 });
 
 $(document).on('click', '.ADSER-Opciones2', async function(e) {
     // peticionesAdmin.msgCarga('Cargando...');
-    // let peticion = await peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 4);
+    let response = await peticionesAdmin.myOwnPeticion(rutaGet_ContenidoS, 'GET', {}, 'S-4');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaCuatro_Servicios(response);
+    }
     toolsAdmin.cambioVistasAdmin_Servicios('showContenido');
 });
 
@@ -10768,14 +10792,17 @@ $(document).on('click', '#ADSER-AddPrograma', function() {
 });
 // .........................................................
 
-// MANTENIMIENTO DE SERVICIOS ..............................
+// MANTENIMIENTO DE SERVICIOS 💡 ..............................
 
 $(document).on('click', '#ADSER-AddPrograma-Peticion', async function() {
     let programa = $('#ADSER-nombrePrograma').val();
     if(programa) {
         console.log('#', programa);
         console.log(rutaPrograma_Add);
-        let peticion = await peticionesAdmin.myOwnPeticion(rutaServicios_Add, 'POST', {programa: programa}, 'S-1');
+        let response = await peticionesAdmin.myOwnPeticion(rutaServicios_Add, 'POST', {programa: programa}, 'S-1');
+        if (response.code == 200) {
+            respuestasAdmin.RespuestaOne_Servicios(response);
+        }
 
         Swal.fire({
             title: "Editado Correctamente!",
@@ -10800,7 +10827,7 @@ $(document).on('click', '.ADSER-Editar-Programas', function() {
     toolsAdmin.cambioVistasAdmin_Servicios('showEditPrograma');
 });
 
-$(document).on('click', '#ADSER-AddProgramaEdit-Peticion', function() {
+$(document).on('click', '#ADSER-AddProgramaEdit-Peticion',async function() {
     let mainData = {
         idPrograma: $('#ADSER-idProgramaEdit').val(),
         nombrePrograma: $('#ADSER-nombreProgramaEdit').val(),
@@ -10808,8 +10835,10 @@ $(document).on('click', '#ADSER-AddProgramaEdit-Peticion', function() {
     }
 
     console.log(mainData);
-    peticionesAdmin.myOwnPeticion(rutaServicios_Editar, 'POST', mainData, 'S-1');
-
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_Editar, 'POST', mainData, 'S-1');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaOne_Servicios(response);
+    }
     Swal.fire({
         title: "Editado Correctamente!",
         // text: "El programa a sido editado.",
@@ -10826,10 +10855,13 @@ $(document).on('click', '.ADSER-Delete-Programas', function() {
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         confirmButtonText: "Si, Confirmar!"
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
             let programaID = $(this).data("id");
-            peticionesAdmin.myOwnPeticion(rutaServicios_Eliminar, 'POST', {programas: programaID}, 'S-1');
+            let response = await peticionesAdmin.myOwnPeticion(rutaServicios_Eliminar, 'POST', {programas: programaID}, 'S-1');
+            if (response.code == 200) {
+                respuestasAdmin.RespuestaOne_Inicio(response)
+            }
             Swal.fire({
                 title: "Eliminado!",
                 text: "El programa a sido eliminado.",
@@ -10840,18 +10872,24 @@ $(document).on('click', '.ADSER-Delete-Programas', function() {
 })
 // ...........................................................
 
-// SECCION PARA NUEVO CONTENIDO (SERVICIOS) ...................
-$(document).on('click', '.ADSER-AddNewPrograma', function() {
+// SECCION PARA NUEVO CONTENIDO (SERVICIOS) 💡 ...................
+$(document).on('click', '.ADSER-AddNewPrograma', async function() {
     toolsAdmin.cambioVistasAdmin_Servicios('showNuevoContenido');
-    peticionesAdmin.myOwnPeticion(rutaServicios_Activo, 'GET', {}, 'S-2');
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_Activo, 'GET', {}, 'S-2');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaDos_Servicios(response)
+    }
 })
 
-$(document).on('click', '.ADSER-Opciones3', function() {
+$(document).on('click', '.ADSER-Opciones3', async function() {
     toolsAdmin.cambioVistasAdmin_Servicios('showNuevoContenido');
-    peticionesAdmin.myOwnPeticion(rutaServicios_Activo, 'GET', {}, 'S-2');
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_Activo, 'GET', {}, 'S-2');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaDos_Servicios(response)
+    }
 })
 
-$("#nuevoDocumentoForm_Servicios").submit(function (e) {
+$("#nuevoDocumentoForm_Servicios").submit(async function (e) {
     console.log('Hizo el submit');
     e.preventDefault();
 
@@ -10870,13 +10908,16 @@ $("#nuevoDocumentoForm_Servicios").submit(function (e) {
 
     peticionesAdmin.msgCarga('Cargando...');
 
-    peticionesAdmin.myOwnPeticionDataFTP(rutaServicios_Guardar, 'POST', formData, 'S-3');
+    let response = await peticionesAdmin.myOwnPeticionDataFTP(rutaServicios_Guardar, 'POST', formData, 'S-3');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaTres_Servicios(response);
+    }
 });
 // ..............................................................
 
 
 
-// -------------------- SECCION DE PROGRAMAS ----------------------- //
+// -------------------- SECCION DE PROGRAMAS ⚙️ ----------------------- //
 
 // OPCIONES DE MENU LATERAL
 $(document).on('click', '.ADP-Opciones', function() {
@@ -10885,7 +10926,10 @@ $(document).on('click', '.ADP-Opciones', function() {
 });
 
 $(document).on('click', '.ADP-Opciones1', async function(e) {
-    let peticion = await peticionesAdmin.myOwnPeticion(rutaPrograma, 'GET', {probando: 'probando'}, 1);
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma, 'GET', {probando: 'probando'}, 1);
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaOne(response)
+    }
 });
 
 $(document).on('click', '#ADP-AddPrograma', function() {
@@ -10894,19 +10938,25 @@ $(document).on('click', '#ADP-AddPrograma', function() {
 
 $(document).on('click', '.ADP-Opciones2', async function(e) {
     peticionesAdmin.msgCarga('Cargando...');
-    let peticion = await peticionesAdmin.myOwnPeticion(rutaGet_Contenido, 'GET', {}, 4);
+    let response = await peticionesAdmin.myOwnPeticion(rutaGet_ContenidoP, 'GET', {}, 4);
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaFour(response)
+    }
     toolsAdmin.cambioVistasAdmin_Programas('showContenido');
 });
 // .........................................................
 
-// MANTENIMIENTO DE PROGRAMAS ..............................
+// MANTENIMIENTO DE PROGRAMAS ⚙️ ..............................
 
 $(document).on('click', '#ADP-AddPrograma-Peticion', async function() {
     let programa = $('#ADP-nombrePrograma').val();
     if(programa) {
         console.log('#', programa);
         console.log(rutaPrograma_Add);
-        let peticion = await peticionesAdmin.myOwnPeticion(rutaPrograma_Add, 'POST', {programa: programa}, 1);
+        let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_Add, 'POST', {programa: programa}, 1);
+        if (response.code == 200) {
+            respuestasAdmin.RespuestaOne(response)
+        }
     } else {
         alert('Agregue el nombre del Programa');
     }
@@ -10925,7 +10975,7 @@ $(document).on('click', '.ADP-Editar-Programas', function() {
     toolsAdmin.cambioVistasAdmin_Programas('showEditPrograma');
 });
 
-$(document).on('click', '#ADP-AddProgramaEdit-Peticion', function() {
+$(document).on('click', '#ADP-AddProgramaEdit-Peticion', async function() {
     let mainData = {
         idPrograma: $('#ADP-idProgramaEdit').val(),
         nombrePrograma: $('#ADP-nombreProgramaEdit').val(),
@@ -10933,28 +10983,57 @@ $(document).on('click', '#ADP-AddProgramaEdit-Peticion', function() {
     }
 
     console.log(mainData);
-    peticionesAdmin.myOwnPeticion(rutaprograma_Editar, 'POST', mainData, 1);
+    let response = await peticionesAdmin.myOwnPeticion(rutaprograma_Editar, 'POST', mainData, 1);
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaOne(response)
+    }
 });
 
-$(document).on('click', '.ADP-Delete-Programas', function() {
-    let programaID = $(this).data("id");
-    peticionesAdmin.myOwnPeticion(rutaPrograma_Eliminar, 'POST', {programas: programaID}, 1);
-})
+$(document).on('click', '.ADP-Delete-Programas', async function() {
+    Swal.fire({
+        title: "Estas Seguro de Eliminarlo?",
+        text: "Una vez realizado no se podra revertir!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Si, Confirmar!"
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+            let programaID = $(this).data("id");
+            let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_Eliminar, 'POST', {programas: programaID}, 1);
+            if (response.code == 200) {
+                respuestasAdmin.RespuestaOne(response)
+                Swal.fire({
+                    title: "Eliminado!",
+                    text: "El programa a sido eliminado.",
+                    icon: "success"
+                  });
+            }
+        }
+      });
+});
 
 // ...........................................................
 
-// SECCION PARA NUEVO CONTENIDO (PROGRAMA) ...................
-$(document).on('click', '.ADP-AddNewPrograma', function() {
+// SECCION PARA NUEVO CONTENIDO (PROGRAMA) ⚙️ ...................
+$(document).on('click', '.ADP-AddNewPrograma', async function() {
     toolsAdmin.cambioVistasAdmin_Programas('showNuevoContenido');
-    peticionesAdmin.myOwnPeticion(rutaPrograma_Activo, 'GET', {}, 100);
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_Activo, 'GET', {}, 100);
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaCien(response)
+    }
 })
 
-$(document).on('click', '.ADP-Opciones3', function() {
+$(document).on('click', '.ADP-Opciones3', async function() {
     toolsAdmin.cambioVistasAdmin_Programas('showNuevoContenido');
-    peticionesAdmin.myOwnPeticion(rutaPrograma_Activo, 'GET', {}, 100);
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_Activo, 'GET', {}, 100);
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaCien(response)
+    }
 })
 
-$("#nuevoDocumentoForm").submit(function (e) {
+$("#nuevoDocumentoForm").submit(async function (e) {
     console.log('Hizo el submit');
     e.preventDefault();
 
@@ -10973,9 +11052,384 @@ $("#nuevoDocumentoForm").submit(function (e) {
 
     peticionesAdmin.msgCarga('Cargando...');
 
-    peticionesAdmin.myOwnPeticionDataFTP(rutaPrograma_Guardar, 'POST', formData, 2);
+    let response = await peticionesAdmin.myOwnPeticionDataFTP(rutaPrograma_Guardar, 'POST', formData, 2);
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaTwo(response);
+    }
 });
 // ..............................................................
+
+
+// ----------- | Opciones Administrar Servicios | ------------- //
+
+// ................. | Opciones Vista Previa Servicios - Begin | .................. //
+
+$(document).on("click", ".BT_Ser_VistaPrevia", async function() {
+    peticionesAdmin.msgCarga("Cargando...");
+    let id = $(this).data("id");
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_vistaPrevia, "GET", {id: id}, 'S-VistaPrevia');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaVistaPrevia_Servicios(response);
+    }
+});
+
+// ................. | Opciones Vista Previa Servicios - End | .................. //
+
+
+// ................. | Opciones Modificar Imagenes Servicios - Begin | .................. //
+$(document).on("click", ".BT_Ser_ModImagenes",async function() {
+    peticionesAdmin.msgCarga("Cargando...");
+    let id = $(this).data("id");
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_modImagen, "GET", {id: id}, 'S-ModificarImg');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaModificarImg_Servicios(response);
+    }
+});
+
+$(document).on("click",".SerImg_SelectImg", function() {
+    $("#SerImg_SelectImg_Op").empty();
+    $(".SerImg_SelectImg").removeClass("SerImg_SelectImg-After");
+    let id = $(this).data("idimagen");
+    let option = `
+    <form id="formActualizarImagenes_Servicio" action="{{ route('admin.servicios.updImagen') }}" method="POST" enctype="multipart/form-data">
+    <div class="col-md-4">
+    <input type="file" id="VistaP_ImgInput" name="archivoPlus" alt="input"><br>
+    <span class="VistaP_ImgInput_Span">Solo se aceptan formatos png, jpg y jpeg</span>
+        </div>
+        <div class="col-md-3">
+        <input type="hidden" value="${id}" name="id">
+        <button type="submit" class="btn btn-outline-success" data-id="${id}" id="VistaP_ImgInput_Update"><i class="bi bi-arrow-up"></i> Actualizar</button>
+        </div>
+        </form>`;
+        $(this).addClass("SerImg_SelectImg-After");
+        $("#SerImg_SelectImg_Op").append(option);
+});
+    
+$(document).on("submit", "#formActualizarImagenes_Servicio", async function(e) {
+    peticionesAdmin.msgCarga("Cargando...");
+    e.preventDefault();
+    
+    let validar = $("#VistaP_ImgInput").val();
+
+    if(validar === "") {
+        Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: "Seleccionar un archivo para Actualizar",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+        return false;
+    }
+    
+    var formData = new FormData(this);
+    peticionesAdmin.msgCarga('Cargando...');
+
+    let response = await peticionesAdmin.myOwnPeticionDataFTP(rutaServicios_updImagen, 'POST', formData, 'S-UpdateImg');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaUpdateImg_Servicios(response);
+    }
+    // peticionesAdmin.myOwnPeticion(rutaServicios_updImagen, "POST", formData, 'S-UpdateImg'); 
+});
+
+// ................. | Opciones Modificar Imagenes Servicios - End | .................. //
+
+
+// ................. | Opciones Modificar Texto Servicios - Begin | .................. //
+
+$(document).on("click", ".BT_Ser_ModTexto",async function() {
+    let id = $(this).data("id");
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_modTexto, "GET", {id: id}, 'S-ModTexto');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaModTexto_Servicios(response);
+    }
+});
+
+$(document).on("click", "#TSC_NewCnt_Btn", async function() {
+    let contenido = $("#TSC_NewCnt").val();
+    if (!contenido) {
+        Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: "Para actualizar ingrese la informacion nueva",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+        return false;
+    }
+
+    let id = $("#TSC_IDCnt").val();
+    let txt = $("#TSC_NewCnt").val();
+
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_updTexto, "POST", {id: id, texto: txt}, 'Doesnt Matter');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaUpdateTexto_Servicios(response);
+    }
+});
+// ................. | Opciones Modificar Texto Servicios - End | .................. //
+
+// ----------- | Opciones Administrar Programa | ------------- //
+
+// ................. | Opciones Vista Previa Programa - Begin | .................. //
+
+$(document).on("click", ".BT_PRO_VistaPrevia", async function() {
+    peticionesAdmin.msgCarga("Cargando...");
+    let id = $(this).data("id");
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_vistaPrevia, "GET", {id: id}, 'S-VistaPrevia');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaVistaPrevia_Programas(response);
+    }
+});
+
+// ................. | Opciones Vista Previa Programa - End | .................. //
+
+// ................. | Opciones Modificar Imagenes Programa - Begin | .................. //
+$(document).on("click", ".BT_PRO_ModImagenes",async function() {
+    console.log("Si llega");
+    peticionesAdmin.msgCarga("Cargando...");
+    let id = $(this).data("id");
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_modImagen, "GET", {id: id}, 'S-ModificarImg');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaModificarImg_Programas(response);
+    }
+});
+
+$(document).on("click",".ProImg_SelectImg", function() {
+    $("#SerImg_SelectImg_Op").empty();
+    $(".ProImg_SelectImg").removeClass("ProImg_SelectImg-After");
+    let id = $(this).data("idimagen");
+    let option = `
+    <form id="formActualizarImagenes_Programas" enctype="multipart/form-data">
+    <div class="col-md-4">
+    <input type="file" id="VistaP_ImgInput_Programas" name="archivoPlus" alt="input"><br>
+    <span class="VistaP_ImgInput_Span_Pro">Solo se aceptan formatos png, jpg y jpeg</span>
+        </div>
+        <div class="col-md-3">
+        <input type="hidden" value="${id}" name="id">
+        <button type="submit" class="btn btn-outline-success" data-id="${id}" id="VistaP_ImgInput_Update"><i class="bi bi-arrow-up"></i> Actualizar</button>
+        </div>
+        </form>`;
+        $(this).addClass("ProImg_SelectImg-After");
+        $("#ProImg_SelectImg_Op").append(option);
+});
+    
+$(document).on("submit", "#formActualizarImagenes_Programas", async function(e) {
+    peticionesAdmin.msgCarga("Cargando...");
+    e.preventDefault();
+    
+    let validar = $("#VistaP_ImgInput_Programas").val();
+
+    if(validar === "") {
+        Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: "Seleccionar un archivo para Actualizar",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+        return false;
+    }
+    
+    var formData = new FormData(this);
+    peticionesAdmin.msgCarga('Cargando...');
+
+    let response = await peticionesAdmin.myOwnPeticionDataFTP(rutaServicios_updImagen, 'POST', formData, 'S-UpdateImg');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaUpdateImg_Servicios(response);
+    }
+    // peticionesAdmin.myOwnPeticion(rutaServicios_updImagen, "POST", formData, 'S-UpdateImg'); 
+});
+
+// ................. | Opciones Modificar Imagenes Programa - End | .................. //
+
+// ................. | Opciones Modificar Texto Programa - Begin | .................. //
+
+$(document).on("click", ".BT_PRO_ModTexto",async function() {
+    let id = $(this).data("id");
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_modTexto, "GET", {id: id}, 'S-ModTexto');
+    if (response.code == 200) {
+        respuestasAdmin.RespuestaModTexto_Programas(response);
+    }
+});
+
+$(document).on("click", "#TSC_NewCnt_Btn_Pro", async function() {
+    let contenido = $("#TSC_NewCnt_Pro").val();
+    if (!contenido) {
+        Swal.fire({
+            position: "top-end",
+            icon: "warning",
+            title: "Para actualizar ingrese la informacion nueva",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        
+        return false;
+    }
+
+    let id = $("#TSC_IDCnt_Pro").val();
+    let txt = $("#TSC_NewCnt_Pro").val();
+
+    let response = await peticionesAdmin.myOwnPeticion(rutaPrograma_updTexto, "POST", {id: id, texto: txt}, 'Doesnt Matter');
+    if (response.code == 200) {
+        peticionesAdmin.msgClose();
+        respuestasAdmin.RespuestaUpdateTexto_Servicios(response);
+    }
+});
+// ................. | Opciones Modificar Texto Programa - End | .................. //
+
+
+
+
+
+
+
+
+
+
+
+$(document).on('click', '.BT_Ser_AgregarContenido', function() {
+    console.log('Agregar Contenido')
+    $(".ADSER-Opciones3").trigger('click');
+})
+
+$(document).on('click', '.BT_Ser_ActivarP', function() {
+    console.log('Activar')
+    $(".ADSER-Opciones1").trigger('click');
+})
+
+$(document).on('click', '.BT_PRO_AgregarContenido', function() {
+    console.log('Agregar Contenido')
+    $(".ADP-Opciones3").trigger('click');
+})
+
+$(document).on('click', '.BT_PRO_ActivarPrograma', function() {
+    console.log('Activar')
+    $(".ADP-Opciones1").trigger('click');
+})
+
+
+
+// ................. | Opciones Vista Previa Programas - Begin | .................. //
+
+
+
+// ................. | Opciones Vista Previa Programas - End | .................. //
+
+
+
+
+// -----------------------------| SECCION DE INICIO |--------------------------------//
+
+$(document).on("submit", "#ADBE-BtnUp-formImg", async function(e) {
+    e.preventDefault();
+    let validar = $("#ADBE-BtnUp-Img").val();
+
+    if(validar === "") {
+        Swal.fire({
+            // position: "top-end",
+            icon: "warning",
+            title: "Seleccionar un archivo para Actualizar",
+            showConfirmButton: false,
+            timer: 1500
+        });
+        return false;
+    }
+    
+    var formData = new FormData(this);
+    peticionesAdmin.msgCarga('Cargando...');
+
+    let response = await peticionesAdmin.myOwnPeticionDataFTP(rutaServicios_updImagen, 'POST', formData, 'S-UpdateImg');
+    if (response.code == 200) {
+        let responseTwo = await peticionesAdmin.myOwnPeticion(rutaInicio, 'GET', {}, 'I-1');
+            if (responseTwo.code == 200) {
+                respuestasAdmin.RespuestaOne_Inicio(responseTwo);
+                peticionesAdmin.msgClose();
+            }
+    }
+});
+
+$(document).on("click", "#ADBE-BtnUp-Mision", async function() {
+    peticionesAdmin.msgCarga('Cargando...');
+
+    let contenido = $("#ADBE-BtnUp-Mision-Texto").val();
+    if (!contenido) {
+        Swal.fire({
+            // position: "top-end",
+            icon: "warning",
+            title: "Para actualizar ingrese la informacion nueva",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        
+        return false;
+    }
+
+    let id = 22;
+    let txt = $("#ADBE-BtnUp-Mision-Texto").val();
+
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_updTexto, "POST", {id: id, texto: txt}, 'Doesnt Matter');
+    if (response.code == 200) {
+        let responseTwo = await peticionesAdmin.myOwnPeticion(rutaInicio, 'GET', {}, 'I-1');
+            if (responseTwo.code == 200) {
+                respuestasAdmin.RespuestaOne_Inicio(responseTwo);
+                peticionesAdmin.msgClose();
+                setTimeout(() => {
+                    peticionesAdmin.msgSuccess("Actualizacion de Texto Completa");
+                }, 500)
+            }
+    }
+});
+
+$(document).on("click", "#ADBE-BtnUp-Vision", async function() {
+    peticionesAdmin.msgCarga('Cargando...');
+
+    let contenido = $("#ADBE-BtnUp-Vision-Texto").val();
+    if (!contenido) {
+        Swal.fire({
+            // position: "top-end",
+            icon: "warning",
+            title: "Para actualizar ingrese la informacion nueva",
+            showConfirmButton: false,
+            timer: 2000
+        });
+        
+        return false;
+    }
+
+    let id = 23;
+    let txt = $("#ADBE-BtnUp-Vision-Texto").val();
+
+    let response = await peticionesAdmin.myOwnPeticion(rutaServicios_updTexto, "POST", {id: id, texto: txt}, 'Doesnt Matter');
+    if (response.code == 200) {
+        let responseTwo = await peticionesAdmin.myOwnPeticion(rutaInicio, 'GET', {}, 'I-1');
+            if (responseTwo.code == 200) {
+                respuestasAdmin.RespuestaOne_Inicio(responseTwo);
+                peticionesAdmin.msgClose();
+                setTimeout(() => {
+                    peticionesAdmin.msgSuccess("Actualizacion de Texto Completa");
+                }, 500)
+            }
+    }
+});
+
+//-----------------------------------------------------------------------------------//
+
+// -----------------------------| SECCION DE CONTACTANOS |--------------------------------//
+
+
+
+//---------------------------------------------------------------------------------------//
+
 let xhrPeticion = "";
 class adminTools {
     cambioVistasAdmin(signal) {
@@ -10984,6 +11438,12 @@ class adminTools {
             case "cambioTodos":
                 $(".AI-CC").addClass("d-none");
                 break;
+
+            case "cambioGeneral":
+                $(".AI-CC").addClass("d-none");
+                $("#AI-CC-General").removeClass("d-none")
+                break;
+                
             case "cambioInicio":
                 $(".AI-CC").addClass("d-none");
                 $("#AI-CC-Inicio").removeClass("d-none")
@@ -11118,34 +11578,8 @@ class adminTools {
         });
     }
 }
-
+const toolsAdmin = new adminTools();
 class adminPeticiones {
-    
-    async peticionAjax (data, route, method, redirect) {
-        try {
-            // const url = route;
-            // util2.msgCargandoPRO("Cargando...");
-            // console.log(route)
-            const response = await peticionesAdmin.myOwnPeticion(route, method, data);
-            // util2.closeCargando();
-
-            if(response) {
-                console.log(response);
-                respuestasAdmin.RedirectRespuestas(redirect, response);
-                // return response;
-            } else {
-                console.log('Asaber que perro')
-            }
-    
-            // if (response.code !== 200) {
-            //     return util.errorMsg(response.message ?? "Error al buscar la informacion");
-            // }
-            // util.successMsg(response.message);
-            // redirectData({ response }, redirect);
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
     async myOwnPeticion(ruta, metodo, data, redirect) {
         let csrfToken = $('meta[name="csrf-token"]').attr('content');
@@ -11162,9 +11596,8 @@ class adminPeticiones {
             headers: headers,
             success: function(response) {
                 // console.log(response);
-                // return response;
-                respuestasAdmin.RedirectRespuestas(redirect, response);
-
+                return response;
+                // respuestasAdmin.RedirectRespuestas(redirect, response);
                 // Manejar la respuesta exitosa aquí
             },
             error: function(xhr, status, error) {
@@ -11211,8 +11644,8 @@ class adminPeticiones {
             contentType: false, 
             success: function(response) {
                 // console.log(response);
-                // return response;
-                respuestasAdmin.RedirectRespuestas(redirect, response);
+                return response;
+                // respuestasAdmin.RedirectRespuestas(redirect, response);
 
                 // Manejar la respuesta exitosa aquí
             },
@@ -11241,6 +11674,16 @@ class adminPeticiones {
         //         // Manejar errores aquí
         //     }
         // });
+    }
+
+    msgSuccess(mensaje, texto = "") {
+        Swal.fire({  
+            title: mensaje,
+            text: texto,
+            icon: "success",
+            timer: 2000,
+            showConfirmButton: false
+        })
     }
 
     msgCarga(mensaje, btnTexto = 'Cancelar', btnClass='') {
@@ -11296,7 +11739,7 @@ class adminRespuestas {
                 this.RespuestaCien(data)
                 break;
 
-            // Servicios
+            // ✅
             case 'S-1':
                 this.RespuestaOne_Servicios(data);
                 break;
@@ -11308,33 +11751,95 @@ class adminRespuestas {
             case 'S-3':
                 this.RespuestaTres_Servicios(data);
                 break;
+            
+            // ✅
+            case 'S-4':
+                this.RespuestaCuatro_Servicios(data);
+                break;
 
+            // ✅
+            case 'S-VistaPrevia':
+                this.RespuestaVistaPrevia_Servicios(data);
+                break;
+            
+            // ✅
+            case 'S-ModificarImg':
+                this.RespuestaModificarImg_Servicios(data);
+                break;
+                
+            // ✅
+            case 'S-UpdateImg':
+                this.RespuestaUpdateImg_Servicios(data);
+            
         }
     }
 
     RespuestaOne_Inicio(datos) {
-        $('#ADBE-Col-1').empty();
+        // $('#ADBE-Col-1').empty();
         console.log('Inicio', datos)
         $.each(datos.data, function(key, info) {
-            let bloque = `
-                   <div class="m-3 GBAI-Shadow" style="border-radius: 0.75em;">
-                <div class="row w-100 m-2">
-            <div class="GB-Flex mt-3"><img src="${info.Con_ImagenServer}" class="" style="width: 85%; height: auto; border-radius: 0.75em;" alt=""></div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-6 p-3">
-                <h3 class="GBTextCenter">MISION</h1>
-                <p class='p-2'>${info.Con_Texto[0]}</p>
-            </div>            
-            <div class="col-6 p-3">
-                <h3 class="GBTextCenter">VISION</h1>
-                <p class='p-2'>${info.Con_Texto[1]}</p>
-            </div>
-        </div>
-                </div>`;
+            $(".ADBE-Col-1-Img").prop("src", info.Con_ImagenServer);
+            $(".ADBE-Col-1-TxtM").text(info.Con_Texto[0]);
+            $(".ADBE-Col-1-TxtV").text(info.Con_Texto[1]);
+        //     let bloque = `
+        //            <div class="m-3 GBAI-Shadow" style="border-radius: 0.75em;">
+        //         <div class="row w-100 m-2">
+        //     <div class="GB-Flex mt-3"><img src="${info.Con_ImagenServer}" class="" style="width: 85%; height: auto; border-radius: 0.75em;" alt=""></div>
+        // </div>
+        // <div class="row mt-4">
+        //     <div class="col-6 p-3">
+        //         <h3 class="GBTextCenter">MISION</h1>
+        //         <p class='p-2'>${info.Con_Texto[0]}</p>
+        //     </div>            
+        //     <div class="col-6 p-3">
+        //         <h3 class="GBTextCenter">VISION</h1>
+        //         <p class='p-2'>${info.Con_Texto[1]}</p>
+        //     </div>
+        // </div>
+        //         </div>`;
         
-        $('#ADBE-Col-1').append(bloque);
+        // $('#ADBE-Col-1').append(bloque);
     });
+    }
+
+    RespuestaOne_Contactanos(datos) {
+        console.log(datos);
+        $(".ADCON_Cards").empty();
+        datos.data.forEach(info => {
+            let option = `<div class="row m-3">
+        <div class="col-10 row" style="gap: 0.5em">
+            <div class="alert alert-light col-4" role="alert">
+                ${info.nombres + ' ' + info.apellidos}
+            </div>
+            <div class="alert alert-light col-3" role="alert">
+                ${info.telefono}
+           </div>
+            <div class="alert alert-light col-4" role="alert">
+                ${info.mail}
+            </div>
+            <div class="alert alert-light col-11" role="alert">
+                ${info.mensaje}
+            </div>
+        </div>`;
+            if (info.check == 0) {
+                option += `<div class="col-2 row">
+                    <div class="alert alert-warning col-12" role="alert">
+                        Sin Revisar
+                    </div>
+                </div>`
+            } else {
+                option += `<div class="col-2 row">
+                    <div class="alert alert-success col-12" role="alert">
+                        Revisado
+                     </div>
+                </div>`
+            }
+        
+        option += `</div>
+        <hr>`;
+
+        $(".ADCON_Cards").append(option);
+        });
     }
 
     RespuestaOne(datos) {
@@ -11367,65 +11872,86 @@ class adminRespuestas {
     }
 
     RespuestaFour(datos) {
+        console.log(datos);
+        // $('#ADSER-ContenidosRow').empty();
+        $('#ADPRO-ContenidosRow').empty();
+        let mainData = datos.data;
 
-        // console.log(datos);
-        // console.log(datos.data);
-        $('#ADP-Contenidos-ContMain').empty();
-        $.each(datos.data, function(key, value) {
-            console.log(key);
-            console.log(value);
+        mainData.forEach(info => {
+            console.log(info.Estado_Texto);
+            let option = `<div class="col-6">
+                        <div class="GCAD_C ">
+                            <div class="GCAD_CUno ">
+                                <div class=""><p class="TESTING_GB_ForTitle3">${info.Tipo} - ${info.Nombre}</p><hr></div>
+                                <div class="row">
+                                    <div class="col-5"><p class="TESTING_GB_ForText">Estado: ${info.Estado_Texto}</p></div>
+                                    <div class="col-5"><p class="TESTING_GB_ForText">Contenido: ${info.Contenido_Texto}</p></div>
+                                    <div class="col-2"></div>
+                                </div>
+                            </div>
+                            <div class="GCAD_CDos ">`;
+            
+            if (info.Contenido_ID == 1) {
+                option += `<input type="button" class="btn btn-outline-primary BT_PRO_ModImagenes" data-id="${info.Tipo_ID}" value="Imagenes" name="" id="">
+                 <input type="button" class="btn btn-outline-primary BT_PRO_ModTexto" data-id="${info.Tipo_ID}" value="Texto" name="" id="">
+                 <input type="button" class="btn btn-outline-primary BT_PRO_VistaPrevia" data-id="${info.Tipo_ID}" value="Vista Previa" name="" id="">`;
+            } else {
+                option += `<input type="button" class="btn btn-outline-primary BT_PRO_AgregarContenido" value="Agregar Contenido" name="" id="">`;
+            }
 
-            let imagenUno = value.Con_ID_Imagen[0];
-            // console.log(imagenUno[0]);
-
-            let div = `
-                <div class="ADPDC-Main">
-                    <div class="ADPDC-Title GBTextCenter">
-                    <h1 style="color:#ffcc00;">${value.programa}</h1>
-                    </div>
-                    <div class="ADPDC-Img ">
-                        <div class="ADPDC-I-1 ADPDC-BB">
-                            <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
+            if (info.Estado_ID != 1) {
+                option += `<input type="button" class="btn btn-outline-primary BT_PRO_ActivarPrograma" value="Activar" name="" id="">`;
+            }
+                            
+            option += `</div>
                         </div>
-                        <div class="ADPDC-I-2 ">
-                            <div class="ADPDC-I-I-1 ADPDC-BB">
-                                <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                            </div>
-                            <div class="ADPDC-I-I-2 ADPDC-BB">
-                                <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                            </div>
-                            <div class="ADPDC-I-I-3 ADPDC-BB">
-                            <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
-                                                        
-                            </div>
-                        </div>
                     </div>
-                    <div class="ADPDC-Text ADPDC-BB p-3 GBborderBlack">
-                        <p style="">${value.Con_Texto}</p>
-                    </div>
-                </div>
             `;
-            $('#ADP-Contenidos-ContMain').append(div);
+
+        $('#ADPRO-ContenidosRow').append(option);
         });
+        // $.each(datos.data, function(key, value) {
+        //     console.log(key);
+        //     console.log(value);
 
+        //     let imagenUno = value.Con_ID_Imagen[0];
+        //     // console.log(imagenUno[0]);
+
+        //     let div = `
+        //         <div class="ADPDC-Main">
+        //             <div class="ADPDC-Title GBTextCenter">
+        //             <h1 style="color:#ffcc00;">${value.programa}</h1>
+        //             </div>
+        //             <div class="ADPDC-Img ">
+        //                 <div class="ADPDC-I-1 ADPDC-BB">
+        //                     <img src="${value.Con_ImagenServer[0]}" style="width: 100%; height: 58em; border-radius: 0.75em;" alt="">
+        //                 </div>
+        //                 <div class="ADPDC-I-2 ">
+        //                     <div class="ADPDC-I-I-1 ADPDC-BB">
+        //                         <img src="${value.Con_ImagenServer[1]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+        //                     </div>
+        //                     <div class="ADPDC-I-I-2 ADPDC-BB">
+        //                         <img src="${value.Con_ImagenServer[2]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+        //                     </div>
+        //                     <div class="ADPDC-I-I-3 ADPDC-BB">
+        //                     <img src="${value.Con_ImagenServer[3]}" style="width: 100%; height: 19em; border-radius: 0.75em; " alt="">
+                                                        
+        //                     </div>
+        //                 </div>
+        //             </div>
+        //             <div class="ADPDC-Text ADPDC-BB p-3 GBborderBlack">
+        //                 <p style="">${value.Con_Texto}</p>
+        //             </div>
+        //         </div>
+        //     `;
+        //     $('#ADP-Contenidos-ContMain').append(div);
+        // });
         peticionesAdmin.msgClose();
-
-        // if (datos.code === 200) {
-        //     $('#ADP-Contenidos-ContMain').empty();
-        //     datos.data.forEach(info => {
-        //         console.log(info);
-        //         let contain = `<div>
-        //             <img src="" alt="">
-        //         </div>`;
-        //         $('#ADP-Contenidos-ContMain').empty();
-                
-        //     });
-        // }
     }
 
     RespuestaCien(datos) {
-        console.log('Respuesta Cien', datos)
-        toolsAdmin.loadIntoSelect('ADP_Programa-Change', datos);
+        console.log('Respuesta Cien', datos);
+        toolsAdmin.loadIntoSelect('ADP_Programa-Change', datos.data);
     }
 
     RespuestaOne_Servicios(datos) {
@@ -11455,9 +11981,9 @@ class adminRespuestas {
     }
 
     RespuestaDos_Servicios(datos) {
-        console.log(datos);
-        console.log('RespuestaDos_Servicios', datos)
-        toolsAdmin.loadIntoSelect('ADSER_Programa-Change', datos);
+        // console.log(datos);
+        // console.log('RespuestaDos_Servicios', datos.data[0])
+        toolsAdmin.loadIntoSelect('ADSER_Programa-Change', datos.data);
     }
 
     RespuestaTres_Servicios(datos) {
@@ -11465,8 +11991,253 @@ class adminRespuestas {
         $("#nuevoDocumentoForm_Servicios")[0].reset();
     }
 
+    RespuestaCuatro_Servicios(datos) {
+        console.log(datos);
+        // $('#ADSER-ContenidosRow').empty();
+        $('#ADSER-ContenidosRow').empty();
+        let mainData = datos.data;
+
+        mainData.forEach(info => {
+
+            let badge =  info.Estado_ID == 1 ? "text-bg-primary" : "text-bg-warning";
+            let badgeSecondary =  info.Contenido_ID == 1 ? '<span style="color: green"><i class="bi bi-check-circle"></i></span>' : '<span style="color: red"><i class="bi bi-x-circle"></i></span>';
+
+            console.log(info.Estado_Texto);
+            let option = `<div class="col-6">
+                        <div class="GCAD_C ">
+                            <div class="GCAD_CUno ">
+                                <div class=""><p class="TESTING_GB_ForTitle3">${info.Tipo} - ${info.Nombre}</p><hr></div>
+                                <div class="row">
+                                    <div class="col-5"><p class="TESTING_GB_ForText">Estado: <span class="badge ${badge}">${info.Estado_Texto}</span></p></div>
+                                    <div class="col-5"><p class="TESTING_GB_ForText">Contenido: ${badgeSecondary}</p></div>
+                                    <div class="col-2"></div>
+                                </div>
+                            </div>
+                            <div class="GCAD_CDos ">`;
+
+            if (info.Contenido_ID == 1) {
+                option += `<input type="button" class="btn btn-outline-primary BT_Ser_ModImagenes" data-id="${info.Tipo_ID}" value="Imagenes" name="" id="">
+                 <input type="button" class="btn btn-outline-primary BT_Ser_ModTexto" data-id="${info.Tipo_ID}" value="Texto" name="" id="">
+                 <input type="button" class="btn btn-outline-primary BT_Ser_VistaPrevia" data-id="${info.Tipo_ID}" value="Vista Previa" name="" id="">`;
+            } else {
+                option += `<input type="button" class="btn btn-outline-primary BT_Ser_AgregarContenido" value="Agregar Contenido" name="" id="">`;
+            }
+                
+            if (info.Estado_ID != 1) {
+                option += `<input type="button" class="btn btn-outline-primary BT_Ser_ActivarP" value="Activar" name="" id="">`;
+            }
+                            
+            option += `</div>
+                        </div>
+                    </div>
+            `;
+
+        $('#ADSER-ContenidosRow').append(option);
+        }); 
+    }
+
+    RespuestaVistaPrevia_Servicios(datos) {
+        console.log(datos);
+        $(".Modal_Contenidos_C").addClass("d-none");
+        $("#VistPreva_Contenido").removeClass("d-none");
+        $('#VistPreva_Contenido').empty();
+        $.each(datos.data, function(key, value) {
+            console.log(key);
+            console.log(value);
+            let imagenUno = value.Con_ID_Imagen[0];
+            let div2 = `
+            <div class="mt-5 mb-5 TheSadows">
+                <div class="YSBDT"> 
+                    <div class="TheSadows2 YSBDT1-1 GB-Flex">
+                        <div class="YSBDT-Titulo">${value.Servicios}</div>
+                    </div>
+                    <div class="TheSadows2 YSBDT1-2">
+                        <div class="YSBDT-Texto2">${value.Con_Texto}</div>
+                    </div>
+                    <div class="TheSadows YSBDT2">
+                        <div id="YSBDT2-CarruselID" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                                </button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#VistPreva_Contenido').append(div2);
+        });
+        $("#ADSER_VistaP_Modal").modal("show");
+    }
+
+    RespuestaVistaPrevia_Programas(datos) {
+        console.log(datos);
+        $(".Modal_Contenidos_C").addClass("d-none");
+        $("#VistPreva_Contenido").removeClass("d-none");
+        $('#VistPreva_Contenido').empty();
+        $.each(datos.data, function(key, value) {
+            console.log(key);
+            console.log(value);
+            console.log(value.programa);
+            let imagenUno = value.Con_ID_Imagen[0];
+            let div2 = `
+            <div class="mt-5 mb-5 TheSadows">
+                <div class="YSBDT"> 
+                    <div class="TheSadows2 YSBDT1-1 GB-Flex">
+                        <div class="YSBDT-Titulo">${value.programa}</div>
+                    </div>
+                    <div class="TheSadows2 YSBDT1-2">
+                        <div class="YSBDT-Texto2">${value.Con_Texto}</div>
+                    </div>
+                    <div class="TheSadows YSBDT2">
+                        <div id="YSBDT2-CarruselID" class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                            </div>
+                                <div class="carousel-inner">
+                                    <div class="carousel-inner">
+                                        <div class="carousel-item active">
+                                            <img src="${value.Con_ImagenServer[0]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="${value.Con_ImagenServer[1]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="${value.Con_ImagenServer[2]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                        <div class="carousel-item">
+                                            <img src="${value.Con_ImagenServer[3]}" class="d-block w-100 YSBDT-ImgSize" alt="...">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#YSBDT2-CarruselID" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                                </button>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+            `;
+            $('#VistPreva_Contenido').append(div2);
+        });
+        $("#ADSER_VistaP_Modal").modal("show");
+    }
+
+    RespuestaModificarImg_Servicios(datos) {
+        console.log(datos);
+        $(".Modal_Contenidos_C").addClass("d-none");
+        $("#ImagenesServicio_Contenido").removeClass("d-none");
+        datos.data.forEach(info => {
+            let option = `
+            <div class="col-md-6 SerImg_SelectImg" data-idimagen="${info.Con_ID_Imagen}">
+                <img src="${info.Con_ImagenServer}" style="height: 19em; width: 100%; border-radius: 0.75em;" alt="">
+              </div>`;
+
+            $("#ImagenesServicio_Contenido").append(option);
+        });
+        $("#ImagenesServicio_Contenido").append(`<div class="col-md-12 pl-2 pm-2"><div class="alert alert-info" role="alert">
+            Seleccione la Imagen a Actualizar!
+       </div></div>
+       <div class="col-md-12 row" id="SerImg_SelectImg_Op">
+
+        </div>`);
+
+        $("#ADSER_VistaP_Modal").modal("show");
+    }
+
+    RespuestaModificarImg_Programas(datos) {
+        console.log(datos);
+        $(".Modal_Contenidos_C").addClass("d-none");
+        $("#ImagenesPrograma_Contenido").removeClass("d-none");
+        datos.data.forEach(info => {
+            let option = `
+            <div class="col-md-6 ProImg_SelectImg" data-idimagen="${info.Con_ID_Imagen}">
+                <img src="${info.Con_ImagenServer}" style="height: 19em; width: 100%; border-radius: 0.75em;" alt="">
+              </div>`;
+
+            $("#ImagenesPrograma_Contenido").append(option);
+        });
+        $("#ImagenesPrograma_Contenido").append(`<div class="col-md-12 pl-2 pm-2"><div class="alert alert-info" role="alert">
+            Seleccione la Imagen a Actualizar!
+       </div></div>
+       <div class="col-md-12 row" id="ProImg_SelectImg_Op">
+
+        </div>`);
+
+        $("#ADSER_VistaP_Modal").modal("show");
+    }
+
+    RespuestaUpdateImg_Servicios(datos) {
+        $("#ADSER_VistaP_Modal").modal("hide");
+        setTimeout(() => {
+            peticionesAdmin.msgSuccess("Actualizacion Completa", "Imagen actualizada de manera Exitosa");
+        }, 500)
+    }
+
+    RespuestaModTexto_Servicios(datos) {
+        peticionesAdmin.msgClose();
+        $(".Modal_Contenidos_C").addClass("d-none");
+        $("#TSC_OldCnt").val(datos.data[0].Con_Texto);
+        $("#TSC_IDCnt").val(datos.data[0].Con_ID_Texto);
+        $("#TextoServicio_Contenido").removeClass("d-none");
+        $("#ADSER_VistaP_Modal").modal("show");
+        // peticionesAdmin.msgExito();
+    }
+
+    RespuestaModTexto_Programas(datos) {
+        peticionesAdmin.msgClose();
+        $(".Modal_Contenidos_C").addClass("d-none");
+        $("#TSC_OldCnt_Pro").val(datos.data[0].Con_Texto);
+        $("#TSC_IDCnt_Pro").val(datos.data[0].Con_ID_Texto);
+        $("#TextoProgramas_Contenido").removeClass("d-none");
+        $("#ADSER_VistaP_Modal").modal("show");
+        // peticionesAdmin.msgExito();
+    }
+
+    RespuestaUpdateTexto_Servicios(datos) {
+        $("#ADSER_VistaP_Modal").modal("hide");
+        setTimeout(() => {
+            peticionesAdmin.msgSuccess("Actualizacion de Texto Completa");
+        }, 500)
+
+    }
 }
 
-const toolsAdmin = new adminTools();
 const peticionesAdmin = new adminPeticiones();
 const respuestasAdmin = new adminRespuestas();

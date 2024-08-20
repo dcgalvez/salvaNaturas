@@ -48,9 +48,9 @@ class AdminController extends Controller
                     $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
                     $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
 
-                    if (Storage::disk('SalvaNaturaFTP2')->exists($queryExtra->url_imagen)) {
-                        $contents = Storage::disk('SalvaNaturaFTP2')->get($queryExtra->url_imagen);
-                        $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($queryExtra->url_imagen);
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
                         $file = base64_encode($contents);
                         $imagen = 'data:' . $mimeType . ';base64,' . $file;
                         $consulta->Con_ImagenServer = $imagen;
@@ -75,7 +75,7 @@ class AdminController extends Controller
     public function getInfoProgramas() {
         $query = $this->SER_getProgramas();
         $query = $this->formatProgramas($query);
-        return $this->responseSuccess($query, "", 200);
+        return $this->adminRepository->responseSuccess($query, "", 200);
 
     }
 
@@ -83,8 +83,7 @@ class AdminController extends Controller
     public function getInfoServicios() {
         $query = $this->adminServices->getServicios();
         $query = $this->adminRepository->formatServicios($query);
-        return $this->responseSuccess($query, "", 200);
-
+        return $this->adminRepository->responseSuccess($query, "", 200);
     }
 
     // PARA PROGRAMAS
@@ -249,76 +248,94 @@ class AdminController extends Controller
             $queryActualizarPrograma = $this->adminServices->ActualizarProgramas($request->input('ADSER_Programa'));
             
             DB::connection("mysql")->commit(); 
-            return $this->responseSuccess([], "Contenido Agregado con exito", 200);    
+            return $this->adminRepository->responseSuccess([], "Contenido Agregado con exito", 200);    
         } catch(Throwable $e) {
             DB::connection("mysql")->rollBack();
-            return $this->responseError("Error en la subida",404);
+            return $this->adminRepository->responseError("Error en la subida",404);
         }
 
 
         // dd('Si LLego, Si funciona', $request->all());
     }
 
-    public function obtenerContenidos_Programas() {
-        try {
-            $recopilacion = [];
-            $query = $this->SER_getContenidos();
-            foreach ($query as $consulta) {
-                if ($consulta->id_imagen_contenido) {
-                    $queryExtra = $this->SER_getContenidosImg($consulta->id_imagen_contenido);
-                    // dd($queryExtra);
-                    $consulta->Con_TipoContenido = 'IMAGEN';
-                    $consulta->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
-                    $consulta->Con_Imagen_Nombre = $queryExtra->nombre_original;
-                    $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
-                    $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
+    // public function obtenerContenidos_Programas() {
+    //     try {
+    //         $recopilacion = [];
+    //         $query = $this->SER_getContenidos();
+    //         foreach ($query as $consulta) {
+    //             if ($consulta->id_imagen_contenido) {
+    //                 $queryExtra = $this->SER_getContenidosImg($consulta->id_imagen_contenido);
+    //                 // dd($queryExtra);
+    //                 $consulta->Con_TipoContenido = 'IMAGEN';
+    //                 $consulta->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
+    //                 $consulta->Con_Imagen_Nombre = $queryExtra->nombre_original;
+    //                 $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
+    //                 $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
 
-                    if (Storage::disk('SalvaNaturaFTP2')->exists($queryExtra->url_imagen)) {
-                        $contents = Storage::disk('SalvaNaturaFTP2')->get($queryExtra->url_imagen);
-                        $mimeType = Storage::disk('SalvaNaturaFTP2')->mimeType($queryExtra->url_imagen);
-                        // return response($contents)->header('Content-Type', $mimeType);
-                        // $consulta->Con_ImagenServer = base64_encode($contents);
+    //                 if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+    //                     $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+    //                     $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
+    //                     // return response($contents)->header('Content-Type', $mimeType);
+    //                     // $consulta->Con_ImagenServer = base64_encode($contents);
 
-                        $file = base64_encode($contents);
-                        $imagen = 'data:' . $mimeType . ';base64,' . $file;
-                        $consulta->Con_ImagenServer = $imagen;
-                    }
-                } else if ($consulta->id_texto_contenido) {
-                    $queryExtra = $this->SER_getContenidosText($consulta->id_texto_contenido); 
-                    // dd($queryExtra);
-                    $consulta->Con_TipoContenido = 'TEXTO';
-                    $consulta->Con_ID_Texto = $queryExtra->id_texto_contenido;
-                    $consulta->Con_Texto = $queryExtra->texto;
+    //                     $file = base64_encode($contents);
+    //                     $imagen = 'data:' . $mimeType . ';base64,' . $file;
+    //                     $consulta->Con_ImagenServer = $imagen;
+    //                 }
+    //             } else if ($consulta->id_texto_contenido) {
+    //                 $queryExtra = $this->SER_getContenidosText($consulta->id_texto_contenido); 
+    //                 // dd($queryExtra);
+    //                 $consulta->Con_TipoContenido = 'TEXTO';
+    //                 $consulta->Con_ID_Texto = $queryExtra->id_texto_contenido;
+    //                 $consulta->Con_Texto = $queryExtra->texto;
     
-                }
+    //             }
 
-                $recopilacion[] = $consulta;
-            } 
+    //             $recopilacion[] = $consulta;
+    //         } 
 
-            // $agrupados = [];
-            // foreach ($recopilacion as $contenido) {
-            //     $id_programas = $contenido['id_programas'];
-            //     if (!isset($agrupados[$id_programas])) {
-            //         $agrupados[$id_programas] = [];
-            //     }
-            //     $agrupados[$id_programas][] = $contenido;
-            // }
+    //         // $agrupados = [];
+    //         // foreach ($recopilacion as $contenido) {
+    //         //     $id_programas = $contenido['id_programas'];
+    //         //     if (!isset($agrupados[$id_programas])) {
+    //         //         $agrupados[$id_programas] = [];
+    //         //     }
+    //         //     $agrupados[$id_programas][] = $contenido;
+    //         // }
 
-            // dd('agrupados', $agrupados);
+    //         // dd('agrupados', $agrupados);
             
-            // dd($recopilacion);
-            $recopilacion = $this->formatporID($recopilacion);
-            // dd($recopilacion);
+    //         // dd($recopilacion);
+    //         $recopilacion = $this->formatporID($recopilacion);
+    //         // dd($recopilacion);
     
-            // dd('La recopilacion', $recopilacion);
-            // return $recopilacion;
-            return $this->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
-        } catch (Throwable $e) {
-            return $this->responseError($e . "Error en la consulta", 404); 
-        }
+    //         // dd('La recopilacion', $recopilacion);
+    //         // return $recopilacion;
+    //         return $this->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+    //     } catch (Throwable $e) {
+    //         return $this->responseError($e . "Error en la consulta", 404); 
+    //     }
 
+    // }
+
+    // ----------------- | Opcion 2 - Servicios y Programas - Begin | -------------------- //
+    public function obtenerContenidos_Programas() {
+        $queryProgramas = $this->adminServices->getProgramas();
+        // $queryProgramas = $this->adminServices->getServicios();
+        $formartPrograma = $this->adminRepository->formartAdminOp2($queryProgramas);
+        // dd($formartPrograma);
+        return $this->adminRepository->responseSuccess($formartPrograma, "Resultado Exitoso", 200);
     }
-
+    
+    public function obtenerContenidos_Servicios() {
+        // $queryProgramas = $this->adminServices->getProgramas();
+        $queryProgramas = $this->adminServices->getServicios();
+        $formartPrograma = $this->adminRepository->formartAdminOp2($queryProgramas);
+        // dd($formartPrograma);
+        return $this->adminRepository->responseSuccess($formartPrograma, "Resultado Exitoso", 200);
+    }
+    
+    // ----------------- | Opcion 2 - Servicios y Programas - End | -------------------- //
 
     public function getImagenesServer($url) {
         $query = $this->getImagenConsultaShow($url);
@@ -333,7 +350,8 @@ class AdminController extends Controller
     // PARA SERVICIOS
     public function getServiciosActivos(Request $request) {
         $query = $this->adminServices->getServiciosActivos();
-        return $query;
+        return $this->adminRepository->responseSuccess($query, "", 200);
+        // return $query;
     }
 
 
@@ -341,12 +359,8 @@ class AdminController extends Controller
 
 
     public function SER_getProgramasActivos() {
-        $query = Programas::select('id_programas AS codID', 'programa AS valPRO')
-        ->whereNotNull('programa')
-        ->where('activc', '1')
-        ->where('contenido', '0')
-        ->get();
-        return $query;
+        $query = $this->adminServices->getProgramasActivos();
+        return $this->adminRepository->responseSuccess($query, "Exitoso", 200);
     }
 
     public function SER_getProgramas() {
@@ -592,4 +606,303 @@ class AdminController extends Controller
         // dd('mapDataCombinado', $mapDataCombinado);
 
     }
+
+    // SECCION DE SERVICIOS
+
+    // ----------------- | Vista Previa - Servicios y Programas - Begin | -------------------- //
+    
+    public function vistaPreviaServicios(Request $request) {
+        // dd($request->all());
+        try {
+            $recopilacion = [];
+            $query = $this->adminServices->getContenidos_Servicios(intval($request->id));
+            // dd($query);
+            foreach ($query as $consulta) {
+                if ($consulta->id_imagen_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosImg($consulta->id_imagen_contenido);
+                    // dd($queryExtra);
+                    $consulta->Con_TipoContenido = 'IMAGEN';
+                    $consulta->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
+                    $consulta->Con_Imagen_Nombre = $queryExtra->nombre_original;
+                    $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
+                    $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
+                    
+                    
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
+                        // return response($contents)->header('Content-Type', $mimeType);
+                        // $consulta->Con_ImagenServer = base64_encode($contents);
+                        
+                        $file = base64_encode($contents);
+                        $imagen = 'data:' . $mimeType . ';base64,' . $file;
+                        $consulta->Con_ImagenServer = $imagen;
+                    }
+                    
+                    // $consulta->Con_ImagenServer = $this->getImagePortada($queryExtra->url_imagen);
+                } else if ($consulta->id_texto_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosText($consulta->id_texto_contenido); 
+                    // dd($queryExtra);
+                    $consulta->Con_TipoContenido = 'TEXTO';
+                    $consulta->Con_ID_Texto = $queryExtra->id_texto_contenido;
+                    $consulta->Con_Texto = $queryExtra->texto;
+    
+                }
+                
+                $recopilacion[] = $consulta;
+                // dd('recopilacion', $recopilacion);
+            } 
+            $recopilacion = $this->adminRepository->formatporID($recopilacion);
+            // dd($recopilacion)
+            return $this->adminRepository->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->adminRepository->responseError("Error en la consulta", 404); 
+        }
+    }
+
+    public function vistaPreviaProgramas(Request $request) {
+        // dd($request->all());
+        try {
+            $recopilacion = [];
+            $query = $this->adminServices->getContenidos_Programas(intval($request->id));
+            // dd($query);
+            foreach ($query as $consulta) {
+                if ($consulta->id_imagen_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosImg($consulta->id_imagen_contenido);
+                    // dd($queryExtra);
+                    $consulta->Con_TipoContenido = 'IMAGEN';
+                    $consulta->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
+                    $consulta->Con_Imagen_Nombre = $queryExtra->nombre_original;
+                    $consulta->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
+                    $consulta->Con_Imagen_URL = $queryExtra->url_imagen;
+                    
+                    
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
+                        // return response($contents)->header('Content-Type', $mimeType);
+                        // $consulta->Con_ImagenServer = base64_encode($contents);
+                        
+                        $file = base64_encode($contents);
+                        $imagen = 'data:' . $mimeType . ';base64,' . $file;
+                        $consulta->Con_ImagenServer = $imagen;
+                    }
+                    
+                    // $consulta->Con_ImagenServer = $this->getImagePortada($queryExtra->url_imagen);
+                } else if ($consulta->id_texto_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosText($consulta->id_texto_contenido); 
+                    // dd($queryExtra);
+                    $consulta->Con_TipoContenido = 'TEXTO';
+                    $consulta->Con_ID_Texto = $queryExtra->id_texto_contenido;
+                    $consulta->Con_Texto = $queryExtra->texto;
+    
+                }
+                
+                $recopilacion[] = $consulta;
+                // dd('recopilacion', $recopilacion);
+            } 
+            $recopilacion = $this->adminRepository->formatporID($recopilacion);
+            // dd($recopilacion)
+            return $this->adminRepository->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->adminRepository->responseError("Error en la consulta", 404); 
+        }
+    }
+    
+    // ----------------- | Vista Previa - Servicios y Programas - End | -------------------- //
+    
+    // ----------------- | Modificar Img - Servicios y Programas - Begin | -------------------- //
+
+    public function modificarImagenes_Servicios(Request $request) {
+        try {
+            $recopilacion = [];
+            $query = $this->adminServices->getContenidos_Servicios(intval($request->id));
+            // dd($query);
+            foreach ($query as $consulta) {
+                $format = new stdClass();
+                if ($consulta->id_imagen_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosImg($consulta->id_imagen_contenido);
+                    $format->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
+                    $format->Con_Imagen_Nombre = $queryExtra->nombre_original;
+                    $format->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
+                    $format->Con_Imagen_URL = $queryExtra->url_imagen;
+                    
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
+                        // return response($contents)->header('Content-Type', $mimeType);
+                        // $consulta->Con_ImagenServer = base64_encode($contents);
+                        
+                        $file = base64_encode($contents);
+                        $imagen = 'data:' . $mimeType . ';base64,' . $file;
+                        $format->Con_ImagenServer = $imagen;
+                    }
+                    $recopilacion[] = $format;
+                }                 
+            } 
+            // dd($recopilacion);
+            return $this->adminRepository->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->adminRepository->responseError( $e . "Error en la consulta", 404); 
+        }
+    }
+
+    public function Peticion_modificarImagenes_Servicios(Request $request) {
+        try {
+            DB::connection("mysql")->beginTransaction();
+            // dd($request->all());
+
+            if ($request->hasFile('archivoPlus')) {
+                $id = $request->input('id');
+    
+                $tiempo_actual = microtime(true);
+                $hora_exacta = date("Y-m-d H:i:s.", $tiempo_actual) . substr((string)$tiempo_actual, 11, 3);
+        
+                $pdfFile = $request->file('archivoPlus');
+                $pdfOriginalName = $pdfFile->getClientOriginalName();
+                $pdfExtension = $pdfFile->getClientOriginalExtension();
+                $pdfFilename = $hora_exacta . ' - ' . $pdfOriginalName;
+                $url = "PrubasII/{$pdfFilename}"; 
+                $guardarArchivo = Storage::disk('s3')->put($url, file_get_contents($pdfFile));
+
+                $datos = [
+                        "id" => $id,   
+                        "nombreO" => $pdfOriginalName,
+                        "nombreM" => $pdfFilename,
+                        "url" => $url
+                ];
+
+                $query = $this->adminServices->UpdateImagenes_Servicios($datos);
+            }
+        
+            // Obtener el archivo y otros datos
+            DB::connection("mysql")->commit(); 
+            return $this->responseSuccess([], "Contenido Actualizado con exito", 200); 
+        } catch (Throwable $e) {
+            DB::connection("mysql")->rollBack();
+            return $this->responseError($e . " Error en la subida",404);
+        }
+    }
+
+    public function modificarImagenes_Programas(Request $request) {
+        try {
+            $recopilacion = [];
+            $query = $this->adminServices->getContenidos_Programas(intval($request->id));
+            // dd($query);
+            foreach ($query as $consulta) {
+                $format = new stdClass();
+                if ($consulta->id_imagen_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosImg($consulta->id_imagen_contenido);
+                    $format->Con_ID_Imagen = $queryExtra->id_imagen_contenido;
+                    $format->Con_Imagen_Nombre = $queryExtra->nombre_original;
+                    $format->Con_Imagen_Posicion = $queryExtra->id_tipo_imagen;
+                    $format->Con_Imagen_URL = $queryExtra->url_imagen;
+                    
+                    if (Storage::disk('s3')->exists($queryExtra->url_imagen)) {
+                        $contents = Storage::disk('s3')->get($queryExtra->url_imagen);
+                        $mimeType = Storage::disk('s3')->mimeType($queryExtra->url_imagen);
+                        // return response($contents)->header('Content-Type', $mimeType);
+                        // $consulta->Con_ImagenServer = base64_encode($contents);
+                        
+                        $file = base64_encode($contents);
+                        $imagen = 'data:' . $mimeType . ';base64,' . $file;
+                        $format->Con_ImagenServer = $imagen;
+                    }
+                    $recopilacion[] = $format;
+                }                 
+            } 
+            // dd($recopilacion);
+            return $this->adminRepository->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->adminRepository->responseError( $e . "Error en la consulta", 404); 
+        }
+    }
+
+    // ----------------- | Modificar Texto - Servicios y Programas - End | -------------------- //
+
+    public function modificarTexto_Servicios(Request $request) {
+        try {
+            $recopilacion = [];
+            $query = $this->adminServices->getContenidos_Servicios(intval($request->id));
+            // dd($query);
+            foreach ($query as $consulta) {
+                $format = new stdClass();
+                if ($consulta->id_texto_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosText($consulta->id_texto_contenido); 
+                    // dd($queryExtra);
+                    $format->Con_TipoContenido = 'TEXTO';
+                    $format->Con_ID_Texto = $queryExtra->id_texto_contenido;
+                    $format->Con_Texto = $queryExtra->texto;
+    
+                    $recopilacion[] = $format;
+                }               
+            } 
+            // dd($recopilacion);
+            return $this->adminRepository->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->adminRepository->responseError( $e . "Error en la consulta", 404); 
+        }
+    }
+
+    public function peticion_modificarTextoServicios(Request $request) {
+        try {
+            // dd($request->all());
+            DB::connection("mysql")->beginTransaction();
+            $query = $this->adminServices->UpdateTexto_Servicios($request->all());
+            DB::connection("mysql")->commit();
+            return $this->adminRepository->responseSuccess($query, "Actualizacion exitosa", 200);
+        } catch (Throwable $e) {
+            DB::connection("mysql")->rollBack();
+            return $this->adminRepository->responseError("Error en la actualizacion", 404);
+        }
+    }
+
+    public function modificarTexto_Programas(Request $request) {
+        try {
+            $recopilacion = [];
+            $query = $this->adminServices->getContenidos_Programas(intval($request->id));
+            // dd($query);
+            foreach ($query as $consulta) {
+                $format = new stdClass();
+                if ($consulta->id_texto_contenido) {
+                    $queryExtra = $this->adminServices->getContenidosText($consulta->id_texto_contenido); 
+                    // dd($queryExtra);
+                    $format->Con_TipoContenido = 'TEXTO';
+                    $format->Con_ID_Texto = $queryExtra->id_texto_contenido;
+                    $format->Con_Texto = $queryExtra->texto;
+    
+                    $recopilacion[] = $format;
+                }               
+            } 
+            // dd($recopilacion);
+            return $this->adminRepository->responseSuccess($recopilacion, "Contenido Agregado con exito", 200);    
+        } catch (Throwable $e) {
+            return $this->adminRepository->responseError( $e . "Error en la consulta", 404); 
+        }
+    }
+
+    public function peticion_modificarTextoProgramas(Request $request) {
+        try {
+            // dd($request->all());
+            DB::connection("mysql")->beginTransaction();
+            $query = $this->adminServices->UpdateTexto_Servicios($request->all());
+            DB::connection("mysql")->commit();
+            return $this->adminRepository->responseSuccess($query, "Actualizacion exitosa", 200);
+        } catch (Throwable $e) {
+            DB::connection("mysql")->rollBack();
+            return $this->adminRepository->responseError("Error en la actualizacion", 404);
+        }
+    }
+
+    // ----------------- | Modificar Texto - Servicios y Programas - Begin | -------------------- //
+
+    // ---------------------------- | Seccion Contactanos - Begin | ----------------------------- //
+    
+    public function seccionContactanos(Request $request) {
+        $query = $this->adminServices->getContactanos();
+        return $this->adminRepository->responseSuccess($query, "Actualizacion exitosa", 200);
+    }
+
+
+    // ---------------------------- | Seccion Contactanos - End | ----------------------------- //
 }

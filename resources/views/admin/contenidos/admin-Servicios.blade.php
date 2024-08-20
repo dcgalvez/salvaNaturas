@@ -106,13 +106,32 @@
 
             {{--------------| Menu Opciones |-------------}}
             <div class="GB-SpaceOther">
-                <button type="button" class="btn btn-outline-success ADSER-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-check-lg"></i> Activos</button>
+                {{-- <button type="button" class="btn btn-outline-success ADSER-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-check-lg"></i> Activos</button>
                 <button type="button" class="btn btn-outline-warning ADSER-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-slash-circle"></i> Inactivos</button>
-                <button type="button" class="btn btn-outline-primary ADSER-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-folder-plus"></i> Nuevo Contenido</button>
+                <button type="button" class="btn btn-outline-primary ADSER-AddNewPrograma" style="margin-right: 0.75em;"><i class="bi bi-folder-plus"></i> Nuevo Contenido</button> --}}
             </div>
 
             {{-----------------------| Contenidos Container | --------------------}}
             <div class="ADSER-Contenidos-ContMain" id="ADSER-Contenidos-ContMain">
+                <div class="row" id="ADSER-ContenidosRow">
+                    {{-- <div class="col-6">
+                        <div class="GCAD_C ">
+                            <div class="GCAD_CUno ">
+                                <div class=""><p class="TESTING_GB_ForTitle3">Programas - Progrmas Nombre</p><hr></div>
+                                <div class="row">
+                                    <div class="col-5"><p class="TESTING_GB_ForText">Estado: Activo</p></div>
+                                    <div class="col-5"><p class="TESTING_GB_ForText">Contenido : Si</p></div>
+                                    <div class="col-2"></div>
+                                </div>
+                            </div>
+                            <div class="GCAD_CDos ">
+                                <input type="button" class="btn btn-outline-primary" value="Imagenes" name="" id="">
+                                <input type="button" class="btn btn-outline-primary" value="Texto" name="" id="">
+                                <input type="button" class="btn btn-outline-primary" value="Vista Previa" name="" id="">
+                            </div>
+                        </div>
+                    </div> --}}
+                </div>
                 {{-- <div class="ADPDC-Main GBborderBlack">
                     <div class="ADPDC-Title GBTextCenter">
                     <h1 style="color:#ffcc00;">NOMBRE DEL PROGRAMA</h1>

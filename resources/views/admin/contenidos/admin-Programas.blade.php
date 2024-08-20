@@ -114,6 +114,9 @@
 
             {{-----------------------| Contenidos Container | --------------------}}
             <div class="ADP-Contenidos-ContMain" id="ADP-Contenidos-ContMain">
+                <div class="row" id="ADPRO-ContenidosRow">
+                   
+                </div>
                 {{-- <div class="ADPDC-Main GBborderBlack">
                     <div class="ADPDC-Title GBTextCenter">
                     <h1 style="color:#ffcc00;">NOMBRE DEL PROGRAMA</h1>

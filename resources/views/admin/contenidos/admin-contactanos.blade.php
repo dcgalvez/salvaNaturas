@@ -1,7 +1,10 @@
 <div class="w-100 GBAI-Shadow p-5">
     <p class="GBL-Titulo4">LISTA CONTACTOS</p>
     <hr>
-    <div class="row m-3">
+    <div class="ADCON_Cards">
+
+    </div>
+    {{-- <div class="row m-3">
         <div class="col-10 row" style="gap: 0.5em">
             <div class="alert alert-light col-6" role="alert">
                 David Alejandro Cordova Galvez
@@ -41,13 +44,13 @@
 
     <div class="row m-3">
         <div class="col-10 row" style="gap: 0.5em">
-            <div class="alert alert-light col-6" role="alert">
+            <div class="alert alert-light col-3" role="alert">
                 Bruno Ariel Diaz Lopez
             </div>
             <div class="alert alert-light col-2" role="alert">
                 74953236
             </div>
-            <div class="alert alert-light col-3" role="alert">
+            <div class="alert alert-light col-6" role="alert">
                 LA SIERRA DE CHINAMECA
             </div>
         </div>
@@ -56,6 +59,6 @@
                 Revisado
               </div>
         </div>
-    </div>
+    </div> --}}
     
 </div>
