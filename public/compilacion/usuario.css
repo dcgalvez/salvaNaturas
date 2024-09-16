@@ -1,0 +1,217 @@
+/* --------------| Begin Global Clases |--------------- */
+
+* {
+    box-sizing: border-box;
+    font-family: system-ui;
+    font-weight: 500;
+    box-sizing: border-box;
+}
+
+.GB-labelFont {
+    letter-spacing: 0.9px;
+    color: #576E85;
+    font-size: 0.95em;
+}
+
+.GBborderBlack {
+    border: 1px solid #000;
+    border-radius: 0.35em;
+}
+
+.GBMargin { margin: 0.25em; }
+
+.GBDisplayFlex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.GBTextCenter {
+    text-align: center;
+}
+
+.GBFontMonoton {
+    font-family: "Monoton", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.GBFontOregano {
+    font-family: "Oregano", cursive;
+    font-weight: 400;
+}
+
+.GBFontBebasN {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+/* --------------| End Global Clases |--------------- */
+
+/* -----------------------------| Begin Main Screen |------------------------------- */
+
+:root {
+    --global--imagenInicio:  url('/assets/images/BannerTwo.png');
+    --global--verdeClaro: #6dd93b46; 
+    --global--verde: #6DD93B;
+    --global--verdeContraste: #4F9000;
+    --global--otroVerde: #1F8C3A;
+    --global--azul: #023E73;
+    --global--azulCl: #033E8C;
+}
+
+body {
+    background-color: var(--global--verdeClaro);
+}
+
+.MAS-BannerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 2.5em 0;
+    width: 100% !important;
+    height: 90vh !important;
+}
+
+.MAS-BannerImg {
+    width: 97%;
+    height: 90vh;
+    background-image: var(--global--imagenInicio);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 1.5em;
+    border: 0.10em solid var(--global--otroVerde);
+}
+
+/* ---------------| MISION Y VISION |------------- */
+
+.PI-Div-FormatoInfo {
+    padding: 7em;
+}
+
+.PI-FormatoInfo {
+    display: grid;
+    grid-auto-columns: minmax(2em, auto);
+    grid-auto-rows: minmax(2em, auto);
+    gap: 0.75em;
+    border: 1px solid black;
+    margin: 0.5em 0 0.5em 0;
+}
+
+.PI-FormatoInfo-Title {
+    grid-column: 1;
+    grid-row: 1;
+    border: 1px solid black;
+}
+
+.PI-FormatoInfo-Text {
+    grid-column: 1;
+    grid-row: 2;
+    border: 1px solid black;
+
+}
+
+
+
+/* -----------------------------| End Main Screen |------------------------------- */
+.MAS-Nav {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 20px;
+    letter-spacing: 0.6px;
+}
+
+  .MAS-Nav .MAS-Ul2 {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    height: 1.5em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2 {
+    margin-left: 1.5em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2:first-child {
+    margin-left: 15em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2:last-child {
+    margin-right: 15em;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2 .MAS-A2 {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+  }
+
+  .MAS-Nav .MAS-Ul2 .MAS-LI2 .MAS-A2:hover {
+    color: #ffcc00;
+  }
+
+  #MAS-A2ICON img{
+    margin-top: -0.75em;
+    transform: scale(0.9);
+  }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus {
+            border-color: #007bff;
+        }
+
+        .form-group input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            border-radius: 20px;
+        }
+
+        .form-group input[type="submit"]:hover {
+            background-color: #0056b3;
+        }

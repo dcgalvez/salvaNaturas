@@ -1,0 +1,160 @@
+.AI-Container{
+    width: 100% !important;
+    font-family: system-ui, sans-serif;
+    background-image: url('/assets/images/AdminWallpaper2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+}
+
+.AI-Flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .AI-Border {
+    border: 1px black solid;
+} */
+.AI-BorderDos {
+    border: 1px black solid;
+}
+
+/* ---------| BARRA PRINCIPAL |-------- */
+.AI-Barra {
+    padding: 0.25em;
+    background-color: #194c19;
+    /* border-radius: 0.25em; */
+    text-align: center;
+}
+
+.AI-Fuente {
+    font-size: 1.5em;
+    color: white;
+}
+
+/* ----------| TITULO Y SECCIONES |--------- */
+
+.AI-GS {
+    margin: 1em 0;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-auto-rows: minmax(3em, auto);
+    gap: 0.25em;
+    padding: 0.25em;
+}
+.AI-Gestor {
+    grid-column: 1;
+    grid-row: 1;
+}
+.AI-Gestor-Title {
+    font-size: 2em;
+}
+
+.AI-Secciones {
+    grid-column: 1;
+    grid-row: 2;
+    flex-wrap: wrap;
+}
+
+.AI-SeccionesSty {
+    width: 9em;
+    height: 5.5em;
+    margin: 0 0.75em 0 0.75em;
+    background-color: #5b954d;
+    border-radius: 0.55em;
+    color: #004f00;
+}
+.AI-SeccionesSty:hover {
+    background-color: #b9f2ab;
+    cursor: grab;
+    border: 1px solid #004f00;
+}
+
+/* ----------| CONTENIDO |------------ */
+.AI-Contenido {
+    height: 50em;
+    margin: 4em 1.25em 0 1.25em;
+    background-color: #b8b8b8;
+    border-radius: 0.55em;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/assets/images/login.jpg'); 
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+}
+
+.btn {
+    background-color: #4CAF50; /* Green */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #3e8e41;
+}
+
+.btn:active {
+    background-color: #3e8e41;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+
+.container-form {
+    width: 90%;
+    height: 90vh;
+    display: flex;
+    justify-content: space-around;
+    transition: all 0.5s ease-out;
+}
+
+.formulario {
+    width: 400px;
+    padding: 1rem;
+    margin: 2rem;
+    background-color: rgba(51, 51, 51, 0.6); /* Fondo translúcido */
+    text-align: center;
+    box-shadow: none; /* Eliminamos cualquier sombra */
+    border: none; /* Aseguramos que no haya borde */
+    border-radius: 15px; /* Redondeamos las esquinas */
+}
+
+.create-account {
+    padding: 2.7rem 0;
+    font-size: 1.7rem;
+}
+
+.cuenta-gratis {
+    padding: 2rem 0;
+}
+
+.formulario input {
+    width: 70%;
+    display: block;
+    margin: auto;
+    margin-bottom: 2rem;
+    background-color: transparent;
+    border: none;
+    border-bottom: white thin solid;
+    text-align: center;
+    outline: none;
+    padding: 0.2rem 0;
+    font-size: 0.9rem;
+    color: white;
+}
